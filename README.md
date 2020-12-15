@@ -60,9 +60,9 @@ enjoy 🤿
                 -   [Prestashop](#prestashop)
                 -   [Wordpress](#wordpress)
         -   [* WSL Archlinux](#wsl-archlinux)
-            -   [* Installation](#arch-installation)
+            -   [* Installation](#archlinux-installation)
         -   [WSL CentOS 8](#wsl-centos-8)
-            -   [Installation](#centos-installation)
+            -   [Installation](#centos-8-installation)
             -   [dnf](#dnf)
         -   [WSL Tips](#wsl-tips)
             -   [Import / Export](#import-/-export)
@@ -135,7 +135,7 @@ now run `choco` to confirm that the installation was **successful** it must retu
 
 <br>
 
-## [Packages](#choco-packages)
+## Choco Packages
 
 
 You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI**.
@@ -637,7 +637,7 @@ Some Utilities for WSL:
 
 ## WSL Ubuntu
 
-### Fist Steps
+### First Steps
 
 `sudo nano /etc/apt/sources.list` repositories
 Create a User and a Password and then update your mirrorlist and upgrade your packages.
@@ -662,7 +662,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 <br>
 
-### [Packages](#ubuntu-packages)
+### Ubuntu Packages
 
 Some packages that will be needed:
 
@@ -1347,15 +1347,23 @@ http://localhost/**nova-pasta** -->
 
 <br>
 
-## [Installation](#archlinux-installation)
+... tba
+
+<br>
+
+## Archlinux Installation
+
+<br>
+
+... tba
 
 <br>
 
 ## WSL CentOS 8
 
-You need to have [docker](https://docs.docker.com/docker-for-windows/install/) installed.
+You need to have [docker](https://docs.docker.com/docker-for-windows/install/) installed and run all the commands on `cmd`.
 
-### [Installation](#centos-installation)
+### CentOS 8 Installation
 
 We need to pull the laster CentOS image from [Docker hub](https://hub.docker.com/)
 
@@ -1366,9 +1374,10 @@ We need to pull the laster CentOS image from [Docker hub](https://hub.docker.com
 Then we need the 4 first digits
 
     docker export [4 digits]  > centos.tar
-    docker export 74c3 > centos.tar
 
-From PowerShell run:`wsl --import Centos8 .\CentosImage\ centos.tar`
+    *for example $ docker export 74c3 > centos.tar
+
+Run to import the image: `wsl --import Centos8 .\CentosImage\ centos.tar`
 
 To get in the distribution run: `wsl -d Centos8` then `cat /etc/centos-release` to see the version
 
