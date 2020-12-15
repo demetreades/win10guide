@@ -1160,7 +1160,7 @@ _Stop:_
 
 [Documentation](https://httpd.apache.org/docs/)
 
-The main configuration file is `/etc/apache2/apache2.conf`
+The main configuration file is located at `/etc/apache2/apache2.conf`
 
 `ports.conf` is used to specify the ports that virtual hosts should listen on.
 
