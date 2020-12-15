@@ -1350,6 +1350,10 @@ Fix WSL time sync
 
 `sudo ntpdate ntp.ubuntu.com &>/dev/null &`
 
+For fixing also the dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
+    
+    reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f
+
 <br>
 
 # Windows Tips
@@ -1357,6 +1361,16 @@ Fix WSL time sync
 ## Interesting things and locations
 
 <br>
+
+in `Run` , `CTRL+R` give:
+
+for temporary file folders
+
+`TEMP` and `%TEMP%`
+
+`recent`
+
+
 
 `mblctr.exe` Available only for laptops
 
@@ -1370,7 +1384,18 @@ Fix WSL time sync
 
 `math input panel` Draws out mathematical equations
 
-`shell:startup` The location of StartUp folder
+
+The location of StartUp folder
+
+    shell:startup
+    shell:common startup
+    shell:regualr startup
+
+To have an Application folder similar to that of macOSX
+
+    shell:AppsFolder
+
+
 
 `regedit.exe` Registry Editor
 
@@ -1390,7 +1415,15 @@ Fix WSL time sync
 
 `msra.exe` Windows remote assistant tool
 
+`wsreset.exe` Cleaning Microsoft Store 
+
+`recent` Recent items
+
 `shrpubw.exe` Share creation wizard
+
+`prefetch`  For deleting prefetch files
+
+`Reliability Monitor` Best monitoring tool to log Windows performance
 
 <br>
 
@@ -1418,6 +1451,22 @@ Start Menu items are in two locations:
 
 `C:\%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\`
 
+or you can give that in `run`: `shell:Start Menu`
+
+<br>
+
+You can delete the content of previous updates folder.
+
+    C:\Windows\SoftwareDistribution\Download\
+
+<br>
+
+Other locations might be:
+
+    %appdata%\microsoft\windows\recent\automaticdestinations
+
+    %appdata%\microsoft\windows\recent\customdestinations
+
 <br>
 
 [Sysinternals](https://download.sysinternals.com/files/SysinternalsSuite.zip)
@@ -1438,6 +1487,19 @@ Install Microsoft Edge Enterprise
 Reduce size of `WinSxS` folder
 
     dism.exe /online /cleanup-image /spsuperseded /hidesp
+
+
+<br>
+
+To choose a different Windows installation to be the default for the bootloader on `cmd` run:
+
+    bcdboot E:\Windows          // as an example for the E: drive
+
+    bcdedit /default {current}
+
+To check for problems on a disk
+
+    chkdsk /f e:
 
 <br>
 
@@ -1468,13 +1530,10 @@ To repair the image of Windows, on PowerShell with **administrator privileges**r
 
 <br>
 
-If you experience trouble with Microsoft Store you can clean its cache, on cmd.exe with **administrator privileges** run: `wsreset`
-
-<br>
-
 You can clear the DNS cache by running: `ipconfig/flushdns`, also better
 change DNS [here is a list](https://www.privacytools.io/providers/dns/) of p
-private focused DNS services, i use mostly **Quad9**
+private focused DNS services, i use mostly **Quad9** 
+IPv4: `9.9.9.9, 149.112.112.112`
 
 <br>
 
