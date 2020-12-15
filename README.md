@@ -702,11 +702,21 @@ _Worth Mentioning cli tools_:
 
 ## Git
 
-[Documentation](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git)
+Check the [Official Documentation](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git) first.
+
+<br>
+
+Setup your username:
 
     git config --global user.name "Your Name"
 
+Setup your password:
+
     git config --global user.email "youremail@domain.com"
+
+Git Credential Manager to enable you authenticate remote Git servers
+
+    git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
 The location of git is at $home folder.
 
@@ -717,10 +727,6 @@ The location of git is at $home folder.
 To check or edit your git configuration access it with:
 
     nano ~/.gitconfig
-
-Git Credential Manager to enable you authenticate remote Git servers
-
-    git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
 If you are using a GPG key for code signing security, you may need to associate your GPG key with your GitHub email
 
