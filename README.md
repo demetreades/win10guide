@@ -1019,7 +1019,7 @@ To Install Python3:
 
 <br>
 
-[pyenv](https://github.com/pyenv/pyenv) Python Version Manager
+[pyenv](https://github.com/pyenv/pyenv) Python Version Manager.
 
      git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
