@@ -367,7 +367,7 @@ You can list the current configuration with `$ThemeSettings`
 
 and the Posh-Git settings with `$GitPromptSettings`
 
-<del>To set the initial location add: `set-location %USERPROFILE%`</del>
+To set the initial location add: `set-location c:\User\<username>`
 
 <br>
 
@@ -410,10 +410,13 @@ Install some fonts and change them via PowerShell's `Properties` by right clicki
                 }
         }
 
+        #start directory
+        set-location c:\Users\Username10
+
         #oh-my-posh
+        Set-Theme Operator
         Import-Module posh-git
         Import-Module oh-my-posh
-        Set-Theme Operator
 
         #icons
         Set-TerminalIconsIconTheme devblackops
