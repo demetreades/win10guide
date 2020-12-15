@@ -752,11 +752,11 @@ Check the [Official Documentation](https://docs.microsoft.com/en-us/windows/wsl/
 
 <br>
 
-Setup your username:
+Setup your Username:
 
     git config --global user.name "Your Name"
 
-Setup your password:
+Setup your Password:
 
     git config --global user.email "youremail@domain.com"
 
