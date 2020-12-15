@@ -1121,7 +1121,7 @@ Install
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-Import the environment config for rust to your `~/.zshrc`
+Import the environment config for Rust to your `~/.zshrc`
 
     source $HOME/.cargo/env
 
