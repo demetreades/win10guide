@@ -884,6 +884,8 @@ Now you have to login for the first time so run:
 
 **gh commands**:
 
+    ..tba
+
     gh issue list
 
     gh pr status
