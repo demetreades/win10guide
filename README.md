@@ -1457,7 +1457,7 @@ To **debloat** Windows 10 the easiest way i found without running weird scripts,
 
 #### God Mode
 
-It’s simply a special folder you can enable that exposes most of Windows admin, management, settings, and Control Panel tools in a single, easy-to-scroll-through **one interface**.
+It’s simply a special folder you can `enable` that exposes most of Windows admin, management, settings, and Control Panel tools in a single, easy-to-scroll-through **one interface**.
 
 You can **enter** God Mode by creating a folder and **renaming** it with this line:
 
@@ -1467,7 +1467,7 @@ You can **enter** God Mode by creating a folder and **renaming** it with this li
 
 #### Local Shared Folders
 
-We have first to enable Developer mode so the computer is discoverable and can accessed to share files in your local network.
+We have first to `enable` Developer Mode so the computer is discoverable and can accessed to share files in your local network.
 
     Windows Settings > Updates & Security > For Developers
 
