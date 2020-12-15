@@ -168,7 +168,7 @@ You can find packages by running `search` command, from the Chocolatey's **[page
 
 <br>
 
-**Chocolatey packages**:
+**Chocolatey's packages**:
 
     choco install -y chocolateygui choco-cleaner chocolatey-core.extension chocolatey-windowsupdate.extension
 
