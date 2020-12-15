@@ -1305,7 +1305,7 @@ http://localhost/**nova-pasta** -->
 
 `sudo sysctl -p` to refresh the changes
 
-After that cat again to confirm that swappiness is changed
+After that `cat` again to confirm that swappiness is changed.
 
 <br>
 
