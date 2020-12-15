@@ -788,6 +788,14 @@ Your identification and key are saved at `$HOME/.ssh/`.
 
 <br>
 
+**VS Code as Git editor**
+
+From the command line, run: `git config --global core.editor "code --wait"`
+
+Now you can run: `git config --global -e` and use VS Code as editor for configuring git.
+
+<br>
+
 #### GitHub CLI
 
 [gh](https://github.com/cli/cli#debianubuntu-linux) is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with git and your code.
