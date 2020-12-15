@@ -233,11 +233,19 @@ If you want a **GUI** instead of using PowerShell, you can run `choco install ch
 
 [Documentation](https://docs.microsoft.com/en-us/powershell/)
 
-[Updating](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) to PowerShell 7.1:
+[Updating](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) to PowerShell 7.2 (Preview):
 
-    msiexec.exe /package PowerShell-7.1.0-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+    iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
 
 To refresh environmental variables from the registry run: `refreshenv`
+
+To get the version run:
+
+    (Get-Host).Version
+
+or
+
+    $PSVersionTable
 
 <br>
 
