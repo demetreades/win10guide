@@ -756,11 +756,16 @@ If you having problems with Credential Manager try [this](https://github.com/Mic
 
 Using your terminal/command line, get inside the folder where your project files are kept and run:
 
-1. `git init`
-1. `git add .`
-1. `git remote add https://www.github.com/<username>/<repo>.gr`
-1. `git commit`
-1. `git push origin master`
+1.  `git init`
+1.  `git add .`
+1.  `git remote add https://www.github.com/<username>/<repo>.gr`
+1.  `git commit`
+1.  `git push origin master`
+
+        git remote add origin git@github.com:<username>/<repo>.git
+
+        git remote -v
+        git remove rm origin
 
 <br>
 
