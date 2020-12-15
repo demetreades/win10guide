@@ -844,7 +844,7 @@ to update ohmyzsh run **`omz update`**
 
 ### Plugins
 
-You can find a [full list](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins) in ohmyzsh wiki page
+You can find a [full list](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins) in ohmyzsh Wiki page
 You can add plugins in the `~/.zshrc` under
 
 `plugins=(...)` you can add more there inside `( )`
@@ -1019,7 +1019,7 @@ To Install Python3:
 
 <br>
 
-[pyenv](https://github.com/pyenv/pyenv) Python Version Manager.
+[pyenv](https://github.com/pyenv/pyenv) Python Version Manager
 
      git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
