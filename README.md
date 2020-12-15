@@ -37,6 +37,8 @@ enjoy 🤿
             -   [Packages](#packages)
             -   [Aliases](#aliases)
             -   [Git](#git)
+                -   [First Commit](#first-commit)
+                -   [.gitignore](#.gitignore)
             -   [SSH](#ssh)
             -   [Shell](#shell)
                 -   [Oh-My-Zsh](#oh-my-zsh)
@@ -732,10 +734,25 @@ To deal with cross platform problems, where sometimes git recognize changes in f
 
     git config --global core.autocrlf input
 
-<!-- Profiles can be defined to launch %windir%\system32\bash.exe ~. -->
 <br>
 
+#### [First Commit](https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad)
+
+Using your terminal/command line, get inside the folder where your project files are kept and run:
+
+1. `git init`
+1. `git add .`
+1. `git remote add https://www.github.com/<username>/<repo>.gr`
+1. `git commit`
+1. `git push origin master`
+
+<br>
+
+#### .gitignore
+
 [.gitignore](https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files) ...tba
+
+<!-- Profiles can be defined to launch %windir%\system32\bash.exe ~. -->
 
 <br>
 
@@ -1649,6 +1666,8 @@ https://github.com/PrestaShop/php-ps-info/releases/
 https://gist.github.com/tdcosta100/385636cbae39fc8cd0937139e87b1c74/
 
 https://www.xfce.org/
+
+https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad/
 
 https://github.com/ogham/exa/
 
