@@ -38,7 +38,7 @@ enjoy 🤿
             -   [First Steps](#first-steps)
             -   [Packages](#ubuntu-packages)
             -   [Aliases](#aliases)
-            -   [Git](#git)
+            -   [git](#git)
                 -   [First Commit](#first-commit)
                 -   [.gitignore](#.gitignore)
             -   [SSH](#ssh)
@@ -742,7 +742,7 @@ _Worth Mentioning cli tools_:
 
 <br>
 
-## Git
+## git
 
 Check the [Official Documentation](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git) first.
 
@@ -804,8 +804,10 @@ Using your terminal/command line, get inside the folder where your project files
 1.  `git commit`
 1.  `git push origin master`
 
+        # SSH
         git remote add origin git@github.com:<username>/<repo>.git
 
+        # Remove repository link
         git remote -v
         git remove rm origin
 
@@ -1166,7 +1168,7 @@ Verify it works, if you get error just restart your terminal session and try aga
 
 Ensure volume mounts work
 
-`sudo nano /etc/wsl.conf` Edit your `wsl.conf` to look like this:
+`sudo nano /etc/wsl.conf` edit your `wsl.conf` to look like this:
 
     [automount]
     root = /
@@ -1174,9 +1176,9 @@ Ensure volume mounts work
 
 <br>
 
-<br>
-
 ### Docker Commands
+
+For more details see [Official Documentation](https://docs.docker.com/engine/reference/commandline/docker/)
 
 <br>
 
@@ -1184,7 +1186,7 @@ Ensure volume mounts work
 | ---------------------------------------------------------- | ------------------------------------------------------------------|
 | `docker –version`                                          | To get the currently installed version of docker                  |
 | `docker pull <image name>`                                 | To pull images from the docker repository                         |
-| `docker run -it -d <image name>`                           |  To create a container from an image                              |
+| `docker run -it -d <image name>`                           | To create a container from an image                               |
 | `docker ps`                                                | To list the running containers                                    |
 | `docker ps -a`                                             | To show all the running and exited containers                     |
 | `docker exec -it <container id> bash`                      | To access the running container                                   |
@@ -1197,8 +1199,6 @@ Ensure volume mounts work
 | `docker rm <container id>`                                 | To delete a stopped container.                                    |
 | `docker rmi <image-id>`                                    | To delete an image from local storage.                            |
 | `docker build <path to docker file>`                       | To build an image from a specified docker file.                   |
-
-<br>
 
 <br>
 
@@ -1711,7 +1711,7 @@ To share a folder on your local network just right click `Give access to > Speci
 
 #### Hibernation
 
-Sometime `hiberfil.sys` file is becoming so large **several GB**, so you will want to turn off hibernation.
+Sometime `hiberfil.sys` file can become too large **several GB**, so you will want to turn off hibernation in some point.
 
 How to make it unavailable:
 
@@ -1767,7 +1767,7 @@ run `reagentc /info` to check if Windows Recovery Environment is `enabled`
 
 <!-- <br> -->
 
-if not run `reagentc /enable`
+Iif not run `reagentc /enable`
 
 Go to `Windows Settings > Update & Security > Backup > Backup and Restore (Windows7)`
 
@@ -1777,18 +1777,6 @@ You can recover via `Windows Settings > Update & Security > Recovery` and click 
 Then go to `Troubleshoot` click `more recovery options` and then `System Image Recovery` option will appear.
 
 From `Troubleshoot` also you can **reset** your OS.
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
 
 <br>
 
@@ -1899,6 +1887,8 @@ https://github.com/PrestaShop/php-ps-info/releases/
 https://gist.github.com/tdcosta100/385636cbae39fc8cd0937139e87b1c74/
 
 https://www.xfce.org/
+
+https://docs.docker.com/engine/reference/commandline/docker/
 
 https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad/
 
