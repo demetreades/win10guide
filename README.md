@@ -239,7 +239,7 @@ If you want a **GUI** instead of using PowerShell, you can run `choco install ch
 
 To refresh environmental variables from the registry run: `refreshenv`
 
-To get the version run:
+To get PowerShell's version run:
 
     (Get-Host).Version
 
