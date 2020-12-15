@@ -736,6 +736,14 @@ To generate private and public key for git for:
 
 Your identification and key are saved at `$HOME/.ssh/`.
 
+#### SSH with Git
+
+Go to Github Settings and link SSH key `/$HOME/.ssh/id_rsa`
+
+    eval `ssh-agent`
+
+    ssh-add /$HOME/id_rsa
+
 To deal with cross platform problems, where sometimes git recognize changes in files, when there are none. This is due to windows using `CRLF` and Linux `LF` to signify an end of line. To fix that, the following line can be run:
 
     git config --global core.autocrlf input
@@ -1255,8 +1263,6 @@ sudo service apache2 restart -->
 
 ...tba
 
-<!--  -->
-<!--  -->
 <!-- sudo apt update
 sudo apt install phpmyadmin php-mbstring
 sudo phpenmod mbstring
