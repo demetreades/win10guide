@@ -145,7 +145,7 @@ now run `choco` to confirm that the installation was **successful** it must retu
 
 ## Choco Packages
 
-You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI**.
+You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI** package that you can install.
 
 <br>
 
