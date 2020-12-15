@@ -37,7 +37,6 @@ enjoy 🤿
         -   [WSL Ubuntu](#wsl-ubuntu)
             -   [First Steps](#first-steps)
             -   [Packages](#ubuntu-packages)
-            -   [Aliases](#aliases)
             -   [git](#git)
                 -   [GitHub CLI](#github-cli)
                 -   [SSH with git](#ssh-with-git)
@@ -45,6 +44,7 @@ enjoy 🤿
                 -   [.gitignore](#.gitignore)
             -   [SSH](#ssh)
             -   [Shell](#shell)
+                -   [Aliases](#Aliases)
                 -   [Oh-My-Zsh](#oh-my-zsh)
                 -   [Plugins](#plugins)
                 -   [Powerlevel10k](#powerlevel10k-theme)
@@ -726,7 +726,7 @@ _Worth Mentioning cli tools_:
 
 ### Aliases
 
-<br>
+To create a alias in bash the syntax is `alias Name='command -d'` you put them in your `~/.zshrc`
 
 | Alias      | Command                                                                         | Description                              |
 | ---------- | ------------------------------------------------------------------------------- | ---------------------------------------- |
@@ -764,10 +764,6 @@ Git Credential Manager to enable you authenticate remote Git servers
 
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
-You can even set a timeout time
-
-    git config --global credential.helper cache --timeout=3600
-
 The location of git is at $home folder.
 
     \\wsl$\Ubuntu-20.04\home\username
@@ -787,6 +783,28 @@ To generate private and public key for git for:
     ssh-keygen -t rsa -b 4096 -C "email@email.com"
 
 Your identification and key are saved at `$HOME/.ssh/`.
+
+<br>
+
+**Permanently authenticating with Git repositories**
+
+Run following command to enable credential caching:
+
+    git config credential.helper store
+
+    git push https://github.com/repo.git
+
+Username for `'https://github.com'`: `<USERNAME>`
+
+Password for `'https://USERNAME@github.com'`: `<PASSWORD>`
+
+Use should also specify caching expire
+
+    git config --global credential.helper "cache --timeout 7200"
+
+After enabling credential caching, it will be cached for 7200 seconds (2 hour).
+
+Read credentials Docs also: `git help credentials`
 
 <br>
 
@@ -1125,6 +1143,8 @@ You can install also [node.js](https://github.com/nodejs/node) via nvm by runnin
 
     npm install -g typescript
 
+    npm install -g eslint
+
 <br>
 
 ## yarn
@@ -1183,7 +1203,6 @@ You can also use this utility to install a specific version of Deno:
 
 ## Python
 
-<br>
 To Install Python3:
 
     sudo apt-get install -y python3 python3-pip build-essential libssl-dev libffi-dev python3-dev
@@ -1227,9 +1246,7 @@ set the auto_activate_base parameter to false:
 
 ### Docker [Installation](https://docs.docker.com/engine/install/ubuntu/)
 
-<br>
-
-Install docker's dependencies.
+Install docker's dependencies first.
 
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
@@ -1259,6 +1276,8 @@ Install the latest version of Docker CE.
 Allow your user to access the Docker CLI without needing root access.
 
     sudo usermod -aG docker $USER
+
+ <br>
 
 **Docker Compose**
 
@@ -1294,8 +1313,6 @@ Ensure volume mounts work
 
 For more details see [Official Documentation](https://docs.docker.com/engine/reference/commandline/docker/)
 
-<br>
-
 | Command                                              | Description                                                       |
 | ---------------------------------------------------- | ----------------------------------------------------------------- |
 | `docker –version`                                    | To get the currently installed version of docker                  |
@@ -1318,9 +1335,9 @@ For more details see [Official Documentation](https://docs.docker.com/engine/ref
 
 ## Rust
 
-<br>
+[Documentation](https://doc.rust-lang.org/stable/)
 
-Install
+[Installation](https://github.com/rust-lang/rust)
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -1333,11 +1350,11 @@ You can verify the installation by running:
     rustc --version
     cargo --version
 
+The Rust build system uses a file named `config.toml` in the root of the source tree to determine various configuration settings for the build.
+
 <br>
 
 ## Nginx
-
-<br>
 
 [Documentation](https://nginx.org/en/docs/)
 
@@ -1357,9 +1374,9 @@ _Stop:_
 
     sudo nginx -s quit
 
-## Apache2
-
 <br>
+
+## Apache2
 
 [Documentation](https://httpd.apache.org/docs/)
 
@@ -1381,8 +1398,6 @@ _Start:_
 
 ## Composer
 
-<br>
-
 Install [Composer](https://getcomposer.org/download/)
 
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -1400,8 +1415,6 @@ Configuration files are, for local `composer.json`, for global `config.json`
 <br>
 
 ## MYSQL
-
-<br>
 
     sudo apt install mysql-server
 
@@ -1421,8 +1434,6 @@ GRANT GRANT OPTION ON _._ TO 'meu-nome-de-usuario'@'localhost'; FLUSH PRIVILEGES
 <br>
 
 ## PHP
-
-<br>
 
 Add the repository
 
@@ -1467,8 +1478,6 @@ Include /etc/phpmyadmin/apache.conf -->
 <br>
 
 ## Prestashop
-
-<br>
 
 [Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/)
 
@@ -2027,6 +2036,10 @@ https://github.com/httpie/httpie/
 https://docs.docker.com/engine/reference/commandline/docker/
 
 https://docs.docker.com/docker-for-windows/install/
+
+https://doc.rust-lang.org/stable/
+
+https://github.com/rust-lang/rust/
 
 <br>
 
