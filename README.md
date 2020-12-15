@@ -541,6 +541,7 @@ then:
 | ---------------------------------------------------------- | ------------------------------------------------ |
 | `wsl --help`                                               | Help                                             |
 | `wsl --set-version <distribution> <version number>`        | Change WSL version on a distribution             |
+| `wsl --selectdefault <distribution>`                       | Change default distribution that will start on wsl.exe |
 | `wsl --list --verbose`                                     | List of installed distributions with WSL version |
 | `wsl --user <username>`                                    | Run as a specific User                           |
 | `wsl --export <distribution> <filename>`                   | To backup a distribution                         |
