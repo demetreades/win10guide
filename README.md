@@ -332,11 +332,13 @@ Then add this to your `$PROFILE`
     #oh-my-posh
     Import-Module posh-git
     Import-Module oh-my-posh
-    Set-Theme Operator
+    Set-Theme agnoster
 
 You can list the current configuration with `$ThemeSettings`
 
 and the Posh-Git settings with `$GitPromptSettings`
+
+To set the initial location add: `set-location %USERPROFILE%`
 
 <br>
 
@@ -387,6 +389,9 @@ Install some fonts and change them via PowerShell's `Properties` by right clicki
         #icons
         Set-TerminalIconsIconTheme devblackops
         Set-TerminalIconsColorTheme devblackops
+
+        #location
+        set-location %USERPROFILE%
 
 <br>
 
