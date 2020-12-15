@@ -774,6 +774,8 @@ The location of git is at $home folder.
 
     C:\Users\username
 
+You may need to [generate a new gpg key](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-gpg-key) to use with GitHub.
+
 To check or edit your git configuration access it with:
 
     nano ~/.gitconfig
