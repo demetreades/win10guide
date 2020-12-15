@@ -20,7 +20,7 @@ enjoy 🤿
         -   [$PROFILE](#profile)
         -   [Autocompletion](#autocompletion)
             -   [Chocolatey Autocompletion](#chocolatey-autocompletion)
-        -   [\* Create a alias](#create-a-alias)
+        -   [\*Create aliases](#create-aliases)
         -   [Oh-My-Posh](#oh-my-posh)
             -   [Installation](#ohmyposh-installation)
             -   [Terminal Icons](#terminal-icons)
@@ -49,11 +49,12 @@ enjoy 🤿
                 -   [Plugins](#plugins)
                 -   [Powerlevel10k](#powerlevel10k-theme)
             -   [Development](#development)
-                -   [node.js](#node.js)
+                -   [Javascript](#javascript)
+                    -   [node.js](#nodejs)
                     -   [nvm](#nvm)
-                    -   [\* npm](#npm)
+                    -   [\*npm](#npm)
                     -   [yarn](#yarn)
-                    -   [Deno](#deno)
+                    -   [deno](#deno)
                 -   [Python](#python)
                 -   [Docker](#docker)
                     -   [Installation](#docker-installation)
@@ -61,27 +62,26 @@ enjoy 🤿
                     -   [Basic Commands](#docker-commands)
                 -   [Rust](#rust)
                 -   [Nginx](#nginx)
-                -   [\* Apache2](#apache2)
+                -   [\*Apache2](#apache2)
                 -   [Composer](#composer)
-                -   [\* MongoDB](#mongodb)
-                -   [\* MySQL](#mysql)
+                -   [\*MongoDB](#mongodb)
+                -   [\*MySQL](#mysql)
                     -   [Reset the password](#reset-the-password)
                 -   [PHP](#php)
-                    -   [\* phpMyAdmin](#phpmyadmin)
-                -   [\* Prestashop](#prestashop)
-                -   [\* Wordpress](#wordpress)
-        -   [\* WSL Archlinux](#wsl-archlinux)
-            -   [\* Installation](#archlinux-installation)
+                    -   [\*phpMyAdmin](#phpmyadmin)
+                -   [\*Prestashop](#prestashop)
+                -   [\*Wordpress](#wordpress)
+        -   [\*WSL Archlinux](#wsl-archlinux)
+            -   [\*Installation](#archlinux-installation)
         -   [WSL CentOS 8](#wsl-centos-8)
             -   [Installation](#centos-8-installation)
-            -   [\* dnf](#dnf)
+            -   [\*dnf](#dnf)
         -   [WSL Tips](#wsl-tips)
             -   [Import / Export](#import-/-export)
             -   [Swappiness](#swappiness)
             -   [Bell](#bell)
             -   [Time](#time)
-    -   [Windows Tips](#windows-tips)
-        -   [Interesting Locations](#interesting-locations)
+    -   [Interesting things and locations](#interesting-things-and-locations)
         -   [Local Shared Folders](#local-shared-folders)
         -   [Hibernation](#hibernation)
         -   [HYPER-V](#hyper-v)
@@ -93,7 +93,7 @@ enjoy 🤿
 
 # Getting Started
 
-The guide's state is work in progress, you will might find inside old deprecated stuff and lots of mistakes, ill try to have it clean and up to date, any recommendation welcomed.
+The guide's state is **work in progress**, you will might find inside old deprecated stuff and **lots of mistakes**, ill try to have it clean and up to date, any recommendation welcomed.
 
 <br>
 
@@ -148,7 +148,7 @@ now run `choco` to confirm that the installation was **successful** it must retu
 
 ## Choco Packages
 
-You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI** package that you can install.
+You can find packages by running `search` command, from Chocolatey's [page](https://chocolatey.org/packages) via the searchbox, or from the [GUI](https://chocolatey.org/packages/ChocolateyGUI) which is kinda show and glitchy, best and fastest way is from command line.
 
 <br>
 
@@ -156,7 +156,7 @@ You can find packages by running `search` command, from the Chocolatey's **[page
 
     choco install -y 7zip curl microsoft-windows-terminal powertools docker-desktop virtualbox
     wsl-ubuntu-2004 coretemp sharex quicklook qbittorrent adobereader etcher thunderbird birdtray
-    laragon linux-reader
+    laragon linux-reader tomcat javaruntime
 
 <br>
 
@@ -190,8 +190,6 @@ You can find packages by running `search` command, from the Chocolatey's **[page
     choco install -y chocolateygui choco-cleaner chocolatey-core.extension chocolatey-windowsupdate.extension
 
 <br>
-
-<!-- `choco-update-notifier` -->
 
 **Media**:
 
@@ -242,7 +240,19 @@ If a package fails to install:
 try `choco install -f <packagename>`
 if that fails, check under `%TEMP%\Chocolatey` for the installer and, if found, **run it from there**.
 
-If you want a **GUI** instead of using PowerShell, you can run `choco install chocolateygui -y`.
+<br>
+
+**Options that affect checksum verification**:
+
+`--ignore-checksums` - skips checksumming
+
+`--allow-empty-checksums` - skips checksumming when the package is missing a checksum
+
+`--allow-empty-checksums-secure` - skips checksumming when the package is missing a checksum for secure
+
+<br>
+
+If you want a **GUI** instead of using PowerShell, you can run: `choco install chocolateygui -y`
 
 <br>
 
@@ -250,11 +260,11 @@ If you want a **GUI** instead of using PowerShell, you can run `choco install ch
 
 [Official Documentation](https://docs.microsoft.com/en-us/powershell/)
 
-[Updating](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) to PowerShell 7.2 (Preview):
+[Updating](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) to PowerShell 7.2 (**Preview**):
 
     iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
 
-To get PowerShell's version run:
+To get PowerShell's **version** run:
 
     (Get-Host).Version
 
@@ -264,7 +274,7 @@ or
 
 <br>
 
-To refresh environmental variables from the registry run: `refreshenv`
+To **refresh** environmental variables from the registry run: `refreshenv`
 
 <br>
 
@@ -284,7 +294,7 @@ To **disable** Internet Explorer 11 and Windows Media Player run:
 
     Disable-WindowsOptionalFeature -online -FeatureName WindowsMediaPlayer
 
-To get the status of Internet Explorer 11 run:
+To get the **status** of Internet Explorer 11 run:
 
     Get-WindowsOptionalFeature -Online -FeatureName Internet*
 
@@ -296,7 +306,7 @@ To get the location run:
 
     $PROFILE
 
-If you don't have a profile yet, create one by running:
+If you don't have a profile yet, **create** one by running:
 
     notepad $PROFILE
 
@@ -304,7 +314,7 @@ If you don't have a profile yet, create one by running:
 
 ### Autocompletion
 
-To enable autocompletion on PowerShell you need to set the `ExecutionPolicy` of PowerShell to `RemoteSigned` this will **allow** unsigned local scripts and signed remote PowerShell scripts to run.
+To enable autocompletion on PowerShell you need to **set** the `ExecutionPolicy` of PowerShell to `RemoteSigned` this will **allow** unsigned local scripts and signed remote PowerShell scripts to run.
 
 From a PowerShell with **administrator privileges** run:
 
@@ -327,7 +337,7 @@ Include this at the beginning of your **$PROFILE**
 
 ### Chocolatey Autocompletion
 
-Open your `$PROFILE` and include this under the previous `autocompletion`
+Open your `$PROFILE` and **include** this under the previous `autocompletion`
 
     #chocolatey autocompletion
     $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
@@ -337,7 +347,7 @@ Open your `$PROFILE` and include this under the previous `autocompletion`
 
 <br>
 
-## Create a alias
+## Create alias
 
 <br>
 
@@ -430,7 +440,7 @@ Install some fonts and change them via PowerShell's `Properties` by right clicki
 
 ## Windows Terminal
 
-You can get the latest version from their [Github](https://github.com/microsoft/terminal) page.
+You can get the latest version from their [Github](https://github.com/microsoft/terminal).
 
 <br>
 
@@ -438,7 +448,7 @@ You can get the latest version from their [Github](https://github.com/microsoft/
 
 For fonts you can also get this patched [Cascadia Code](https://github.com/adam7/delugia-code) font or [Fira Code](https://github.com/tonsky/FiraCode) with glyphs from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
 
-For color schemes and other visual pleasing stuff better check [this](https://github.com/mbadolato/iTerm2-Color-Schemes) and [this](https://github.com/willmcgugan/rich).
+For color schemes and other visual pleasing stuff better **check** [this](https://github.com/mbadolato/iTerm2-Color-Schemes) and [this](https://github.com/willmcgugan/rich).
 
 <br>
 
@@ -500,7 +510,7 @@ For color schemes and other visual pleasing stuff better check [this](https://gi
 
 ## Windows Subsystem for Linux
 
-You should refer first to the official documentation [WSL Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+You **should** refer first to the official documentation [WSL Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 <br>
 
@@ -512,21 +522,21 @@ You should refer first to the official documentation [WSL Installation Guide](ht
 
 **2.** Enable the two Windows Features that needed by running `OptionalFeatures.exe` or via PowerShell with **administrator privileges**.
 
-> Enable Windows Subsystem for Linux:
->
->        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
->
-> Enable Virtual Machine:
->
->        dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
->
-> After that reboot
+**Enable** Windows Subsystem for Linux:
+
+        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+**Enable** Virtual Machine:
+
+        dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+After that **reboot**.
 
 <br>
 
-**3.** Download the latest Linux kernel package update.
+**3.** Download the **latest** Linux kernel package update:
 
-[WSL2 Linux kernel update package for x64 machines](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+WSL2 Linux kernel [update package for x64 machines](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
 or you can run:
 
@@ -540,9 +550,11 @@ or you can run:
 
 >        wsl --set-default-version 2
 
-From now on all new distributions will be WSL 2 if you need a WSL 1 distro you need to switch back with the same command, now you can get this [distribution](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) from Microsoft Store or `choco search wsl-ubuntu` or even better:
+From now on all new distributions will be WSL 2 if you need a WSL 1 distro you need to switch back with the same command, now you can get a distribution from Microsoft Store or `choco search wsl` or even better:
 
     Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+
+[Ubuntu 20.04](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) , [Ubuntu 18.04](https://www.microsoft.com/el-gr/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab) , [Debian 10.5](https://www.microsoft.com/el-gr/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab)
 
 <br>
 
@@ -564,9 +576,7 @@ then:
     wsl --setdefault Ubuntu-20.04
     wsl --distribution Ubuntu-20.04
 
-<br>
-
-[WSL-Ubuntu Wiki](https://wiki.ubuntu.com/WSL)
+WSL Ubuntu [Wiki](https://wiki.ubuntu.com/WSL)
 
 <br>
 
@@ -588,15 +598,14 @@ Configure global options are in `.wslconfig`
 
 You can configure global WSL options by placing a .wslconfig file into the root directory of your users folder: `%USERPROFILE%\.wslconfig`. Please keep in mind you may need to run `wsl --shutdown` to shut down the WSL 2 virtual machine and then restart your WSL instance for these changes to take affect.
 
-Here is a sample of a .wslconfig file:
+Here is a sample of a `.wslconfig` file:
 
     [wsl2]
     kernel=C:\\temp\\myCustomKernel
     memory=4GB # Limits WSL memory
     processors=2 # Number of virtual processors
 
-All WSL files are stored
-`%LocalAppData%\Packages`
+All WSL files are stored: `%LocalAppData%\Packages`
 
 <br>
 
@@ -677,11 +686,11 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 ### Ubuntu Packages
 
-Some packages that will be needed:
+Some packages that will needed:
 
-    sudo apt install mc zsh net-tools fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
-    software-properties-common neofetch exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl aria2 cmake
-    tldr httpie memcached libsecret-1-0 libsecret-1-dev -y
+    sudo apt install mc zsh fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
+    software-properties-common  exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
+    tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch -y
 
 <br>
 
@@ -695,7 +704,7 @@ If some packages are broken then use any one of these three commands to fix thos
 
 <br>
 
-_Worth Mentioning cli tools_:
+_Worth Mentioning **cli tools**_:
 
 <br>
 
@@ -729,7 +738,7 @@ _Worth Mentioning cli tools_:
 
 ### Aliases
 
-To create a alias in bash the syntax is `alias Name='command -d'` you put them in your `~/.zshrc`
+To create a alias in bash the syntax is `alias Name='command -v --d'` and you add them in your `~/.zshrc`
 
 | Alias      | Command                                                                         | Description                              |
 | ---------- | ------------------------------------------------------------------------------- | ---------------------------------------- |
@@ -755,11 +764,11 @@ Check the [Official Documentation](https://docs.microsoft.com/en-us/windows/wsl/
 
 <br>
 
-Setup your Username:
+Setup your **Username**:
 
     git config --global user.name "Your Name"
 
-Setup your Password:
+Setup your **Password**:
 
     git config --global user.email "youremail@domain.com"
 
@@ -767,45 +776,45 @@ Git Credential Manager to enable you authenticate remote Git servers
 
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
-The location of git is at $home folder.
+The location of git is at `$HOME` folder.
 
     \\wsl$\Ubuntu-20.04\home\username
 
-    C:\Users\username
+    C:\Users\Username
 
 Sometime you might need to [generate a new gpg key](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-gpg-key) to use with GitHub.
 
-To check or edit your git configuration access it with:
+To check or edit your git **configuration** access it with:
 
     nano ~/.gitconfig
 
 If you are using a GPG key for code signing security, you may need to associate your GPG key with your GitHub email
 
-To generate private and public key for git for:
+To generate **private** and **public** key for git for:
 
     ssh-keygen -t rsa -b 4096 -C "email@email.com"
 
-Your identification and key are saved at `$HOME/.ssh/`.
+Your identification and key are saved at `$HOME/.ssh/`
 
 <br>
 
 **Permanently authenticating with Git repositories**
 
-Run following command to enable credential caching:
+Run following command to **enable** credential caching:
 
     git config credential.helper store
 
     git push https://github.com/repo.git
 
-Username for `'https://github.com'`: `<USERNAME>`
+**Username** for `'https://github.com'`: `<USERNAME>`
 
-Password for `'https://USERNAME@github.com'`: `<PASSWORD>`
+**Password** for `'https://USERNAME@github.com'`: `<PASSWORD>`
 
 Use should also specify caching expire
 
     git config --global credential.helper "cache --timeout 7200"
 
-After enabling credential caching, it will be cached for 7200 seconds (2 hour).
+After enabling **credential caching**, it will be cached for 7200 seconds (2 hour).
 
 Read credentials Docs also: `git help credentials`
 
@@ -815,7 +824,7 @@ Read credentials Docs also: `git help credentials`
 
 From the command line, run: `git config --global core.editor "code --wait"`
 
-Now you can run: `git config --global -e` and use VS Code as editor for configuring git.
+Now you can run: `git config --global -e` and use VS Code as **editor** for configuring git.
 
 <br>
 
@@ -834,11 +843,9 @@ you have to add key and repository
 
     sudo apt-add-repository https://cli.github.com/packages
 
-Update mirrorlists and get latest package
+Reload the local package database and install **gh**:
 
-    sudo apt update
-
-    sudo apt install gh -y
+    sudo apt update && sudo apt install gh -y
 
 To confirm run:
 
@@ -852,7 +859,7 @@ Now you have to login for the first time so run:
 
 <br>
 
-commands:
+**gh commands**:
 
     gh issue list
 
@@ -884,13 +891,11 @@ To deal with cross platform problems, where sometimes git recognize changes in f
 
     git config --global core.autocrlf input
 
-If you having problems with Credential Manager try [this](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/tag/1.20.0)
-
 <br>
 
 #### [First Commit](https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad)
 
-Using your terminal/command line, get inside the folder where your project files are kept and run:
+Using your terminal/command line, get inside the folder where your project is kept and run:
 
 1.  `git init`
 1.  `git add .`
@@ -929,7 +934,7 @@ Add your login user to the bottom of the file to check which is your username yo
 
     AllowUsers yourusername
 
-Generate new Host Keys
+Generate **new** Host Keys
 
     cd /etc/ssh && sudo ssh-keygen -A
 
@@ -951,7 +956,7 @@ Fix host keys
 
 ### Shell
 
-To see in which shell you are on run `echo "$SHELL"`
+To see in which **shell** you are on run `echo "$SHELL"`
 
 To install zsh run:
 
@@ -963,11 +968,11 @@ To change the default shell from bash to zsh
 run `type -a zsh` to find the path and then:
 `chsh -s /bin/bash/`
 
-The configuration file is **`~/.zshrc`** you will often do changes on this file, better make an alias to open it quickly
+The configuration file is **`~/.zshrc`** you will **often** do changes on this file, better make an alias to open it quickly
 
 <br>
 
-add this to the bottom of your `~/.zshrc` with the other alias
+add this to the **bottom** of your `~/.zshrc` with the other aliases.
 
     alias zshrc='code ~/.zshrc'
 
@@ -979,17 +984,17 @@ If you want to set default browser for the current terminal session you can set 
 
     export BROWSER='/mnt/c/Program Files/Google/Chrome/Application/Chrome.exe'
 
-Assuming you want to use Chrome and have it installed in that location, if you want this to be persistent, you can include it in your `~/.zshrc` file.
+Assuming you want to use **Chrome** and have it installed in that **location**, if you want this to be persistent, you can include it in your `~/.zshrc` file.
 
 <br>
 
 ### Oh My Zsh
 
-[Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) is a framework for managing your zsh configuration and includes a plugin manager that can add a ton of functionality to our shell, to install it run
+[Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) is a framework for managing your zsh configuration and includes a plugin manager that can add a ton of **functionality** to our shell, to install it run:
 
     sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-It will ask you to change the default shell to zsh accept it if you want to change back to bash as default run `chsh -s /bin/bash/`
+It will ask you to change the default shell to zsh **accept** it if you want to change back to bash as default run `chsh -s /bin/bash/`
 
 to update ohmyzsh run **`omz update`**
 
@@ -998,29 +1003,29 @@ to update ohmyzsh run **`omz update`**
 ### Plugins
 
 You can find a [full list](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins) in ohmyzsh Wiki page
-You can add plugins in the `~/.zshrc` under
+You manage plugins in the `~/.zshrc` under
 
-`plugins=(...)` you can add more there inside `( )`
+`plugins=(...)` you can add more plungins inside `( )`
 
----
+<br>
 
 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
     cd ~/.oh-my-zsh/plugins/ && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && cd ~
 
-then in your `~/.zshrc` file include the plugin name `zsh-syntax-highlighting` in the plugins section.
+then in your `~/.zshrc` file **include** the plugin name `zsh-syntax-highlighting` in the plugins section.
 
 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
     cd ~/.oh-my-zsh/plugins/ && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && cd ~
 
-Add the plugin name `zsh-autosuggestions` to the list of plugins in `~/.zshrc`
+Add the plugin name `zsh-autosuggestions` to the **list** of plugins in `~/.zshrc`
 
 [zsh-history-substring-search](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history-substring-search)
 
     cd ~/.oh-my-zsh/plugins/ && git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search && cd ~/
 
-Add the plugin to the list of plugins in `~/.zshrc`
+Add the plugin to the **list** of plugins in `~/.zshrc`
 
 [Copy-Pasta](https://github.com/ChrisPenner/copy-pasta)
 
@@ -1065,18 +1070,17 @@ some **recommendations**:
 
 ### Powerlevel10k Theme
 
-[Powerlevel10k](https://github.com/romkatv/powerlevel10k) is a theme for zsh to **install** it run
+[Powerlevel10k](https://github.com/romkatv/powerlevel10k) is a theme for zsh to **install** it run:
 
-First clone the repo and configure the theme you need to have already set in your terminal a font that supports glyphs
+First clone the repo and configure the theme you need to have **already** set in your terminal a font that supports **glyphs**.
 
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k && echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
-Now `source ~/.zshrc` so the change take effect and get in the p10k configuration.You can restart configuration with `p10k configure` also the theme settings are located at
-`~/.p10k.zsh`
+Now `source ~/.zshrc` so the change take effect and get in the p10k configuration.You can restart configuration sequence with `p10k configure` also the theme settings are located at:`~/.p10k.zsh`
 
 <br>
 
-to **update** Powerlevel10k run
+to **update** Powerlevel10k run:
 
     git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull
 
@@ -1084,19 +1088,25 @@ to **update** Powerlevel10k run
 
 # Development
 
-## node.js
+<br>
+
+## Javascript
+
+### nodejs
 
 To install [node.js](https://github.com/nodejs/node) run:
 
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
-you may need also `sudo apt-get install gcc g++ make` then install nodejs
+you may **need** also `sudo apt-get install gcc g++ make` then install nodejs
 
     sudo apt-get install -y nodejs
 
 Now `node -v` and `npm -v` to confirm that it is installed
 
-For Current and LTS, the GPG detached signature of SHASUMS256.txt is in SHASUMS256.txt.sig. You can use it with gpg to verify the integrity of SHASUM256.txt. You will first need to import the GPG keys of individuals authorized to create releases. To import the keys:
+For Current and LTS, the GPG detached signature of SHASUMS256.txt is in SHASUMS256.txt.sig. You can use it with gpg to verify the integrity of SHASUM256.txt. You will first **need** to import the GPG keys of individuals authorized to create releases.
+
+To import the **keys**:
 
     gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
 
@@ -1108,7 +1118,7 @@ Then use: `gpg --verify SHASUMS256.txt.sig SHASUMS256.txt` to verify the file's 
 
 <br>
 
-## nvm
+### nvm
 
 [nvm](https://github.com/nvm-sh/nvm#install--update-script) is a version manager for node.js, designed to be installed per-user, so to install it run:
 
@@ -1116,7 +1126,7 @@ Then use: `gpg --verify SHASUMS256.txt.sig SHASUMS256.txt` to verify the file's 
 
 <br>
 
-Include this in your **`~/.zshrc`**
+**Include** this in your **`~/.zshrc`**
 
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -1142,7 +1152,7 @@ You can install also [node.js](https://github.com/nodejs/node) via nvm by runnin
 
 <br>
 
-## npm
+### npm
 
     npm install -g typescript
 
@@ -1150,7 +1160,7 @@ You can install also [node.js](https://github.com/nodejs/node) via nvm by runnin
 
 <br>
 
-## yarn
+### yarn
 
 To install the [yarn](https://github.com/yarnpkg/yarn) package manager, run:
 
@@ -1175,13 +1185,13 @@ create-react-app --version -->
 
 <br>
 
-## Deno
+### Deno
 
 [Installation](https://deno.land/manual/getting_started/installation), for official documentation click [here](https://deno.land/)
 
     curl -fsSL https://deno.land/x/install/install.sh | sh
 
-include these in your `~/.zshrc`
+**include** these in your `~/.zshrc`
 
     export DENO_INSTALL="/home/korum/.deno"
     export PATH="$DENO_INSTALL/bin:$PATH"
@@ -1198,7 +1208,7 @@ To upgrade previous installation of Deno run:
 
     deno upgrade
 
-You can also use this utility to install a specific version of Deno:
+You can also use this utility to install a **specific** version of Deno:
 
     deno upgrade --version 1.0.1
 
@@ -1224,7 +1234,7 @@ source to `~/.zshrc`
 
         echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 
-Then we can choose Python version and make it global:
+Then we can choose Python version and make it **global**:
 
     pyenv install 3.8.6
 
@@ -1237,7 +1247,7 @@ Then we can choose Python version and make it global:
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 If you'd prefer that conda's base environment not be activated on startup,
-set the auto_activate_base parameter to false:
+set the `auto_activate_base` parameter to `false`:
 
     conda config --set auto_activate_base false
 
@@ -1249,15 +1259,15 @@ set the auto_activate_base parameter to false:
 
 ### Docker [Installation](https://docs.docker.com/engine/install/ubuntu/)
 
-Install docker's dependencies first.
+Install docker's **dependencies** first.
 
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
-Download and add Docker's official public PGP key.
+**Download** and add Docker's official public PGP key.
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-Verify the fingerprint.
+**Verify** the fingerprint.
 
     sudo apt-key fingerprint 0EBFCD88
 
@@ -1270,7 +1280,7 @@ Add the `stable` channel's Docker upstream repository.
 
 Update the apt package list (for the new apt repo).
 
-    sudo apt-get update -y
+    sudo apt-get update
 
 Install the latest version of Docker CE.
 
@@ -1302,7 +1312,7 @@ Verify it works, if you get error just restart your terminal session and try aga
 
 <br>
 
-Ensure volume mounts work
+**Ensure volume mounts work**
 
 `sudo nano /etc/wsl.conf` edit your `wsl.conf` to look like this:
 
@@ -1348,9 +1358,10 @@ Import the environment config for Rust to your `~/.zshrc`
 
     source $HOME/.cargo/env
 
-You can verify the installation by running:
+You can **verify** the installation by running:
 
     rustc --version
+
     cargo --version
 
 The Rust build system uses a file named `config.toml` in the root of the source tree to determine various configuration settings for the build.
@@ -1383,7 +1394,7 @@ _Stop:_
 
 [Documentation](https://httpd.apache.org/docs/)
 
-The main configuration file is located at `/etc/apache2/apache2.conf`
+The **main** configuration file is located at `/etc/apache2/apache2.conf`
 
 `ports.conf` is used to specify the ports that virtual hosts should listen on.
 
@@ -1393,7 +1404,7 @@ Installation:
 
     sudo apt install -y apache2
 
-Adjust the Firewall to Allow Web Traffic
+Adjust the Firewall to **Allow** Web Traffic
 
     sudo ufw app list
 
@@ -1401,7 +1412,7 @@ Adjust the Firewall to Allow Web Traffic
 
     sudo ufw allow in "Apache Full"
 
-How To Find your Server’s Public IP Address
+How To Find your Server’s Public **IP** Address
 
     ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 
@@ -1433,7 +1444,7 @@ Install [Composer](https://getcomposer.org/download/)
 
 Then you 'll have `php composer.phar` in the folder you did the installation
 
-Configuration files are, for local `composer.json`, for global `config.json`
+Configuration files are, for **local** `composer.json`, for **global** `config.json`
 
 <br>
 
@@ -1445,17 +1456,18 @@ Once the packages have updated, install MongoDB with:
 
     wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 
-Install gnupg and its required libraries using the following command:
+Install **gnupg** and its required libraries using the following command:
 
     sudo apt install -y gnupg
 
-Once installed, retry importing the key:
+Once installed, retry importing the **key**:
 
     wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 
 Confirm installation and get the version number: `mongod --version`
 
-Create a list file for MongoDB.
+Create a **list file** for MongoDB.
+
 Create the `/etc/apt/sources.list.d/mongodb-org-4.4.list` file for `Ubuntu` `20.04 (Focal)`:
 
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -1468,7 +1480,7 @@ Install the lastest version:
 
     sudo apt install -y mongodb-org
 
-Optional. Although you can specify any available version of MongoDB, apt will upgrade the packages when a newer version becomes available. To prevent unintended upgrades, you can pin the package at the currently installed version:
+Optional. Although you can specify any available version of MongoDB, apt will upgrade the packages when a newer version becomes available. To **prevent** unintended upgrades, you can pin the package at the currently installed version:
 
     echo "mongodb-org hold" | sudo dpkg --set-selections
     echo "mongodb-org-server hold" | sudo dpkg --set-selections
@@ -1636,11 +1648,9 @@ Include /etc/phpmyadmin/apache.conf -->
 
 ## Prestashop
 
-[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/)
+[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/) [php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
 
 [Development Installation](https://devdocs.prestashop.com/1.7/basics/installation/localhost/)
-
-[php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
 
 <br>
 
@@ -1719,7 +1729,7 @@ You need to have [docker](https://docs.docker.com/docker-for-windows/install/) i
 
 ### CentOS 8 Installation
 
-We need to pull the laster CentOS image from [Docker hub](https://hub.docker.com/)
+We need to pull the later CentOS image from [Docker hub](https://hub.docker.com/)
 
     docker image pull centos:latest
 
@@ -1731,7 +1741,7 @@ Then we need the 4 first digits
 
     *for example $ docker export 74c3 > centos.tar
 
-Run to import the image: `wsl --import Centos8 .\CentosImage\ centos.tar`
+Import image: `wsl --import Centos8 .\CentosImage\ centos.tar`
 
 To get in the distribution run: `wsl -d Centos8` then `cat /etc/centos-release` to see the version
 
@@ -1742,12 +1752,6 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 <br>
 
 ### dnf
-
-<br>
-
-... tba
-
-<br>
 
     dnf list installed |less
     dnf repolist
@@ -1804,17 +1808,13 @@ Fix WSL time sync
 
 `sudo ntpdate ntp.ubuntu.com &>/dev/null &`
 
-For fixing also the dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
+For fixing also the UTC sync dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
 
     reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f
 
 <br>
 
-# Windows Tips
-
-## Interesting things and locations
-
-<br>
+# Interesting things and locations
 
 in `Run` , `CTRL+R` give:
 
@@ -1888,13 +1888,13 @@ Then create two more `DWORD (32bit)` called `BingSearchEnabled` and `CortanaCons
 
 <br>
 
-Disable Cortana
+**Disable Cortana**
 
      Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
 
 <br>
 
-Start Menu items are in two locations:
+**Start Menu** items are in two locations:
 
 `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`
 
@@ -1941,7 +1941,7 @@ Reduce size of `WinSxS` folder
 
 To choose a different Windows installation to be the default for the bootloader on `cmd` run:
 
-    bcdboot E:\Windows          // as an example for the E: drive
+    bcdboot E:\Windows          // as an example for drive E:
 
     bcdedit /default {current}
 
@@ -1953,11 +1953,11 @@ To check for problems on a disk
 
 Hidden administrator account
 
-_Enable_
+**Enable**:
 
     net user administrator /active:yes
 
-_Disable_
+**Disable**:
 
     net user administrator /active:no
 
@@ -1985,7 +1985,7 @@ IPv4: `9.9.9.9, 149.112.112.112`
 
 <br>
 
-To **debloat** Windows 10 the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep on Groove music player.
+To **debloat** Windows 10 the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep only Groove music player from the native apps.
 
 <br>
 
@@ -2005,7 +2005,7 @@ We have first to `enable` Developer Mode so the computer is discoverable and can
 
     Windows Settings > Updates & Security > For Developers
 
-enable `Developer Mode` and `Device Discovery` to reveal your local networks devices, you will **not want** to have always `Device Discovery` enabled, especially if you are on a laptop and you changing local networks all the time.
+**enable** `Developer Mode` and `Device Discovery` to reveal your local networks devices, you will **not want** to have always `Device Discovery` enabled, especially if you are on a laptop and you changing local networks all the time.
 
     Windows Settings > Network & Internet > Ethernet Properties > Change advnanced sharing options
 
@@ -2084,7 +2084,7 @@ Go to `Windows Settings > Update & Security > Backup > Backup and Restore (Windo
 `Create a system image` and choose a hard drive to make the image
 
 You can recover via `Windows Settings > Update & Security > Recovery` and click `restart now`
-Then go to `Troubleshoot` click `more recovery options` and then `System Image Recovery` option will appear.
+Then go to `Troubleshoot` click `more recovery options` and then `System Image Recovery` will appear.
 
 From `Troubleshoot` also you can **reset** your OS.
 
