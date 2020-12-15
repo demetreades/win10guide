@@ -674,7 +674,7 @@ Some packages that will be needed:
 
     sudo apt install mc zsh net-tools fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
     software-properties-common neofetch exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl aria2 cmake
-    tldr httpie memcached -y
+    tldr httpie memcached libsecret-1-0 libsecret-1-dev -y
 
 <br>
 
