@@ -658,7 +658,7 @@ You can change the LTS status of your distribution to normal so you can upgrade 
 
 `sudo do-release-upgrade` for updating distribution version
 
-You can Update Ubuntu to `20.10` if you want
+You can Update Ubuntu to `20.10` if you want.
 
 <br>
 
