@@ -14,14 +14,15 @@ enjoy 🤿
     -   [Automatic Updates & Telemetry](#Disable-Windows-10-Automatic-Updates-&-Telemetry)
     -   [Chocolatey Package Manager](#chocolatey-package-manager)
         -   [Chocolatey Installation](#chocolatey-installation)
-        -   [Choco Packages](#choco-packages)
+        -   [Packages](#choco-packages)
         -   [Basic Commands](#basic-commands)
     -   [PowerShell](#powershell)
         -   [$PROFILE](#profile)
         -   [Autocompletion](#autocompletion)
             -   [Chocolatey Autocompletion](#chocolatey-autocompletion)
+        -   [* Create a alias](#create-a-alias)
         -   [Oh-My-Posh](#oh-my-posh)
-            -   [Installation](#installation)
+            -   [Installation](#ohmyposh-installation)
             -   [Terminal Icons](#terminal-icons)
             -   [Fonts & Glyphs](#fonts-&-glyphs)
             -   [$PROFILE Example](#profile-example)
@@ -29,12 +30,12 @@ enjoy 🤿
         -   [Customization](#customization)
     -   [Windows Subsystem for Linux](#windows-subsystem-for-linux)
         -   [WSL Installation](#wsl-installation)
-        -   [Basic Commands](#basic-commands)
-        -   [Accessibility](#accessibility)
-        -   [Global Configuration](#global-configuration)
+            -   [Basic Commands](#basic-commands)
+            -   [Accessibility](#accessibility)
+            -   [Global Configuration](#global-configuration)
         -   [WSL Ubuntu](#wsl-ubuntu)
             -   [First Steps](#first-steps)
-            -   [Packages](#packages)
+            -   [Packages](#ubuntu-packages)
             -   [Aliases](#aliases)
             -   [Git](#git)
                 -   [First Commit](#first-commit)
@@ -58,11 +59,16 @@ enjoy 🤿
                     -   [phpmyadmin](#phpmyadmin)
                 -   [Prestashop](#prestashop)
                 -   [Wordpress](#wordpress)
-            -   [WSL Tips](#wsl-tips)
-                -   [Import / Export](#import-/-export)
-                -   [Swappiness](#swappiness)
-                -   [Bell](#bell)
-                -   [Time](#time)
+        -   [* WSL Archlinux](#wsl-archlinux)
+            -   [* Installation](#arch-installation)
+        -   [WSL CentOS 8](#wsl-centos-8)
+            -   [Installation](#centos-installation)
+            -   [dnf](#dnf)
+        -   [WSL Tips](#wsl-tips)
+            -   [Import / Export](#import-/-export)
+            -   [Swappiness](#swappiness)
+            -   [Bell](#bell)
+            -   [Time](#time)
     -   [Windows Tips](#windows-tips)
         -   [Interesting Locations](#interesting-locations)
         -   [Local Shared Folders](#local-shared-folders)
@@ -129,7 +135,8 @@ now run `choco` to confirm that the installation was **successful** it must retu
 
 <br>
 
-## Choco Packages
+## [Packages](#choco-packages)
+
 
 You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI**.
 
@@ -151,7 +158,7 @@ You can find packages by running `search` command, from the Chocolatey's **[page
 
 **Browsers**:
 
-    choco install -y firefox firefox-dev googlechrome googlechrome.dev brave vivaldi
+    choco install -y firefox tor-browser firefox-dev googlechrome googlechrome.dev brave vivaldi
 
 <br>
 
@@ -273,7 +280,11 @@ To get the status of Internet Explorer 11 run:
 
 ### $PROFILE
 
-If you don't have a profile yet, create one by running
+To get the location run:
+
+    $PROFILE
+
+If you don't have a profile yet, create one by running:
 
     notepad $PROFILE
 
@@ -314,13 +325,24 @@ Open your `$PROFILE` and include this under the previous `autocompletion`
 
 <br>
 
+## Create a alias
+
+
+<br>
+
+..tba
+
+<br>
+
+<br>
+
 ## Oh-My-Posh
 
 Is a theme engine similar to oh-my-zsh, you can customize it extensively with colors and themes, more info on their [Github page](https://github.com/JanDeDobbeleer/oh-my-posh#prerequisites)
 
 <br>
 
-### Installation
+### [Installation](#ohmyposh-installation)
 
 To install oh-my-posh and posh-git open PowerShell with **administrator privileges** and run
 
@@ -544,9 +566,9 @@ then:
 | `wsl --selectdefault <distribution>`                       | Change default distribution that will start on wsl.exe |
 | `wsl --list --verbose`                                     | List of installed distributions with WSL version |
 | `wsl --user <username>`                                    | Run as a specific User                           |
-| `wsl --export <distribution> <filename>`                   | To backup a distribution                         |
+| `wsl --export <distribution> <filename>.tar`                   | To backup a distribution                         |
 | `wsl --import <distribution> <installLocation> <filename>` | To import a distribution from a known location   |
-| `wsl --terminate, -t <distribution>`                       | To stop a distribution                           |
+| `wsl --terminate <distribution>`                       | To stop a distribution                           |
 | `wsl --unregister <distribution>`                          | To remove a distribution                         |
 | `wsl --default-user <username>`                            | To change the default user of a distribution     |
 | `wsl --distribution <distribution>`                        | To start a specific distribution                 |
@@ -640,7 +662,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 <br>
 
-### Packages
+### [Packages](#ubuntu-packages)
 
 Some packages that will be needed:
 
@@ -1319,10 +1341,75 @@ Include /etc/phpmyadmin/apache.conf -->
 <!-- wget [https://wordpress.org/latest.tar.gz](https://wordpress.org/latest.tar.gz); tar -vzxf latest.tar.gz; mv wordpress **nova-pasta**;
 
 http://localhost/**nova-pasta** -->
+<br>
+
+## WSL Archlinux
+
+<br>
+
+## [Installation](#archlinux-installation)
+
+<br>
+
+## WSL CentOS 8
+
+You need to have [docker](https://docs.docker.com/docker-for-windows/install/) installed.
+
+### [Installation](#centos-installation)
+
+We need to pull the laster CentOS image from [Docker hub](https://hub.docker.com/)
+
+    docker image pull centos:latest
+
+    docker create -i centos bash
+
+Then we need the 4 first digits
+
+    docker export [4 digits]  > centos.tar
+    docker export 74c3 > centos.tar
+
+From PowerShell run:`wsl --import Centos8 .\CentosImage\ centos.tar`
+
+To get in the distribution run: `wsl -d Centos8` then `cat /etc/centos-release` to see the version
+
+To list available distributions: `wslconfig /l`
+
+To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Centos8`
+
+<br>
+
+### dnf 
+
+<br>
+
+    dnf list installed |less
+    dnf repolist			
+
+    dnf info <package>		
+    dnf provides <package>
+    dnf search <package>	
+
+    dnf install -y <package>
+    dnf remove <package>
+
+    dnf update <package>
+    dnf --exclude=<package>* update 	
+
+    dnf update -y
+    dnf install -y git wget curl 
+
+    dnf groupinstall "Development Tools"
+
+    dnf install -y epel-release
+
+    dnf repolist -v				
+    dnf repository-packages epel list
 
 <br>
 
 ## WSL Tips
+
+<br>
 
 ### Swappiness
 
