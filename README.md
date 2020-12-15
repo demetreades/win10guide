@@ -20,7 +20,7 @@ enjoy 🤿
         -   [$PROFILE](#profile)
         -   [Autocompletion](#autocompletion)
             -   [Chocolatey Autocompletion](#chocolatey-autocompletion)
-        -   [* Create a alias](#create-a-alias)
+        -   [\* Create a alias](#create-a-alias)
         -   [Oh-My-Posh](#oh-my-posh)
             -   [Installation](#ohmyposh-installation)
             -   [Terminal Icons](#terminal-icons)
@@ -39,6 +39,8 @@ enjoy 🤿
             -   [Packages](#ubuntu-packages)
             -   [Aliases](#aliases)
             -   [git](#git)
+                -   [GitHub CLI](#github-cli)
+                -   [SSH with git](#ssh-with-git)
                 -   [First Commit](#first-commit)
                 -   [.gitignore](#.gitignore)
             -   [SSH](#ssh)
@@ -48,8 +50,10 @@ enjoy 🤿
                 -   [Powerlevel10k](#powerlevel10k-theme)
             -   [Development](#development)
                 -   [node.js](#node.js)
-                -   [nvm](#nvm)
-                -   [yarn](#yarn)
+                    -   [nvm](#nvm)
+                    -   [npm](#npm)
+                    -   [yarn](#yarn)
+                    -   [Deno](#deno)
                 -   [Python](#python)
                 -   [Docker](#docker)
                     -   [Installation](#docker-installation)
@@ -57,17 +61,17 @@ enjoy 🤿
                     -   [Basic Commands](#docker-commands)
                 -   [Rust](#rust)
                 -   [Nginx](#nginx)
-                -   [* Apache2](#apache2)
+                -   [\* Apache2](#apache2)
                 -   [Composer](#composer)
                 -   [PHP](#php)
-                    -   [* phpmyadmin](#phpmyadmin)
-                -   [* Prestashop](#prestashop)
-                -   [* Wordpress](#wordpress)
-        -   [* WSL Archlinux](#wsl-archlinux)
-            -   [* Installation](#archlinux-installation)
+                    -   [\* phpmyadmin](#phpmyadmin)
+                -   [\* Prestashop](#prestashop)
+                -   [\* Wordpress](#wordpress)
+        -   [\* WSL Archlinux](#wsl-archlinux)
+            -   [\* Installation](#archlinux-installation)
         -   [WSL CentOS 8](#wsl-centos-8)
             -   [Installation](#centos-8-installation)
-            -   [* dnf](#dnf)
+            -   [\* dnf](#dnf)
         -   [WSL Tips](#wsl-tips)
             -   [Import / Export](#import-/-export)
             -   [Swappiness](#swappiness)
@@ -140,7 +144,6 @@ now run `choco` to confirm that the installation was **successful** it must retu
 <br>
 
 ## Choco Packages
-
 
 You can find packages by running `search` command, from the Chocolatey's **[page](https://chocolatey.org/packages)**, or from the **GUI**.
 
@@ -248,7 +251,6 @@ If you want a **GUI** instead of using PowerShell, you can run `choco install ch
 
     iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
 
-
 To get PowerShell's version run:
 
     (Get-Host).Version
@@ -333,7 +335,6 @@ Open your `$PROFILE` and include this under the previous `autocompletion`
 <br>
 
 ## Create a alias
-
 
 <br>
 
@@ -623,20 +624,20 @@ Some Utilities for WSL:
 
 ## WSL Basic Commands
 
-| Command                                                    | Description                                      |
-| ---------------------------------------------------------- | ------------------------------------------------ |
-| `wsl --help`                                               | Help                                             |
-| `wsl --set-version <distribution> <version number>`        | Change WSL version on a distribution             |
+| Command                                                    | Description                                            |
+| ---------------------------------------------------------- | ------------------------------------------------------ |
+| `wsl --help`                                               | Help                                                   |
+| `wsl --set-version <distribution> <version number>`        | Change WSL version on a distribution                   |
 | `wsl --selectdefault <distribution>`                       | Change default distribution that will start on wsl.exe |
-| `wsl --list --verbose`                                     | List of installed distributions with WSL version |
-| `wsl --user <username>`                                    | Run as a specific User                           |
-| `wsl --export <distribution> <filename>.tar`                   | To backup a distribution                         |
-| `wsl --import <distribution> <installLocation> <filename>` | To import a distribution from a known location   |
-| `wsl --terminate <distribution>`                       | To stop a distribution                           |
-| `wsl --unregister <distribution>`                          | To remove a distribution                         |
-| `wsl --default-user <username>`                            | To change the default user of a distribution     |
-| `wsl --distribution <distribution>`                        | To start a specific distribution                 |
-| `wslconfig /setdefault <distribution`                      | To set the default distrubution of wsl.exe       |
+| `wsl --list --verbose`                                     | List of installed distributions with WSL version       |
+| `wsl --user <username>`                                    | Run as a specific User                                 |
+| `wsl --export <distribution> <filename>.tar`               | To backup a distribution                               |
+| `wsl --import <distribution> <installLocation> <filename>` | To import a distribution from a known location         |
+| `wsl --terminate <distribution>`                           | To stop a distribution                                 |
+| `wsl --unregister <distribution>`                          | To remove a distribution                               |
+| `wsl --default-user <username>`                            | To change the default user of a distribution           |
+| `wsl --distribution <distribution>`                        | To start a specific distribution                       |
+| `wslconfig /setdefault <distribution`                      | To set the default distrubution of wsl.exe             |
 
 <br>
 
@@ -763,6 +764,10 @@ Git Credential Manager to enable you authenticate remote Git servers
 
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
+You can even set a timeout time
+
+    git config --global credential.helper cache --timeout=3600
+
 The location of git is at $home folder.
 
     \\wsl$\Ubuntu-20.04\home\username
@@ -781,7 +786,62 @@ To generate private and public key for git for:
 
 Your identification and key are saved at `$HOME/.ssh/`.
 
-#### SSH with Git
+<br>
+
+#### GitHub CLI
+
+[gh](https://github.com/cli/cli#debianubuntu-linux) is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with git and your code.
+
+https://github.com/cli/cli#debianubuntu-linux
+
+https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+
+To [install](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) it
+you have to add key and repository
+
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+
+    sudo apt-add-repository https://cli.github.com/packages
+
+Update mirrorlists and get latest package
+
+    sudo apt update
+
+    sudo apt install gh -y
+
+To confirm run:
+
+    gh --version
+
+<br>
+
+Now you have to login for the first time so run:
+
+    gh auth login
+
+<br>
+
+commands:
+
+    gh issue list
+
+    gh pr status
+
+    gh pr checkout
+
+    gh pr create
+
+    gh pr check
+
+    gh release create
+
+    gh repo view
+
+    gh alias set
+
+<br>
+
+#### SSH with git
 
 Go to Github Settings and link SSH key `/$HOME/.ssh/id_rsa`
 
@@ -1039,6 +1099,18 @@ and include it in the bottom of `~/.zshrc`
 
 You can install also [node.js](https://github.com/nodejs/node) via nvm by running: `nvm install --lts`
 
+`nvm ls`
+
+`nvm ls-remote`
+
+`nvm install v14.15.0`
+
+`nvm install --lts`
+
+`node -v`
+
+<br>
+
 ## npm
 
     npm install -g typescript
@@ -1067,6 +1139,35 @@ or you can simple install it through [npm](https://github.com/npm/npm) `sudo npm
 
 yarn global add create-react-app
 create-react-app --version -->
+
+<br>
+
+## Deno
+
+[Installation](https://deno.land/manual/getting_started/installation), for official documentation click [here](https://deno.land/)
+
+    curl -fsSL https://deno.land/x/install/install.sh | sh
+
+include these in your `~/.zshrc`
+
+    export DENO_INSTALL="/home/korum/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
+
+To refresh the changes
+
+    source ~/.zshrc
+
+To confirm that the installation completed
+
+    deno --version
+
+To upgrade previous installation of Deno run:
+
+    deno upgrade
+
+You can also use this utility to install a specific version of Deno:
+
+    deno upgrade --version 1.0.1
 
 <br>
 
@@ -1185,23 +1286,23 @@ For more details see [Official Documentation](https://docs.docker.com/engine/ref
 
 <br>
 
-| Command                                                    | Description                                                       |
-| ---------------------------------------------------------- | ------------------------------------------------------------------|
-| `docker –version`                                          | To get the currently installed version of docker                  |
-| `docker pull <image name>`                                 | To pull images from the docker repository                         |
-| `docker run -it -d <image name>`                           | To create a container from an image                               |
-| `docker ps`                                                | To list the running containers                                    |
-| `docker ps -a`                                             | To show all the running and exited containers                     |
-| `docker exec -it <container id> bash`                      | To access the running container                                   |
-| `docker stop <container id>`                               | To stop a running container                                       |
-| `docker kill <container id>`                               | To Kills the container by stopping its execution immediately      |
-| `docker commit <conatainer id> <username/imagename>`       | To creates a new image of an edited container on the local system |
-| `docker login`                                             | To login to the docker hub repository                             |
-| `docker push <username/image name>`                        | To push an image to the docker hub repository                     |
-| `docker images`                                            | To lists all the locally stored docker images.                    |
-| `docker rm <container id>`                                 | To delete a stopped container.                                    |
-| `docker rmi <image-id>`                                    | To delete an image from local storage.                            |
-| `docker build <path to docker file>`                       | To build an image from a specified docker file.                   |
+| Command                                              | Description                                                       |
+| ---------------------------------------------------- | ----------------------------------------------------------------- |
+| `docker –version`                                    | To get the currently installed version of docker                  |
+| `docker pull <image name>`                           | To pull images from the docker repository                         |
+| `docker run -it -d <image name>`                     | To create a container from an image                               |
+| `docker ps`                                          | To list the running containers                                    |
+| `docker ps -a`                                       | To show all the running and exited containers                     |
+| `docker exec -it <container id> bash`                | To access the running container                                   |
+| `docker stop <container id>`                         | To stop a running container                                       |
+| `docker kill <container id>`                         | To Kills the container by stopping its execution immediately      |
+| `docker commit <conatainer id> <username/imagename>` | To creates a new image of an edited container on the local system |
+| `docker login`                                       | To login to the docker hub repository                             |
+| `docker push <username/image name>`                  | To push an image to the docker hub repository                     |
+| `docker images`                                      | To lists all the locally stored docker images.                    |
+| `docker rm <container id>`                           | To delete a stopped container.                                    |
+| `docker rmi <image-id>`                              | To delete an image from local storage.                            |
+| `docker build <path to docker file>`                 | To build an image from a specified docker file.                   |
 
 <br>
 
@@ -1428,7 +1529,7 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 <br>
 
-### dnf 
+### dnf
 
 <br>
 
@@ -1437,26 +1538,26 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 <br>
 
     dnf list installed |less
-    dnf repolist			
+    dnf repolist
 
-    dnf info <package>		
+    dnf info <package>
     dnf provides <package>
-    dnf search <package>	
+    dnf search <package>
 
     dnf install -y <package>
     dnf remove <package>
 
     dnf update <package>
-    dnf --exclude=<package>* update 	
+    dnf --exclude=<package>* update
 
     dnf update -y
-    dnf install -y git wget curl 
+    dnf install -y git wget curl
 
     dnf groupinstall "Development Tools"
 
     dnf install -y epel-release
 
-    dnf repolist -v				
+    dnf repolist -v
     dnf repository-packages epel list
 
 <br>
@@ -1492,7 +1593,7 @@ Fix WSL time sync
 `sudo ntpdate ntp.ubuntu.com &>/dev/null &`
 
 For fixing also the dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
-    
+
     reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f
 
 <br>
@@ -1511,8 +1612,6 @@ for temporary file folders
 
 `recent`
 
-
-
 `mblctr.exe` Available only for laptops
 
 `msconfig.msc` System Configuration
@@ -1525,7 +1624,6 @@ for temporary file folders
 
 `math input panel` Draws out mathematical equations
 
-
 The location of StartUp folder
 
     shell:startup
@@ -1535,8 +1633,6 @@ The location of StartUp folder
 To view your applications similar to Application's folder of macOSX
 
     shell:AppsFolder
-
-
 
 `regedit.exe` Registry Editor
 
@@ -1556,13 +1652,13 @@ To view your applications similar to Application's folder of macOSX
 
 `msra.exe` Windows remote assistant tool
 
-`wsreset.exe` Cleaning Microsoft Store 
+`wsreset.exe` Cleaning Microsoft Store
 
 `recent` Recent items
 
 `shrpubw.exe` Share creation wizard
 
-`prefetch`  For deleting prefetch files
+`prefetch` For deleting prefetch files
 
 `Reliability Monitor` Best monitoring tool to log Windows performance
 
@@ -1629,7 +1725,6 @@ Reduce size of `WinSxS` folder
 
     dism.exe /online /cleanup-image /spsuperseded /hidesp
 
-
 <br>
 
 To choose a different Windows installation to be the default for the bootloader on `cmd` run:
@@ -1673,7 +1768,7 @@ To repair the image of Windows, on PowerShell with **administrator privileges**r
 
 You can clear the DNS cache by running: `ipconfig/flushdns`, also better
 change DNS [here is a list](https://www.privacytools.io/providers/dns/) of p
-private focused DNS services, i use mostly **Quad9** 
+private focused DNS services, i use mostly **Quad9**
 IPv4: `9.9.9.9, 149.112.112.112`
 
 <br>
@@ -1880,6 +1975,10 @@ https://github.com/npm/npm/
 https://github.com/nvm-sh/nvm#install--update-script/
 
 https://github.com/yarnpkg/yarn/
+
+https://deno.land/
+
+https://deno.land/manual/getting_started/installation/
 
 https://devdocs.prestashop.com/1.7/basics/introduction/
 
