@@ -1138,8 +1138,7 @@ You can verify the installation by running:
 
 [Documentation](https://nginx.org/en/docs/)
 
-You can access it via 127.0.0.1 localhost
-the configuration is at `/etc/nginx/nginx.conf`
+You can access it via 127.0.0.1 localhost the configuration is at `/etc/nginx/nginx.conf`
 
 <br>
 
