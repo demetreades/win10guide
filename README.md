@@ -77,7 +77,6 @@ enjoy 🤿
             -   [Installation](#centos-8-installation)
             -   [\*dnf](#dnf)
         -   [WSL Tips](#wsl-tips)
-            -   [Import / Export](#import-/-export)
             -   [Swappiness](#swappiness)
             -   [Bell](#bell)
             -   [Time](#time)
@@ -300,6 +299,12 @@ To get the **status** of Internet Explorer 11 run:
 
 <br>
 
+### Basic Navigation
+
+Get-Location
+
+Set-Location -Path C:\Windows
+
 ### $PROFILE
 
 To get the location run:
@@ -399,7 +404,7 @@ Include this in your `$profile` under `#oh-my-post`
 
 ### Fonts & Glyphs
 
-[Nerd Fonts](https://www.nerdfonts.com/font-downloads) definitely are the most famous, you can go there to choice, not all fonts supports all glyphs but [Meslo](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo) will cover almost everything.
+[Nerd Fonts](https://www.nerdfonts.com/font-downloads) definitely are the most famous, you can go there to choice, not all fonts supports all glyphs but [MesloLGM Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo) will cover almost everything.
 
 Install some fonts and change them via PowerShell's `Properties` by right clicking the window title. Other things you can do there are to give some transparency for the background, **enable** `CTRL+SHIFT+V` for copy/paste and **disable** the annoying scroll forwarding.
 
@@ -616,11 +621,11 @@ I totally advise after creating and setting up a distribution to export a backup
     example:
 
     wsl --import Ubuntu C:\Ubuntu d:\WSL2Distros\ubuntu.tar
-    wsl --export Ubuntu Ubuntu.tar      /// the location of the export is in $HOME
+    wsl --export Ubuntu Ubuntu.tar --version 2     /// the location of the export is in $HOME
 
 After importing a distribution you can login only as root to gain access again to the user run this from a PowerShell
 
-    <distribution> config --default-user <username>
+    <distribution> config --default-user <username> --<wsl version>
 
 <br>
 
@@ -776,6 +781,24 @@ Git Credential Manager to enable you authenticate remote Git servers
 
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
+<br>
+
+Or you can:
+
+**Inclune** this in credenatial manager: `sudo nano /usr/bin/git-credential-manager`
+
+    #!/bin/sh
+    exec "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe" $@
+
+Give the script **permissions**: `sudo chmod +x /usr/bin/git-credential-manager`
+
+**Add** this to your `.gitconfig`: `sudo nano ~/.gitconfig`
+
+    [credential]
+    helper = manager
+
+<Br>
+
 The location of git is at `$HOME` folder.
 
     \\wsl$\Ubuntu-20.04\home\username
@@ -816,7 +839,7 @@ Use should also specify caching expire
 
 After enabling **credential caching**, it will be cached for 7200 seconds (2 hour).
 
-Read credentials Docs also: `git help credentials`
+Read credentials **docs** also: `git help credentials`
 
 <br>
 
@@ -1780,6 +1803,16 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 ## WSL Tips
 
+You can call any Linux command directly from `cmd` or `PowerShell` by just putting it after `wsl.exe`
+
+From PowerShell execute the following command to determine information of all the installed Linux distributions:
+
+    (Get-ChildItem "HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss" -Recurse)
+
+To obtain the location of the filesystems, you can run:
+
+    (Get-ChildItem HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss | ForEach-Object {Get-ItemProperty $_.PSPath}) | select DistributionName,BasePath
+
 <br>
 
 ### Swappiness
@@ -1880,9 +1913,7 @@ To **disable** explorer suggestions on search go to `regedit.exe` and create a n
 
     HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer
 
----
-
-Then create two more `DWORD (32bit)` called `BingSearchEnabled` and `CortanaConsent` with the value of `0`
+Then create two more `DWORD (32bit)` called `BingSearchEnabled` and `CortanaConsent` with the value of `0`in that location:
 
     HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search
 
