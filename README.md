@@ -1255,6 +1255,8 @@ sudo service apache2 restart -->
 
 ...tba
 
+<!--  -->
+<!--  -->
 <!-- sudo apt update
 sudo apt install phpmyadmin php-mbstring
 sudo phpenmod mbstring
