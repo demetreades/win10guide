@@ -708,13 +708,13 @@ _Worth Mentioning cli tools_:
 
     git config --global user.email "youremail@domain.com"
 
-The location of git is at $home folder
+The location of git is at $home folder.
 
     \\wsl$\Ubuntu-20.04\home\username
 
     C:\Users\username
 
-To check or edit your git configuration access it with
+To check or edit your git configuration access it with:
 
     nano ~/.gitconfig
 
