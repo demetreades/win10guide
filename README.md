@@ -51,7 +51,7 @@ enjoy 🤿
             -   [Development](#development)
                 -   [node.js](#node.js)
                     -   [nvm](#nvm)
-                    -   [npm](#npm)
+                    -   [\* npm](#npm)
                     -   [yarn](#yarn)
                     -   [Deno](#deno)
                 -   [Python](#python)
@@ -63,8 +63,11 @@ enjoy 🤿
                 -   [Nginx](#nginx)
                 -   [\* Apache2](#apache2)
                 -   [Composer](#composer)
+                -   [\* MongoDB](#mongodb)
+                -   [\* MySQL](#mysql)
+                    -   [Reset the password](#reset-the-password)
                 -   [PHP](#php)
-                    -   [\* phpmyadmin](#phpmyadmin)
+                    -   [\* phpMyAdmin](#phpmyadmin)
                 -   [\* Prestashop](#prestashop)
                 -   [\* Wordpress](#wordpress)
         -   [\* WSL Archlinux](#wsl-archlinux)
@@ -1384,6 +1387,26 @@ The main configuration file is located at `/etc/apache2/apache2.conf`
 
 `ports.conf` is used to specify the ports that virtual hosts should listen on.
 
+Installation:
+
+    sudo apt update
+
+    sudo apt install -y apache2
+
+Adjust the Firewall to Allow Web Traffic
+
+    sudo ufw app list
+
+    sudo ufw app info "Apache Full"
+
+    sudo ufw allow in "Apache Full"
+
+How To Find your Server’s Public IP Address
+
+    ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+
+or you can `curl` the `URL`.
+
 <br>
 
 _Installation:_
@@ -1414,11 +1437,141 @@ Configuration files are, for local `composer.json`, for global `config.json`
 
 <br>
 
+## MongoDB
+
+[Installation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/):
+
+Once the packages have updated, install MongoDB with:
+
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+Install gnupg and its required libraries using the following command:
+
+    sudo apt install -y gnupg
+
+Once installed, retry importing the key:
+
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+Confirm installation and get the version number: `mongod --version`
+
+Create a list file for MongoDB.
+Create the `/etc/apt/sources.list.d/mongodb-org-4.4.list` file for `Ubuntu` `20.04 (Focal)`:
+
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+Reload local package database.
+
+    sudo apt update
+
+Install the lastest version:
+
+    sudo apt install -y mongodb-org
+
+Optional. Although you can specify any available version of MongoDB, apt will upgrade the packages when a newer version becomes available. To prevent unintended upgrades, you can pin the package at the currently installed version:
+
+    echo "mongodb-org hold" | sudo dpkg --set-selections
+    echo "mongodb-org-server hold" | sudo dpkg --set-selections
+    echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+    echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+    echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+<br>
+
+Configuration file: `/etc/mongod.conf`
+
+<br>
+
+Checking the status of your database.
+
+    sudo service mongodb status for
+
+To start running your database.
+
+    sudo service mongodb start
+
+To stop running your database.
+
+    sudo service mongodb stop
+
+<br>
+
 ## MYSQL
 
-    sudo apt install mysql-server
+[Installation](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database):
 
-    sudo mysql -u root
+<!-- https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04 -->
+
+    sudo apt install -y mysql-server default-mysql-server default-mysql-client
+
+When the installation is complete, run a simple security script that comes pre-installed with MySQL which will remove some dangerous defaults and lock down access to your database system. Start the interactive script by running:
+
+    sudo mysql_secure_installation
+
+To open the MySQL prompt, enter: `sudo mysql`
+
+To see what databases you have available, in the MySQL prompt, enter: `SHOW DATABASES;`
+
+To create a new database, enter: `CREATE DATABASE database_name;`
+
+To delete a database, enter: `DROP DATABASE database_name;`
+
+`mysql --version`
+
+<br>
+
+**Configuration files**:
+
+    /etc/my.cnf
+    /etc/mysql/my.cnf
+    /var/lib/mysql/my.cnf
+
+To see if database is running:
+
+    mysql -h 127.0.0.1 -P 3306 -u root -p <database>
+
+    telnet 127.0.0.1 3306
+
+<br>
+
+Status: `sudo service mysql status`
+
+Start: `sudo /etc/init.d/mysql start`
+
+Stop: `sudo /etc/init.d/mysql stop`
+
+<br>
+
+### Reset the password
+
+Follow these steps (can be helpful if you really forget your password and you can try it anytime, even if you're not in the situation at the moment):
+
+1.  Stop `mysql` - `sudo /etc/init.d/mysql stop`
+
+    Or for other distribution versions: `sudo /etc/init.d/mysqld stop`
+
+2.  Start MySQL in safe mode: `sudo mysqld_safe --skip-grant-tables &`
+3.  Log into MySQL using root: `mysql -u root`
+4.  Select the MySQL database to use: `use mysql;`
+5.  Reset the password
+
+        -- MySQL version < 5.7
+
+        update user set password=PASSWORD("mynewpassword") where User='root';
+
+        -- MySQL 5.7, mysql.user table "password" field -> "authentication_string"
+
+        update user set authentication_string=password('mynewpassword') where user='root';
+
+6.  Flush the privileges: `flush privileges;`
+7.  Restart the server: `quit`
+8.  Stop and start the server again:
+    `sudo /etc/init.d/mysql stop`
+    `sudo /etc/init.d/mysql start`
+
+9.  Login with a new password: `mysql -u root -p`
+
+Type the new password.
 
 <br>
 
@@ -1443,6 +1596,8 @@ Install PHP , Webserver and Database
 
     sudo apt install -y apt-transport-https php7.4-fpm php7.4-mbstring php7.4-curl php7.4-json php7.4-bz2 php7.4-zip php7.4-xml php7.4-gd php7.4-mysql php7.4-intl php7.4-sqlite3 php7.4-soap php7.4-bcmath php7.4-memcached php7.4-redis nginx mysql-client mysql-server
 
+    sudo apt install libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+
 Optional dependencies:
 
     sudo apt install -y dos2unix memcached default-jre  dh-autoreconf beanstalkd redis-server pv ack unoconv
@@ -1459,9 +1614,11 @@ sudo service apache2 restart -->
 
 <br>
 
-## phpmyadmin
+## phpMyAdmin
 
 [phpmyadmin](https://www.phpmyadmin.net/)
+
+    sudo apt install -y phpmyadmin
 
 <br>
 
@@ -1484,6 +1641,42 @@ Include /etc/phpmyadmin/apache.conf -->
 [Development Installation](https://devdocs.prestashop.com/1.7/basics/installation/localhost/)
 
 [php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
+
+<br>
+
+To install **LAMP** on your computer follow these steps:
+
+<br>
+
+**Update your system**
+
+    sudo apt update
+
+**Install MySQL**
+
+    sudo apt install -y default-mysql-server default-mysql-client
+
+**Install Apache2 server**
+
+    sudo apt install -y apache2
+
+**Install PHP 7.3**
+
+    sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+
+**Creating a database for your shop**
+
+If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
+
+**Using phpMyAdmin**
+
+We assume you have root access to phpMyAdmin, and you’re using version 4.x.
+
+Sign in to phpMyAdmin as the root user
+Click User accounts, and then click on Add user account
+Fill the User name and the Password
+In the Database for user account, select Create database and Grant all privileges
+Create user and database and make sure the COLLATION of your database is utf8mb4_general_ci
 
 <br>
 
