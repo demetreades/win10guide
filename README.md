@@ -740,6 +740,8 @@ To deal with cross platform problems, where sometimes git recognize changes in f
 
     git config --global core.autocrlf input
 
+If you having problems with Credential Manager try [this](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/tag/1.20.0)
+
 <br>
 
 #### [First Commit](https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad)
@@ -1601,6 +1603,8 @@ https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/
 https://github.com/adam7/delugia-code/
 
 https://github.com/tonsky/FiraCode/
+
+https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/tag/1.20.0/
 
 https://github.com/willmcgugan/rich/
 
