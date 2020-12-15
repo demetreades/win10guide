@@ -30,9 +30,10 @@ enjoy 🤿
         -   [Customization](#customization)
     -   [Windows Subsystem for Linux](#windows-subsystem-for-linux)
         -   [WSL Installation](#wsl-installation)
-            -   [Basic Commands](#basic-commands)
             -   [Accessibility](#accessibility)
             -   [Global Configuration](#global-configuration)
+            -   [Import / Export](#import-/-export)
+            -   [Basic Commands](#wsl-basic-commands)
         -   [WSL Ubuntu](#wsl-ubuntu)
             -   [First Steps](#first-steps)
             -   [Packages](#ubuntu-packages)
@@ -51,19 +52,22 @@ enjoy 🤿
                 -   [yarn](#yarn)
                 -   [Python](#python)
                 -   [Docker](#docker)
+                    -   [Installation](#docker-installation)
+                    -   [Docker Compose](#docker-compose)
+                    -   [Basic Commands](#docker-commands)
                 -   [Rust](#rust)
                 -   [Nginx](#nginx)
-                -   [Apache2](#apache2)
+                -   [* Apache2](#apache2)
                 -   [Composer](#composer)
                 -   [PHP](#php)
-                    -   [phpmyadmin](#phpmyadmin)
-                -   [Prestashop](#prestashop)
-                -   [Wordpress](#wordpress)
+                    -   [* phpmyadmin](#phpmyadmin)
+                -   [* Prestashop](#prestashop)
+                -   [* Wordpress](#wordpress)
         -   [* WSL Archlinux](#wsl-archlinux)
             -   [* Installation](#archlinux-installation)
         -   [WSL CentOS 8](#wsl-centos-8)
             -   [Installation](#centos-8-installation)
-            -   [dnf](#dnf)
+            -   [* dnf](#dnf)
         -   [WSL Tips](#wsl-tips)
             -   [Import / Export](#import-/-export)
             -   [Swappiness](#swappiness)
@@ -238,13 +242,12 @@ If you want a **GUI** instead of using PowerShell, you can run `choco install ch
 
 ## PowerShell
 
-[Documentation](https://docs.microsoft.com/en-us/powershell/)
+[Official Documentation](https://docs.microsoft.com/en-us/powershell/)
 
 [Updating](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1) to PowerShell 7.2 (Preview):
 
     iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
 
-To refresh environmental variables from the registry run: `refreshenv`
 
 To get PowerShell's version run:
 
@@ -253,6 +256,10 @@ To get PowerShell's version run:
 or
 
     $PSVersionTable
+
+<br>
+
+To refresh environmental variables from the registry run: `refreshenv`
 
 <br>
 
@@ -360,7 +367,7 @@ You can list the current configuration with `$ThemeSettings`
 
 and the Posh-Git settings with `$GitPromptSettings`
 
-To set the initial location add: `set-location %USERPROFILE%`
+<del>To set the initial location add: `set-location %USERPROFILE%`</del>
 
 <br>
 
@@ -411,9 +418,6 @@ Install some fonts and change them via PowerShell's `Properties` by right clicki
         #icons
         Set-TerminalIconsIconTheme devblackops
         Set-TerminalIconsColorTheme devblackops
-
-        #location
-        set-location %USERPROFILE%
 
 <br>
 
@@ -553,30 +557,9 @@ then:
     wsl --setdefault Ubuntu-20.04
     wsl --distribution Ubuntu-20.04
 
+<br>
+
 [WSL-Ubuntu Wiki](https://wiki.ubuntu.com/WSL)
-
-<br>
-
-## Basic Commands
-
-| Command                                                    | Description                                      |
-| ---------------------------------------------------------- | ------------------------------------------------ |
-| `wsl --help`                                               | Help                                             |
-| `wsl --set-version <distribution> <version number>`        | Change WSL version on a distribution             |
-| `wsl --selectdefault <distribution>`                       | Change default distribution that will start on wsl.exe |
-| `wsl --list --verbose`                                     | List of installed distributions with WSL version |
-| `wsl --user <username>`                                    | Run as a specific User                           |
-| `wsl --export <distribution> <filename>.tar`                   | To backup a distribution                         |
-| `wsl --import <distribution> <installLocation> <filename>` | To import a distribution from a known location   |
-| `wsl --terminate <distribution>`                       | To stop a distribution                           |
-| `wsl --unregister <distribution>`                          | To remove a distribution                         |
-| `wsl --default-user <username>`                            | To change the default user of a distribution     |
-| `wsl --distribution <distribution>`                        | To start a specific distribution                 |
-| `wslconfig /setdefault <distribution`                      | To set the default distrubution of wsl.exe       |
-
-<br>
-
-[Command Line Reference](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)
 
 <br>
 
@@ -635,6 +618,29 @@ Some Utilities for WSL:
 
 <br>
 
+## WSL Basic Commands
+
+| Command                                                    | Description                                      |
+| ---------------------------------------------------------- | ------------------------------------------------ |
+| `wsl --help`                                               | Help                                             |
+| `wsl --set-version <distribution> <version number>`        | Change WSL version on a distribution             |
+| `wsl --selectdefault <distribution>`                       | Change default distribution that will start on wsl.exe |
+| `wsl --list --verbose`                                     | List of installed distributions with WSL version |
+| `wsl --user <username>`                                    | Run as a specific User                           |
+| `wsl --export <distribution> <filename>.tar`                   | To backup a distribution                         |
+| `wsl --import <distribution> <installLocation> <filename>` | To import a distribution from a known location   |
+| `wsl --terminate <distribution>`                       | To stop a distribution                           |
+| `wsl --unregister <distribution>`                          | To remove a distribution                         |
+| `wsl --default-user <username>`                            | To change the default user of a distribution     |
+| `wsl --distribution <distribution>`                        | To start a specific distribution                 |
+| `wslconfig /setdefault <distribution`                      | To set the default distrubution of wsl.exe       |
+
+<br>
+
+[Command Line Reference](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)
+
+<br>
+
 ## WSL Ubuntu
 
 ### First Steps
@@ -667,7 +673,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 Some packages that will be needed:
 
     sudo apt install mc zsh net-tools fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
-    software-properties-common neofetch exa unrar unzip build-essential rsync gpg cifs-utils youtube-dl aria2 cmake
+    software-properties-common neofetch exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl aria2 cmake
     tldr httpie memcached -y
 
 <br>
@@ -1070,7 +1076,7 @@ To Install Python3:
 
 <br>
 
-[pyenv](https://github.com/pyenv/pyenv) Python Version Manager
+[pyenv](https://github.com/pyenv/pyenv) python version manager
 
      git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
@@ -1103,7 +1109,11 @@ set the auto_activate_base parameter to false:
 
 <br>
 
-Install Docker's dependencies.
+### Docker [Installation](https://docs.docker.com/engine/install/ubuntu/)
+
+<br>
+
+Install docker's dependencies.
 
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
@@ -1161,6 +1171,34 @@ Ensure volume mounts work
     [automount]
     root = /
     options = "metadata"
+
+<br>
+
+<br>
+
+### Docker Commands
+
+<br>
+
+| Command                                                    | Description                                                       |
+| ---------------------------------------------------------- | ------------------------------------------------------------------|
+| `docker –version`                                          | To get the currently installed version of docker                  |
+| `docker pull <image name>`                                 | To pull images from the docker repository                         |
+| `docker run -it -d <image name>`                           |  To create a container from an image                              |
+| `docker ps`                                                | To list the running containers                                    |
+| `docker ps -a`                                             | To show all the running and exited containers                     |
+| `docker exec -it <container id> bash`                      | To access the running container                                   |
+| `docker stop <container id>`                               | To stop a running container                                       |
+| `docker kill <container id>`                               | To Kills the container by stopping its execution immediately      |
+| `docker commit <conatainer id> <username/imagename>`       | To creates a new image of an edited container on the local system |
+| `docker login`                                             | To login to the docker hub repository                             |
+| `docker push <username/image name>`                        | To push an image to the docker hub repository                     |
+| `docker images`                                            | To lists all the locally stored docker images.                    |
+| `docker rm <container id>`                                 | To delete a stopped container.                                    |
+| `docker rmi <image-id>`                                    | To delete an image from local storage.                            |
+| `docker build <path to docker file>`                       | To build an image from a specified docker file.                   |
+
+<br>
 
 <br>
 
@@ -1391,6 +1429,10 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 <br>
 
+... tba
+
+<br>
+
     dnf list installed |less
     dnf repolist			
 
@@ -1485,9 +1527,9 @@ The location of StartUp folder
 
     shell:startup
     shell:common startup
-    shell:regualr startup
+    shell:regular startup
 
-To have an Application folder similar to that of macOSX
+To view your applications similar to Application's folder of macOSX
 
     shell:AppsFolder
 
@@ -1879,6 +1921,10 @@ https://github.com/jonas/tig/
 https://github.com/github/hub/
 
 https://github.com/httpie/httpie/
+
+https://docs.docker.com/engine/reference/commandline/docker/
+
+https://docs.docker.com/docker-for-windows/install/
 
 <br>
 
