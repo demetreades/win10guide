@@ -724,7 +724,7 @@ Git Credential Manager to enable you authenticate remote Git servers
 
 If you are using a GPG key for code signing security, you may need to associate your GPG key with your GitHub email
 
-To generate private and public key for git for
+To generate private and public key for git for:
 
     ssh-keygen -t rsa -b 4096 -C "email@email.com"
 
