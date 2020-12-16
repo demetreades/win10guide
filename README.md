@@ -14,18 +14,18 @@ enjoy 🤿
     -   [Automatic Updates & Telemetry](#Disable-Windows-10-Automatic-Updates-&-Telemetry)
     -   [Chocolatey Package Manager](#chocolatey-package-manager)
         -   [Chocolatey Installation](#chocolatey-installation)
-        -   [Packages](#choco-packages)
-        -   [Basic Commands](#basic-commands)
+        -   [Choco Packages](#choco-packages)
+        -   [Choco Commands](#choco-commands)
     -   [PowerShell](#powershell)
+        -   [Basic Commands](#basic-commands)
         -   [$PROFILE](#profile)
         -   [Autocompletion](#autocompletion)
             -   [Chocolatey Autocompletion](#chocolatey-autocompletion)
-        -   [\*Create aliases](#create-aliases)
         -   [Oh-My-Posh](#oh-my-posh)
             -   [Installation](#ohmyposh-installation)
             -   [Terminal Icons](#terminal-icons)
             -   [Fonts & Glyphs](#fonts-&-glyphs)
-            -   [$PROFILE Example](#profile-example)
+        -   [$PROFILE Example](#profile-example)
     -   [Windows Terminal](#windows-terminal)
         -   [Customization](#customization)
     -   [Windows Subsystem for Linux](#windows-subsystem-for-linux)
@@ -33,10 +33,10 @@ enjoy 🤿
             -   [Accessibility](#accessibility)
             -   [Global Configuration](#global-configuration)
             -   [Import / Export](#import-/-export)
-            -   [Basic Commands](#wsl-basic-commands)
+        -   [Basic Commands](#wsl-basic-commands)
         -   [WSL Ubuntu](#wsl-ubuntu)
             -   [First Steps](#first-steps)
-            -   [Packages](#ubuntu-packages)
+            -   [Apt Packages](#apt-packages)
             -   [git](#git)
                 -   [GitHub CLI](#github-cli)
                 -   [SSH with git](#ssh-with-git)
@@ -66,7 +66,7 @@ enjoy 🤿
                 -   [Composer](#composer)
                 -   [\*MongoDB](#mongodb)
                 -   [\*MySQL](#mysql)
-                    -   [Reset the password](#reset-the-password)
+                    -   [Password Reset](#password-reset)
                 -   [PHP](#php)
                     -   [\*phpMyAdmin](#phpmyadmin)
                 -   [\*Prestashop](#prestashop)
@@ -80,7 +80,7 @@ enjoy 🤿
             -   [Swappiness](#swappiness)
             -   [Bell](#bell)
             -   [Time](#time)
-    -   [Interesting things and locations](#interesting-things-and-locations)
+    -   [Interesting tweaks and locations](#interesting-tweaks-and-locations)
         -   [Local Shared Folders](#local-shared-folders)
         -   [Hibernation](#hibernation)
         -   [HYPER-V](#hyper-v)
@@ -92,7 +92,7 @@ enjoy 🤿
 
 # Getting Started
 
-The guide's state is **work in progress**, you will might find inside old deprecated stuff and **lots of mistakes**, ill try to have it clean and up to date, any recommendation welcomed.
+The guide's state is **work in progress**, you will might find inside old deprecated stuff and **lots of mistakes**, ill try to have it clean and up to date, any recommendations welcomed.
 
 <br>
 
@@ -132,7 +132,7 @@ From here we can also **disable** Cortana and Cloud Searching
 
 You can refer first to the official [documentation](https://chocolatey.org/install) for installation
 
-**1.** Open PowerShell as **administrator** and run `Get-ExecutionPolicy.`
+**1.** Open `PowerShell` as **administrator** and run `Get-ExecutionPolicy.`
 If it returns `Restricted` , then run `Set-ExecutionPolicy Bypass -Scope Process`
 
 <br>
@@ -155,7 +155,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
     choco install -y 7zip curl microsoft-windows-terminal powertools docker-desktop virtualbox
     wsl-ubuntu-2004 coretemp sharex quicklook qbittorrent adobereader etcher thunderbird birdtray
-    laragon linux-reader tomcat javaruntime
+    laragon linux-reader tomcat javaruntime processhacker
 
 <br>
 
@@ -204,7 +204,7 @@ Also these are not included in Chocolatey's repositories but are **worth mention
 
 <br>
 
-### Basic Commands
+### Choco Commands
 
 See also the [Chocolatey Command Reference](https://chocolatey.org/docs/commands-reference) for a complete list.
 
@@ -251,7 +251,7 @@ if that fails, check under `%TEMP%\Chocolatey` for the installer and, if found, 
 
 <br>
 
-If you want a **GUI** instead of using PowerShell, you can run: `choco install chocolateygui -y`
+If you want a **GUI** instead of using `PowerShell`, you can run: `choco install chocolateygui -y`
 
 <br>
 
@@ -263,7 +263,7 @@ If you want a **GUI** instead of using PowerShell, you can run: `choco install c
 
     iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
 
-To get PowerShell's **version** run:
+To get `PowerShell` **version** run:
 
     (Get-Host).Version
 
@@ -277,7 +277,7 @@ To **refresh** environmental variables from the registry run: `refreshenv`
 
 <br>
 
-We can **enable** and **disable** Windows Features from PowerShell with:
+We can **enable** and **disable** Windows Features from `PowerShell` with:
 
     Enable-WindowsOptionalFeature
 
@@ -299,11 +299,25 @@ To get the **status** of Internet Explorer 11 run:
 
 <br>
 
-### Basic Navigation
+### Basic Commands
 
-Get-Location
+View directory content `Get-ChildItem` - `gci`
 
-Set-Location -Path C:\Windows
+Reveals path `Get-Location` - `gl`
+
+Move to location path `Set-Location -Path C:\Windows` - `sl -path C:\Windows`
+
+Delete `Remove-Item` - `rm`
+
+Create file `New-Item` - `ni`
+
+Copy file `Copy-Item` - `cp`
+
+Move file `Move-Item` - `mv`
+
+Cat file `Get-Content` - `gc`
+
+<br>
 
 ### $PROFILE
 
@@ -321,7 +335,7 @@ If you don't have a profile yet, **create** one by running:
 
 To enable autocompletion on PowerShell you need to **set** the `ExecutionPolicy` of PowerShell to `RemoteSigned` this will **allow** unsigned local scripts and signed remote PowerShell scripts to run.
 
-From a PowerShell with **administrator privileges** run:
+From a `PowerShell` with **administrator privileges** run:
 
     Set-ExecutionPolicy RemoteSigned
 
@@ -350,15 +364,17 @@ Open your `$PROFILE` and **include** this under the previous `autocompletion`
     	Import-Module "$ChocolateyProfile"
     }
 
-<br>
+<!-- <br>
 
-## Create alias
+## Create Alias
 
-<br>
+To check if the alias exists: `$Alias:Edit`
 
-..tba
+Create a new alias: `Set-Alias Edit notepad.exe`
 
-<br>
+Just check if this `Edit` alias created successfully or not by running: `$Alias:Edit` if is made will output `Notepad.exe` will open.
+
+That way you cant have permanent aliases when you close PowerShell will get removed so we can add that to our `$PROFILE`, so when the profile starts, the alias will be created automatically. -->
 
 <br>
 
@@ -370,7 +386,7 @@ Is a theme engine similar to oh-my-zsh, you can customize it extensively with co
 
 ### [Installation](#ohmyposh-installation)
 
-To install oh-my-posh and posh-git open PowerShell with **administrator privileges** and run
+To install oh-my-posh and posh-git open `PowerShell` with **administrator privileges** and run
 
     Install-Module posh-git -Scope CurrentUser
     Install-Module oh-my-posh -Scope CurrentUser
@@ -525,7 +541,7 @@ You **should** refer first to the official documentation [WSL Installation Guide
 
 <br>
 
-**2.** Enable the two Windows Features that needed by running `OptionalFeatures.exe` or via PowerShell with **administrator privileges**.
+**2.** Enable the two Windows Features that needed by running `OptionalFeatures.exe` or via `PowerShell` with **administrator privileges**.
 
 **Enable** Windows Subsystem for Linux:
 
@@ -623,7 +639,7 @@ I totally advise after creating and setting up a distribution to export a backup
     wsl --import Ubuntu C:\Ubuntu d:\WSL2Distros\ubuntu.tar
     wsl --export Ubuntu Ubuntu.tar --version 2     /// the location of the export is in $HOME
 
-After importing a distribution you can login only as root to gain access again to the user run this from a PowerShell
+After importing a distribution you can login only as root to gain access again to the user run this from a `PowerShell`
 
     <distribution> config --default-user <username> --<wsl version>
 
@@ -689,13 +705,13 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 <br>
 
-### Ubuntu Packages
+### Apt Packages
 
-Some packages that will needed:
+Needed packages:
 
     sudo apt install mc zsh fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
     software-properties-common  exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
-    tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch -y
+    tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch libssl-dev irssi -y
 
 <br>
 
@@ -916,6 +932,10 @@ To deal with cross platform problems, where sometimes git recognize changes in f
 
     git config --global core.autocrlf input
 
+**SSH repository**
+
+        git remote add origin git@github.com:<username>/<repo>.git
+
 <br>
 
 #### [First Commit](https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad)
@@ -928,10 +948,10 @@ Using your terminal/command line, get inside the folder where your project is ke
 1.  `git commit`
 1.  `git push origin master`
 
-        # SSH
-        git remote add origin git@github.com:<username>/<repo>.git
+<br>
 
-        # Remove repository link
+**Remove repository link**
+
         git remote -v
         git remove rm origin
 
@@ -945,7 +965,7 @@ Using your terminal/command line, get inside the folder where your project is ke
 
 <br>
 
-## SSH
+### SSH
 
     sudo apt install -y ssh
 
@@ -953,7 +973,7 @@ Edit the configuration file
 
     sudo nano /etc/ssh/sshd_config
 
-change `PasswordAuthentication` to **yes**
+To disable clear text passwords, change to no here change `PasswordAuthentication` to **yes**
 
 Add your login user to the bottom of the file to check which is your username you can run `whoami`
 
@@ -967,11 +987,13 @@ Know that we have the **keys** we can start our service.
 
     sudo service ssh start
 
+    sudo service ssh status
+
 Check the **status** of the service to confirm that is running
 
     service ssh status
 
-Fix host keys
+Fix Host keys
 
     sudo apt-get remove --purge openssh-server
     sudo apt-get install openssh-server
@@ -1010,6 +1032,14 @@ If you want to set default browser for the current terminal session you can set 
     export BROWSER='/mnt/c/Program Files/Google/Chrome/Application/Chrome.exe'
 
 Assuming you want to use **Chrome** and have it installed in that **location**, if you want this to be persistent, you can include it in your `~/.zshrc` file.
+
+<br>
+
+We can even play [tetris](https://github.com/zsh-users/zsh/blob/master/Functions/Misc/tetriscurses) in zsh 😆 🤲
+
+    #zsh tetris
+    autoload -Uz tetriscurses
+    tetriscurses
 
 <br>
 
@@ -1475,6 +1505,8 @@ Configuration files are, for **local** `composer.json`, for **global** `config.j
 
 ## MongoDB
 
+**This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb is supported only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
+
 [Installation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/):
 
 Once the packages have updated, install MongoDB with:
@@ -1579,14 +1611,11 @@ Stop: `sudo /etc/init.d/mysql stop`
 
 <br>
 
-### Reset the password
+### Password Reset
 
-Follow these steps (can be helpful if you really forget your password and you can try it anytime, even if you're not in the situation at the moment):
+To reset database password follow these steps:
 
 1.  Stop `mysql` - `sudo /etc/init.d/mysql stop`
-
-    Or for other distribution versions: `sudo /etc/init.d/mysqld stop`
-
 2.  Start MySQL in safe mode: `sudo mysqld_safe --skip-grant-tables &`
 3.  Log into MySQL using root: `mysql -u root`
 4.  Select the MySQL database to use: `use mysql;`
@@ -1625,13 +1654,13 @@ GRANT GRANT OPTION ON _._ TO 'meu-nome-de-usuario'@'localhost'; FLUSH PRIVILEGES
 
 ## PHP
 
-Add the repository
+Add the repository:
 
     sudo add-apt-repository ppa:ondrej/php
 
-Install PHP , Webserver and Database
+Install PHP:
 
-    sudo apt install -y apt-transport-https php7.4-fpm php7.4-mbstring php7.4-curl php7.4-json php7.4-bz2 php7.4-zip php7.4-xml php7.4-gd php7.4-mysql php7.4-intl php7.4-sqlite3 php7.4-soap php7.4-bcmath php7.4-memcached php7.4-redis nginx mysql-client mysql-server
+    sudo apt install -y apt-transport-https php7.4-fpm php7.4-mbstring php7.4-curl php7.4-json php7.4-bz2 php7.4-zip php7.4-xml php7.4-gd php7.4-mysql php7.4-intl php7.4-sqlite3 php7.4-soap php7.4-bcmath php7.4-memcached php7.4-redis
 
     sudo apt install libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
 
@@ -1642,7 +1671,7 @@ Optional dependencies:
 <!-- na ton dw ksana autwn -->
 <!-- https://github.com/enflow/wsl2-php-development -->
 
-Confirm the version
+Confirm version:
 
     php -version
 
@@ -1807,7 +1836,7 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 You can call any Linux command directly from `cmd` or `PowerShell` by just putting it after `wsl.exe`
 
-From PowerShell execute the following command to determine information of all the installed Linux distributions:
+From `PowerShell` execute the following command to determine information of all the installed Linux distributions:
 
     (Get-ChildItem "HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss" -Recurse)
 
@@ -1831,7 +1860,7 @@ After that `cat` again to confirm that swappiness is changed.
 
 ### Bell
 
-You can also `disable` the annoying bell sound that is triggering with tab when there're no other autosuggest options by running:
+You can also **disable** the annoying bell sound that is triggering with tab when there're no other autosuggest options by running:
 
     echo 'set bell-style none' >> ~/.inputrc
 
@@ -1841,15 +1870,15 @@ You can also `disable` the annoying bell sound that is triggering with tab when 
 
 Fix WSL time sync
 
-`sudo ntpdate ntp.ubuntu.com &>/dev/null &`
+    sudo ntpdate ntp.ubuntu.com &>/dev/null &
 
-For fixing also the UTC sync dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
+For fixing also UTC dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
 
     reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f
 
 <br>
 
-# Interesting things and locations
+# Interesting tweaks and locations
 
 in `Run` , `CTRL+R` give:
 
@@ -1875,7 +1904,6 @@ The location of StartUp folder
 
     shell:startup
     shell:common startup
-    shell:regular startup
 
 To view your applications similar to Application's folder of macOSX
 
@@ -1909,9 +1937,35 @@ To view your applications similar to Application's folder of macOSX
 
 `Reliability Monitor` Best monitoring tool to log Windows performance
 
+`shell:::{80F3F1D5-FECA-45F3-BC32-752C152E456E}` Tablet PC Settings
+
 <br>
 
-To **disable** explorer suggestions on search go to `regedit.exe` and create a new `DWORD (32bit)` called `DisableSearchBoxSuggestions` with the value of `1`
+**Folder Options**
+
+    Open file explorer to [This PC]
+    Display full path in the title bar
+    Show hidden files
+    Hide Extentions for known file types
+    Launch folder windows in a seperate process
+    Reveal undo and redo buttons
+
+<br>
+
+Task Manager opens with `CTRL+SHIFT+ESC` if you have it from the options `always on top` it will open everytime you hit the shortcut on top other crashed windows.
+
+To remove items from the right click **context menu** open `regedit.exe` and navigate to:
+
+    HKEY_CLASSES_ROOT\*\shell
+    HKEY_CLASSES_ROOT\*\shellex
+    HKEY_CLASSES_ROOT\Directory\shell\
+    HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\
+    HKEY_CLASSES_ROOT\Directory\Background\shell
+    HKEY_CLASSES_ROOT\Directory\Background\shellex\ContextMenuHandlers
+
+<br>
+
+To **disable** explorer suggestions on search go to `regedit.exe` and create a new `DWORD (32bit)` called `DisableSearchBoxSuggestions` with the value of `1`, if the folders does not exist create a new `Key` called `Explorer`.
 
     HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer
 
@@ -1919,6 +1973,22 @@ Then create two more `DWORD (32bit)` called `BingSearchEnabled` and `CortanaCons
 
     HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search
 
+<br>
+
+in **cmd** run: `netsh wlan show wlanreport` for a wifi details and log report
+
+in **cmd** run: `tasklist`to get a list and then to kill a task use kill command with the PID or name from the list
+
+    taskkill /f /t /im wsl.exe
+
+    taskkill /f /t /pid 12836
+
+in **cmd** run: `powercfg /energy` Power effeciency diagnostic report.
+
+also you can run `powercfg /batteryreport` if you are on a laptop.
+
+in **cmd** run: `cipher /e C:\Folder\File.txt` to encrypt or `cipher /e C:\Folder\File.txt` to decrypt.
+To encrypt a folder with its content `cipher /e /s:C:\Folder\`
 <br>
 
 **Disable Cortana**
@@ -1929,9 +1999,9 @@ Then create two more `DWORD (32bit)` called `BingSearchEnabled` and `CortanaCons
 
 **Start Menu** items are in two locations:
 
-`C:\ProgramData\Microsoft\Windows\Start Menu\Programs`
+`%APPDATA%\Microsoft\Windows\Start Menu\Programs`
 
-`C:\%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\`
+`%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\`
 
 or you can give that in `run`: `shell:Start Menu`
 
@@ -2001,21 +2071,21 @@ You can bypass login prompt by finding in search `netplwiz` and open it as **adm
 <br>
 
 System File Checker tool to repair missing or corrupted system files
-on cmd.exe with **administrator privileges** run:
+on `cmd.exe` with **administrator privileges** run:
 
     sfc/scannow
 
-To repair the image of Windows, on PowerShell with **administrator privileges**run:
+To repair the image of Windows, on `PowerShell` with **administrator privileges**run:
 
     DISM.exe /Online /Cleanup-image /Restorehealth
 
 <br>
 
-You can clear the DNS cache by running: `ipconfig/flushdns`, also better
-change DNS [here is a list](https://www.privacytools.io/providers/dns/) of p
+You can get your MAC address and other info with: `ipcofig /all`, you can clear the DNS cache by running: `ipconfig/flushdns`, also better change your DNS provider, [here is a list](https://www.privacytools.io/providers/dns/) of p
 private focused DNS services, i use mostly **Quad9**
 IPv4: `9.9.9.9, 149.112.112.112`
 
+With: `tracert <url of the domain>` its kinda like ping but you can trace every hop till the reaching the final destination of tha domain.
 <br>
 
 To **debloat** Windows 10 the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep only Groove music player from the native apps.
@@ -2203,7 +2273,11 @@ https://docs.microsoft.com/en-us/sysinternals/downloads/
 
 https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-can-be-installed-on-windows-and-on-wsl/
 
+https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database/
+
 https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files/
+
+https://github.com/zsh-users/zsh/blob/master/Functions/Misc/tetriscurses/
 
 https://www.php.net/docs.php/
 
