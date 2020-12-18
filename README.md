@@ -84,8 +84,13 @@ enjoy 🤿
         -   [Local Shared Folders](#local-shared-folders)
         -   [Hibernation](#hibernation)
         -   [HYPER-V](#hyper-v)
+        -   [Scoop Package Manager](#scoop-package-manager)
+        -   [Winget Package Manager](#winget-package-manager)
+        -   [HYPER-V](#hyper-v)
         -   [God Mode](#god-mode)
+        -   [Disable content indexing on SSDs](#disable-content-indexing-on-ssds)
         -   [Image Backup & Recovery](#image-backup-&-recovery)
+        -   [Remap default folder locations to a separate HDD](#remap-default-folder-locations-to-a-separate-HDD)
 -   [References](#references)
 
 <br>
@@ -248,10 +253,6 @@ if that fails, check under `%TEMP%\Chocolatey` for the installer and, if found, 
 `--allow-empty-checksums` - skips checksumming when the package is missing a checksum
 
 `--allow-empty-checksums-secure` - skips checksumming when the package is missing a checksum for secure
-
-<br>
-
-If you want a **GUI** instead of using `PowerShell`, you can run: `choco install chocolateygui -y`
 
 <br>
 
@@ -571,15 +572,47 @@ or you can run:
 
 >        wsl --set-default-version 2
 
-From now on all new distributions will be WSL 2 if you need a WSL 1 distro you need to switch back with the same command, now you can get a distribution from Microsoft Store or `choco search wsl` or even better:
-
-    Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-
-[Ubuntu 20.04](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) , [Ubuntu 18.04](https://www.microsoft.com/el-gr/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab) , [Debian 10.5](https://www.microsoft.com/el-gr/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab)
+From now on all new distributions will be WSL 2 if you need a WSL 1 distro you need to switch back with the same command, now you can get a distribution from [Microsoft Store](https://www.microsoft.com/en-us/search?q=linux) or from `PowerShell` as described below:
 
 <br>
 
-**5.** Download And Import Ubuntu 20.04, Create Folder For ROOTFS:
+Ubuntu 20.04
+
+    Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+
+Ubuntu 18.04
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu1804.appx -UseBasicParsing
+
+Ubuntu 16.04
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1604 -OutFile Ubuntu1604.appx -UseBasicParsing
+
+Debian 10.5
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-debian-gnulinux -OutFile debian.appx -UseBasicParsing
+
+Open SUSE Leap 42
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-opensuse-42 -OutFile opensuse.appx -UseBasicParsing
+
+Kali Linux
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-kali-linux-new -OutFile kali.appx -UseBasicParsing
+
+SUSE Linux Enterprise Server 12
+
+    Invoke-WebRequest -Uri https://aka.ms/wsl-sles-12 -OutFile suse-server.appx -UseBasicParsing
+
+To install, navigate to folder containing the distribution downloaded, and in that directory run the following command where `app_name` is the name of your distro `.appx` file.
+
+    Add-AppxPackage .\app_name.appx
+
+<br>
+
+Or
+
+Download And Import Ubuntu 20.04, Create Folder For ROOTFS:
 
     mkdir -p $env:userprofile/Ubuntu/Focal/Ubuntu-20.04
 
@@ -709,7 +742,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 Needed packages:
 
-    sudo apt install mc zsh fzf ripgrep bat pydf ssh ca-certificates gnupg-agent apt-transport-https
+    sudo apt install mc zsh fzf ripgrep catbat pydf ssh ca-certificates gnupg-agent apt-transport-https
     software-properties-common  exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
     tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch libssl-dev irssi -y
 
@@ -1952,7 +1985,7 @@ To view your applications similar to Application's folder of macOSX
 
 <br>
 
-Task Manager opens with `CTRL+SHIFT+ESC` if you have it from the options `always on top` it will open everytime you hit the shortcut on top other crashed windows.
+Taskmanager opens with `CTRL+SHIFT+ESC` if you have it from the options `always on top` it will open everytime you hit the shortcut on top other crashed windows, to manually refresh its values with `F5`.
 
 To remove items from the right click **context menu** open `regedit.exe` and navigate to:
 
@@ -2026,22 +2059,6 @@ Other locations might be:
 
 <br>
 
-Install Windows Packet Manager [Winget](https://github.com/microsoft/winget-cli/blob/master/README.md)
-
-    Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v0.1.4331-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle -OutFile Winget.appx -UseBasicParsing
-
-    Add-AppxPackage .\Winget.appx
-
-Install Microsoft Edge Enterprise
-
-     Invoke-WebRequest -Uri http://dl.delivery.mp.microsoft.com/filestreamingservice/files/1fc0c5fe-c1f5-4879-a43c-515d9f731444/MicrosoftEdgeEnterpriseX64.msi  -OutFile MicrosoftEdge.msi -UseBasicParsing
-
-Reduce size of `WinSxS` folder
-
-    dism.exe /online /cleanup-image /spsuperseded /hidesp
-
-<br>
-
 To choose a different Windows installation to be the default for the bootloader on `cmd` run:
 
     bcdboot E:\Windows          // as an example for drive E:
@@ -2081,18 +2098,88 @@ To repair the image of Windows, on `PowerShell` with **administrator privileges*
 
 <br>
 
-You can get your MAC address and other info with: `ipcofig /all`, you can clear the DNS cache by running: `ipconfig/flushdns`, also better change your DNS provider, [here is a list](https://www.privacytools.io/providers/dns/) of p
+You can get your MAC address and other info with: `ipcofig /all`, you can clear the DNS cache by running: `ipconfig/flushdns`, also better change your DNS provider, [here is a list](https://www.privacytools.io/providers/dns/) of
 private focused DNS services, i use mostly **Quad9**
 IPv4: `9.9.9.9, 149.112.112.112`
 
 With: `tracert <url of the domain>` its kinda like ping but you can trace every hop till the reaching the final destination of tha domain.
 <br>
 
-To **debloat** Windows 10 the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep only Groove music player from the native apps.
+To **debloat** at a certain level Windows 10, the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep only Groove music player from the native apps.
 
 <br>
 
-#### God Mode
+Install Microsoft Edge Enterprise
+
+     Invoke-WebRequest -Uri http://dl.delivery.mp.microsoft.com/filestreamingservice/files/1fc0c5fe-c1f5-4879-a43c-515d9f731444/MicrosoftEdgeEnterpriseX64.msi  -OutFile MicrosoftEdge.msi -UseBasicParsing
+
+Reduce size of `WinSxS` folder
+
+    dism.exe /online /cleanup-image /spsuperseded /hidesp
+
+<br>
+
+### Scoop Package Manager
+
+In order to install [Scoop](https://scoop.sh/) you need first to install its dependencies, PowerShell 5 or later and .NET Framework 4.5 or later.
+
+Also you need to allow the execution of scripts if you havent already done it:
+
+    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+
+To install run:
+
+    iwr -useb get.scoop.sh | iex
+
+To add the extras bucket
+
+    scoop bucket add extras
+
+To list bockets run:
+
+    scoop bucket known
+
+<br>
+
+**Basic Commands**
+
+    scoop help
+
+    scoop search <pakage>
+
+    scoop install <pakage>
+
+    scoop uninstall <pakage>
+
+    scoop update *
+
+<br>
+
+### Winget Package Manager
+
+Install Windows Packet Manager [Winget](https://github.com/microsoft/winget-cli/blob/master/README.md)
+
+    Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v0.1.4331-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle -OutFile Winget.appx -UseBasicParsing
+
+    Add-AppxPackage .\Winget.appx
+
+<br>
+
+**Basic Commands**
+
+    winget --version
+
+    winget help
+
+    winget search <package>
+
+    winget install <package>
+
+    winget show <package>
+
+<br>
+
+### God Mode
 
 It’s simply a special folder you can `enable` that exposes most of Windows admin, management, settings, and Control Panel tools in a single, easy-to-scroll-through **one interface**.
 
@@ -2102,7 +2189,7 @@ You can **enter** God Mode by creating a folder and **renaming** it with this li
 
 <br>
 
-#### Local Shared Folders
+### Local Shared Folders
 
 We have first to `enable` Developer Mode so the computer is discoverable and can accessed to share files in your local network.
 
@@ -2118,11 +2205,11 @@ On `Guest` you turn **on** both options
 On `All Networks` tab turn **off** `Password Protected Sharing`
 Turn **on** `Media streaming`
 
-To share a folder on your local network just right click `Give access to > Specific people` then you need to add everyone to the list over your Username, with the **right privileges**, to right click on folder `Properties` then `Sharing` and click `Advanced Sharing`.
+To share a folder on your local network just right click `Give access to > Specific people` then you need to add everyone to the list over your Username, with the **right privileges**, to right click on folder `Properties` then `Sharing` and click `Advanced Sharing` or run share creation wizard `shrpubw.exe`.
 
 <br>
 
-#### Hibernation
+### Hibernation
 
 Sometime `hiberfil.sys` file can become too large **several GB**, so you will want to turn off hibernation in some point.
 
@@ -2138,7 +2225,7 @@ How to make it back to available again:
 
 <br>
 
-#### HYPER-V
+### HYPER-V
 
 You can **enable** [HYPER-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) from `Turn Windows Features On or Off` , or by running:
 
@@ -2152,7 +2239,7 @@ To **disable** it run:
 
 <br>
 
-#### System Restore Points
+### System Restore Points
 
 System restore points are off by default so you have to _enable_ it for your main drive.
 
@@ -2170,7 +2257,29 @@ On `Settings tab` check the `Run task as soon as possible`.
 
 <br>
 
-#### Image Backup & Recovery
+### Disable content indexing on SSDs
+
+If you installed Windows 10 on an SSD, you might want to disable content indexing:
+
+1. Go to `File Explorer > This PC`.
+2. Right click on your disk then select `Properties`.
+3. Under `General`, uncheck `Allow files on this drive to have contents indexed in addition to file properties`.
+4. Click Apply.
+
+<br>
+
+### Remap default folder locations to a separate HDD
+
+As much as possible, your SSD should only contain Windows 10 and your apps. The target locations of the default folders (`Documents`, `Downloads`, `Desktop`, etc.) can be remapped to a separate HDD.
+
+1. Right click a default folder.
+2. Go to `Properties > Location`.
+3. Change the target location to the location of your HDD. For example, to move `Documents` to drive `D:`, set the target location to `D:\Documents`.
+4. Click Apply.
+
+<br>
+
+### Image Backup & Recovery
 
 Now that almost everything is setup the most wise practice we can follow is to do a **image backup** of the entire disk, to be prepared when things go totally wrong. 🔥🔥
 
@@ -2178,9 +2287,7 @@ Now that almost everything is setup the most wise practice we can follow is to d
 
 run `reagentc /info` to check if Windows Recovery Environment is `enabled`
 
-<!-- <br> -->
-
-Iif not run `reagentc /enable`
+if not run `reagentc /enable`
 
 Go to `Windows Settings > Update & Security > Backup > Backup and Restore (Windows7)`
 
@@ -2230,6 +2337,10 @@ https://github.com/adam7/delugia-code/
 https://github.com/tonsky/FiraCode/
 
 https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/tag/1.20.0/
+
+https://scoop.sh/
+
+https://docs.microsoft.com/en-us/windows/package-manager/winget/
 
 https://github.com/willmcgugan/rich/
 
