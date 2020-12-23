@@ -656,8 +656,11 @@ Here is a sample of a `.wslconfig` file:
 
     [wsl2]
     kernel=C:\\temp\\myCustomKernel
-    memory=4GB # Limits WSL memory
-    processors=2 # Number of virtual processors
+    memory=4GB
+    processors=2
+    localhostForwarding=true
+    swap=6GB
+    swapFile=D:\\Temp\\WslSwap.vhdx
 
 All WSL files are stored: `%LocalAppData%\Packages`
 
@@ -850,7 +853,7 @@ Give the script **permissions**: `sudo chmod +x /usr/bin/git-credential-manager`
 
 The location of git is at `$HOME` folder.
 
-    \\wsl$\Ubuntu-20.04\home\username
+    \\wsl$\Ubuntu-20.04\home\Username
 
     C:\Users\Username
 
@@ -1262,7 +1265,9 @@ Now `yarn -v` to confirm that it is installed
 
 You have to also include this in your `~/.zshrc`
 
-    export PATH="$PATH:$(yarn global bin)"
+<!-- export PATH="$PATH:$(yarn global bin)" -->
+
+    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 or you can simple install it through [npm](https://github.com/npm/npm) `sudo npm i -g yarn`
 
