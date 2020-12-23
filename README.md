@@ -11,7 +11,7 @@ enjoy 🤿
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
-    -   [Automatic Updates & Telemetry](#Disable-Windows-10-Automatic-Updates-&-Telemetry)
+    -   [Automatic Updates & Telemetry](#Automatic-Updates-&-Telemetry)
     -   [Chocolatey Package Manager](#chocolatey-package-manager)
         -   [Chocolatey Installation](#chocolatey-installation)
         -   [Choco Packages](#choco-packages)
@@ -63,11 +63,11 @@ enjoy 🤿
                 -   [Rust](#rust)
                 -   [Nginx](#nginx)
                 -   [\*Apache2](#apache2)
-                -   [Composer](#composer)
                 -   [\*MongoDB](#mongodb)
                 -   [\*MySQL](#mysql)
                     -   [Password Reset](#password-reset)
                 -   [PHP](#php)
+                    -   [Composer](#composer)
                     -   [\*phpMyAdmin](#phpmyadmin)
                 -   [\*Prestashop](#prestashop)
                 -   [\*Wordpress](#wordpress)
@@ -89,8 +89,8 @@ enjoy 🤿
         -   [HYPER-V](#hyper-v)
         -   [God Mode](#god-mode)
         -   [Disable content indexing on SSDs](#disable-content-indexing-on-ssds)
-        -   [Image Backup & Recovery](#image-backup-&-recovery)
         -   [Remap default folder locations to a separate HDD](#remap-default-folder-locations-to-a-separate-HDD)
+        -   [Image Backup & Recovery](#image-backup-&-recovery)
 -   [References](#references)
 
 <br>
@@ -105,7 +105,7 @@ The guide's state is **work in progress**, you will might find inside old deprec
 
 **1.** Disable Windows 10 automatic updates by let it getting you notified before downloading or installing any updates.
 
-**run `gpedit.msc`**
+run `gpedit.msc`
 
     Computer Configuration > Administrative Templates > Windows Components > Windows Update
 
@@ -610,7 +610,7 @@ To install, navigate to folder containing the distribution downloaded, and in th
 
 <br>
 
-Or
+or
 
 Download And Import Ubuntu 20.04, Create Folder For ROOTFS:
 
@@ -664,6 +664,15 @@ Here is a sample of a `.wslconfig` file:
 
 All WSL files are stored: `%LocalAppData%\Packages`
 
+Ensure volume mounts work
+
+`sudo nano /etc/wsl.conf` edit your `wsl.conf`:
+
+    [automount]
+    root = /
+    options = "metadata"
+
+
 <br>
 
 #### Import / Export
@@ -681,7 +690,7 @@ After importing a distribution you can login only as root to gain access again t
 
 <br>
 
-Some Utilities for WSL:
+Some useful utilities for WSL:
 
 [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline) A full-featured utility for managing WSL
 
@@ -1403,15 +1412,6 @@ Verify it works, if you get error just restart your terminal session and try aga
 
     docker info
 
-<br>
-
-**Ensure volume mounts work**
-
-`sudo nano /etc/wsl.conf` edit your `wsl.conf` to look like this:
-
-    [automount]
-    root = /
-    options = "metadata"
 
 <br>
 
@@ -1481,6 +1481,14 @@ _Stop:_
 
     sudo nginx -s quit
 
+Adjust the Firewall to **Allow** Web Traffic
+
+    sudo ufw app list
+
+    sudo ufw app info "Apache Full"
+
+    sudo ufw allow 'Nginx Full'
+
 <br>
 
 ## Apache2
@@ -1523,27 +1531,13 @@ _Start:_
 
 <br>
 
-## Composer
+## MongoDB
 
-Install [Composer](https://getcomposer.org/download/)
-
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-
-    php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-
-    php composer-setup.php
-
-    php -r "unlink('composer-setup.php');"
-
-Then you 'll have `php composer.phar` in the folder you did the installation
-
-Configuration files are, for **local** `composer.json`, for **global** `config.json`
+##### **This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb is supported only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
 
 <br>
 
-## MongoDB
-
-**This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb is supported only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
+<br>
 
 [Installation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/):
 
@@ -1715,6 +1709,22 @@ Confirm version:
 
 <!-- sudo apt install php libapache2-mod-php php-mysql
 sudo service apache2 restart -->
+
+### Composer
+
+Install [Composer](https://getcomposer.org/download/)
+
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+    php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+
+    php composer-setup.php
+
+    php -r "unlink('composer-setup.php');"
+
+Then you 'll have `php composer.phar` in the folder you did the installation
+
+Configuration files are, for **local** `composer.json`, for **global** `config.json`
 
 <br>
 
