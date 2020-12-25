@@ -11,6 +11,7 @@ enjoy 🤿
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
+
     -   [Automatic Updates & Telemetry](#Automatic-Updates-&-Telemetry)
     -   [Chocolatey Package Manager](#chocolatey-package-manager)
         -   [Chocolatey Installation](#chocolatey-installation)
@@ -28,58 +29,8 @@ enjoy 🤿
         -   [$PROFILE Example](#profile-example)
     -   [Windows Terminal](#windows-terminal)
         -   [Customization](#customization)
-    -   [Windows Subsystem for Linux](#windows-subsystem-for-linux)
-        -   [WSL Installation](#wsl-installation)
-            -   [Accessibility](#accessibility)
-            -   [Global Configuration](#global-configuration)
-            -   [Import / Export](#import-/-export)
-        -   [Basic Commands](#wsl-basic-commands)
-        -   [WSL Ubuntu](#wsl-ubuntu)
-            -   [First Steps](#first-steps)
-            -   [Apt Packages](#apt-packages)
-            -   [git](#git)
-                -   [GitHub CLI](#github-cli)
-                -   [SSH with git](#ssh-with-git)
-                -   [First Commit](#first-commit)
-                -   [.gitignore](#.gitignore)
-            -   [SSH](#ssh)
-            -   [Shell](#shell)
-                -   [Aliases](#Aliases)
-                -   [Oh-My-Zsh](#oh-my-zsh)
-                -   [Plugins](#plugins)
-                -   [Powerlevel10k](#powerlevel10k-theme)
-            -   [Development](#development)
-                -   [Javascript](#javascript)
-                    -   [node.js](#nodejs)
-                    -   [nvm](#nvm)
-                    -   [\*npm](#npm)
-                    -   [yarn](#yarn)
-                    -   [deno](#deno)
-                -   [Python](#python)
-                -   [Docker](#docker)
-                    -   [Installation](#docker-installation)
-                    -   [Docker Compose](#docker-compose)
-                    -   [Basic Commands](#docker-commands)
-                -   [Rust](#rust)
-                -   [Nginx](#nginx)
-                -   [\*Apache2](#apache2)
-                -   [\*MongoDB](#mongodb)
-                -   [\*MySQL](#mysql)
-                    -   [Password Reset](#password-reset)
-                -   [PHP](#php)
-                    -   [Composer](#composer)
-                    -   [\*phpMyAdmin](#phpmyadmin)
-                -   [\*Prestashop](#prestashop)
-                -   [\*Wordpress](#wordpress)
-        -   [\*WSL Archlinux](#wsl-archlinux)
-            -   [\*Installation](#archlinux-installation)
-        -   [WSL CentOS 8](#wsl-centos-8)
-            -   [Installation](#centos-8-installation)
-            -   [\*dnf](#dnf)
-        -   [WSL Tips](#wsl-tips)
-            -   [Swappiness](#swappiness)
-            -   [Bell](#bell)
-            -   [Time](#time)
+    -   [Windows Subsystem for Linux](#windows-subsystem-for-linux) - [WSL Installation](#wsl-installation) - [Accessibility](#accessibility) - [Global Configuration](#global-configuration) - [Import / Export](#import-/-export) - [Basic Commands](#wsl-basic-commands) - [WSL Ubuntu](#wsl-ubuntu) - [First Steps](#first-steps) - [Apt Packages](#apt-packages) - [git](#git) - [GitHub CLI](#github-cli) - [SSH with git](#ssh-with-git) - [First Commit](#first-commit) - [.gitignore](#.gitignore) - [SSH](#ssh) - [Shell](#shell) - [Aliases](#Aliases) - [Oh-My-Zsh](#oh-my-zsh) - [Plugins](#plugins) - [Powerlevel10k](#powerlevel10k-theme) - [Development](#development) - [Javascript](#javascript) - [node.js](#nodejs) - [nvm](#nvm) - [\*npm](#npm) - [yarn](#yarn) - [deno](#deno) - [Python](#python) - [Docker](#docker) - [Installation](#docker-installation) - [Docker Compose](#docker-compose) - [Basic Commands](#docker-commands) - [Rust](#rust) - [Nginx](#nginx) - [\*Apache2](#apache2) - [\*MongoDB](#mongodb) - [\*MySQL](#mysql) - [Password Reset](#password-reset) - [PHP](#php) - [Composer](#composer) - [\*phpMyAdmin](#phpmyadmin) - [\*Prestashop](#prestashop) - [\*Wordpress](#wordpress) - [WSL Archlinux](#wsl-archlinux) - [Archlinux Installation](#archlinux-installation) - [Initialize package manager](#initialize-package-manager) - [Refresh Pacman GPG keys](#refresh-pacman-gpg-keys) - [Add User](#add-user) - [Install YAY](#install-yay) - [Accessing WSL from Windows](#accessing-wsl-from-windows)
+        Accessing WSL from Windows - [WSL CentOS 8](#wsl-centos-8) - [Installation](#centos-8-installation) - [\*dnf](#dnf) - [WSL Tips](#wsl-tips) - [Swappiness](#swappiness) - [Bell](#bell) - [Time](#time)
     -   [Interesting tweaks and locations](#interesting-tweaks-and-locations)
         -   [Local Shared Folders](#local-shared-folders)
         -   [Hibernation](#hibernation)
@@ -91,6 +42,7 @@ enjoy 🤿
         -   [Disable content indexing on SSDs](#disable-content-indexing-on-ssds)
         -   [Remap default folder locations to a separate HDD](#remap-default-folder-locations-to-a-separate-HDD)
         -   [Image Backup & Recovery](#image-backup-&-recovery)
+
 -   [References](#references)
 
 <br>
@@ -672,7 +624,6 @@ Ensure volume mounts work
     root = /
     options = "metadata"
 
-
 <br>
 
 #### Import / Export
@@ -744,7 +695,7 @@ You can Update Ubuntu to `20.10` if you want.
 
 <br>
 
-You might want to add Canonical partners repository if you planning to add a [desktop](https://gist.github.com/tdcosta100/385636cbae39fc8cd0937139e87b1c74) like [XFCE](https://www.xfce.org/) later with `tigervnc server`
+You might want to add Canonical partners repository if you planning to add a [desktop](https://gist.github.com/tdcosta100/385636cbae39fc8cd0937139e87b1c74) like [XFCE](https://www.xfce.org/) later with `tigervnc` server
 
     sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner" && sudo apt update
 
@@ -754,9 +705,9 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 Needed packages:
 
-    sudo apt install mc zsh fzf ripgrep catbat pydf ssh ca-certificates gnupg-agent apt-transport-https
-    software-properties-common  exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
-    tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch libssl-dev irssi -y
+    sudo apt install -y mc zsh fzf ripgrep catbat pydf ssh ca-certificates gnupg-agent apt-transport-https
+    software-properties-common exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
+    tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch libssl-dev irssi
 
 <br>
 
@@ -1412,7 +1363,6 @@ Verify it works, if you get error just restart your terminal session and try aga
 
     docker info
 
-
 <br>
 
 ### Docker Commands
@@ -1809,19 +1759,111 @@ Create user and database and make sure the COLLATION of your database is utf8mb4
 http://localhost/**nova-pasta** -->
 <br>
 
-## WSL Archlinux
+# WSL Archlinux
 
 <br>
 
-... tba
+[yuk7 /
+ArchWSL](https://github.com/yuk7/ArchWSL)
+
+Run on `command prompt` with **privileges**.
+
+To install or start Archlinux: `arch.exe`
+
+To create a backup: `arch.exe backup`
+
+To recover from a backup: `arch.exe install backup.tar.gz`
+
+To uninstall Archlinux: `arch.exe clean`
+
+To set ArchLinux as default WSL just run: `wsl --set-default Arch`
 
 <br>
 
 ## Archlinux Installation
 
+Download [ArchWSL](https://github.com/yuk7/ArchWSL) installer zip, pick a folder (for example, `C:\Archlinux`) and run installer .exe in that folder as **admin**.
+
 <br>
 
-... tba
+## Initialize package manager
+
+To get into pacman's configuration run: `nano /etc/pacman.conf` You can enable the `multilib` repository from there also you can include ILoveCandy.
+
+To get the correct mirrolists run: `/etc/pacman.d/mirrorlist`
+
+<br>
+
+## Refresh Pacman GPG keys:
+
+    pacman-key --init
+
+    pacman-key --populate archlinux
+
+Run `pacman -Syyu` to update all packages to the latest versions.
+
+<br>
+
+## Add User
+
+-   Create a User and a Home folder
+
+    `useradd --create-home USERNAME`
+
+-   Set password for that User
+
+    `passwd USERNAME`
+
+-   Add User to the groups
+
+    `usermod -aG wheel,users,storage,power,lp,adm,optical USERNAME`
+
+    `id USERNAME`
+
+-   Wheel Group
+
+    Edit `nano /etc/suders` and you have to uncomment the wheel=all under root
+
+-   Set default user for Archlinux
+
+    `Arch.exe config --default-user USERNAME`
+
+    `Arch.exe or su -l USERNAME`
+
+### Install YAY
+
+Yay is an AUR Helper
+
+    sudo pacman -S base-devel
+
+When asked question on fakeroot and fakeroot-tcp choose to leave `fakeroot-tcp` and not install `fakeroot`, just say `N`
+
+<br>
+
+To install yay first clone it into `/opt`
+
+    cd /opt && sudo git clone https://aur.archlinux.org/yay-git.git
+
+Give it permissions so we can make it
+
+    sudo chown -R USERNAME ./yay-git
+
+Enter yay's folder and run makepkg
+
+    cd yay-git
+
+    makepkg -si
+
+Run `yay -Syu` to update all AUR packages and reinstall `fakeroot-tcp` (will install the latest version) and also remove the leftovers: `rm -rf ~/yay-git`
+
+<br>
+
+## Accessing WSL from Windows
+
+All WSL machines are available in Windows Explorer on `\\wsl$\` URL, Arch linux is: `\\wsl$\Arch`.
+For additional convenience you could map `\\wsl$\Arch` to a 1-Leter Windows disk share, for example having `Z:\` pointing to `\\wsl$\Arch`
+
+<br>
 
 <br>
 
