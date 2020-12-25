@@ -164,9 +164,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Essential Packages**:
 
-    choco install -y 7zip curl microsoft-windows-terminal powertools docker-desktop virtualbox
-    wsl-ubuntu-2004 coretemp sharex quicklook qbittorrent adobereader etcher thunderbird birdtray
-    laragon linux-reader tomcat javaruntime processhacker
+    choco install -y 7zip microsoft-windows-terminal powertoys docker-desktop virtualbox wsl-ubuntu-2004 coretemp sharex quicklook qbittorrent adobereader etcher thunderbird libreoffice-fresh laragon linux-reader tomcat javaruntime processhacker
 
 <br>
 
@@ -178,7 +176,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Browsers**:
 
-    choco install -y firefox tor-browser firefox-dev googlechrome googlechrome.dev brave vivaldi
+    choco install -y firefox tor-browser firefox-dev googlechrome chromium googlechrome.dev brave vivaldi
 
 <br>
 
@@ -190,14 +188,13 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Utilities**:
 
-    choco install -y winrar rufus wget git grep intel-xtu bleachbit vcxsrv autohotkey gitkraken putty filezilla
-    directx winscreenfetch gimp github-desktop kdenlive obs-studio
+    choco install -y winrar rufus curl wget git grep intel-xtu bleachbit vcxsrv autohotkey gitkraken putty filezilla directx winscreenfetch gimp github-desktop kdenlive obs-studio
 
 <br>
 
 **Chocolatey's packages**:
 
-    choco install -y chocolateygui choco-cleaner chocolatey-core.extension chocolatey-windowsupdate.extension
+    choco install -y chocolateygui choco-cleaner chocolatey-core.extension
 
 <br>
 
@@ -614,28 +611,6 @@ To install, navigate to folder containing the distribution downloaded, and in th
 
     Add-AppxPackage .\app_name.appx
 
-<br>
-
-or
-
-Download And Import Ubuntu 20.04, Create Folder For ROOTFS:
-
-    mkdir -p $env:userprofile/Ubuntu/Focal/Ubuntu-20.04
-
-Download ROOTFS Image For WSL
-
-    Invoke-WebRequest -Uri https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OutFile $env:userprofile/Ubuntu/Focal/Ubuntu-20.04.tar.gz -UseBasicParsing
-
-Import ROOTFS Image For WSL
-
-    wsl --import Ubuntu-20.04 $env:userprofile/Ubuntu/Focal/Ubuntu-20.04 $env:userprofile/Ubuntu/Focal/Ubuntu-20.04.tar.gz
-
-then:
-
-    wsl --list --all
-    wsl --setdefault Ubuntu-20.04
-    wsl --distribution Ubuntu-20.04
-
 WSL Ubuntu [Wiki](https://wiki.ubuntu.com/WSL)
 
 <br>
@@ -664,9 +639,9 @@ Here is a sample of a `.wslconfig` file:
     kernel=C:\\temp\\myCustomKernel
     memory=4GB
     processors=2
-    localhostForwarding=true
     swap=6GB
     swapFile=D:\\Temp\\WslSwap.vhdx
+    # localhostForwarding=true
 
 All WSL files are stored: `%LocalAppData%\Packages`
 
@@ -732,7 +707,10 @@ Some useful utilities for WSL:
 
 ### First Steps
 
-`sudo nano /etc/apt/sources.list` repositories
+<br>
+
+To see the repositiries `sudo nano /etc/apt/sources.list`
+
 Create a User and a Password and then update your mirrorlist and upgrade your packages.
 
     sudo apt update && sudo apt -y upgrade
