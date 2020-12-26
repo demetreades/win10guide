@@ -673,11 +673,25 @@ After importing a distribution you can login only as root to gain access again t
 
 Some useful utilities for WSL:
 
+<br>
+
+[Ansible-WSL](https://github.com/Wintus/Ansible-WSL) Provisioning your Windows by Ansible from WSL
+
+<br>
+
 [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline) A full-featured utility for managing WSL
+
+-   To install it: `choco install lxrunoffline`
 
 [wlsu](https://github.com/wslutilities/wslu) A collection of utilities for WSL
 
-[Ansible-WSL](https://github.com/Wintus/Ansible-WSL) Provisioning your Windows by Ansible from WSL
+-   To install the latest version before wslu reaches main reporsitory:
+
+          sudo add-apt-repository ppa:wslutilities/wslu
+
+-   Update and install:
+
+          sudo apt update && sudo apt install -y ubuntu-wsl
 
 <br>
 
@@ -1282,9 +1296,21 @@ You can install also [node.js](https://github.com/nodejs/node) via nvm by runnin
 
 ### npm
 
-    npm install -g typescript
+To install a global package run:
 
+    npm install -g typescript
     npm install -g eslint
+
+To list the outdated global packages run:
+
+    npm outdated -g
+
+To update global packages:
+
+    npm update -g                   # for all the packages
+    npm update -g <PackageName>     # for individual packages
+
+For local run it in your project folder and just remove the `-g` flag.
 
 <br>
 
@@ -1304,9 +1330,13 @@ You have to also include this in your `~/.zshrc`
 
 <!-- export PATH="$PATH:$(yarn global bin)" -->
 
+    export PATH="$PATH:$(yarn global bin)"
+
+or
+
     export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-or you can simple install it through [npm](https://github.com/npm/npm) `sudo npm i -g yarn`
+Also you can simple install it through [npm](https://github.com/npm/npm) `sudo npm i -g yarn`
 
 <!-- ### create-react-app
 
@@ -1391,7 +1421,7 @@ set the `auto_activate_base` parameter to `false`:
 
 Install docker's **dependencies** first.
 
-    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 
 **Download** and add Docker's official public PGP key.
 
@@ -1410,11 +1440,11 @@ Add the `stable` channel's Docker upstream repository.
 
 Update the apt package list (for the new apt repo).
 
-    sudo apt-get update
+    sudo apt update
 
 Install the latest version of Docker CE.
 
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo apt install -y docker-ce docker-ce-cli containerd.io
 
 Allow your user to access the Docker CLI without needing root access.
 
@@ -1560,7 +1590,7 @@ _Start:_
 
 ## MongoDB
 
-##### **This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb is supported only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
+##### **This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb works only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
 
 <br>
 
@@ -1952,19 +1982,23 @@ You need to have [docker](https://docs.docker.com/docker-for-windows/install/) i
 
 ## CentOS 8 Installation
 
-We need to pull the later CentOS image from [Docker hub](https://hub.docker.com/)
+We need to pull the later CentOS image from [Docker hub](https://hub.docker.com/) and create it in your folder of choice, so navigate to the folder you want to do the installation and run:
 
     docker image pull centos:latest
 
     docker create -i centos bash
 
-Then we need the 4 first digits
+Then we need the 4 first digits from the above `create` command.
 
     docker export [4 digits]  > centos.tar
 
     *for example $ docker export 74c3 > centos.tar
 
-Import image: `wsl --import Centos8 .\CentosImage\ centos.tar`
+<br>
+
+Now open `PowerShell`on the same folder and import the image:
+
+    wsl --import Centos8 .\CentosImage\ centos.tar
 
 To get in the distribution run: `wsl -d Centos8` then `cat /etc/centos-release` to see the version
 
@@ -1976,10 +2010,15 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 ## dnf
 
+To list all installed packages
+
     dnf list installed |less
+
+To list all repositories
 
     dnf repolist
 
+Package managment
 
     dnf info <package>
 
@@ -2002,12 +2041,11 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
     dnf install -y git wget curl
 
+To install Development Tools on RHEL 8 / CentOS 8 run:
 
     dnf groupinstall "Development Tools"
 
-
     dnf install -y epel-release
-
 
     dnf repolist -v
 
