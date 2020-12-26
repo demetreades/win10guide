@@ -48,6 +48,7 @@ enjoy 🤿
                 -   [Aliases](#Aliases)
                 -   [Oh-My-Zsh](#oh-my-zsh)
                 -   [Plugins](#plugins)
+                    -   [Antigen Plugin Manager](#antigen-plugin-manager)
                 -   [Powerlevel10k](#powerlevel10k-theme)
             -   [Development](#development)
                 -   [Javascript](#javascript)
@@ -895,7 +896,7 @@ Now you can run: `git config --global -e` and use VS Code as **editor** for conf
 
 <br>
 
-#### GitHub CLI
+### GitHub CLI
 
 [gh](https://github.com/cli/cli#debianubuntu-linux) is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with git and your code.
 
@@ -993,7 +994,7 @@ Using your terminal/command line, get inside the folder where your project is ke
 
 <br>
 
-### SSH
+## SSH
 
     sudo apt install -y ssh
 
@@ -1029,7 +1030,7 @@ Fix Host keys
 
 <br>
 
-### Shell
+## Shell
 
 To see in which **shell** you are on run `echo "$SHELL"`
 
@@ -1071,7 +1072,7 @@ We can even play [tetris](https://github.com/zsh-users/zsh/blob/master/Functions
 
 <br>
 
-### Oh My Zsh
+## Oh My Zsh
 
 [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) is a framework for managing your zsh configuration and includes a plugin manager that can add a ton of **functionality** to our shell, to install it run:
 
@@ -1083,7 +1084,7 @@ to update ohmyzsh run **`omz update`**
 
 <br>
 
-### Plugins
+## Plugins
 
 You can find a [full list](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins) in ohmyzsh Wiki page
 You manage plugins in the `~/.zshrc` under
@@ -1148,6 +1149,50 @@ some **recommendations**:
         fd
         z
         )
+
+<br>
+
+### Antigen Plugin Manager
+
+To install Antigen clone the stable or the nightly version:
+
+    git clone https://github.com/zsh-users/antigen.git ~/antigen
+
+    nightly -- curl -L git.io/antigen-nightly > antigen.zsh
+
+And then source it into your `~/.zshrc`
+
+    source ~/antigen.zsh
+
+<br>
+
+To use it:
+
+    #load the oh-my-zsh library
+    antigen use oh-my-zsh
+
+    #load plugins
+    antigen bundle pyenv
+    antigen bundle pip
+    antigen bundle sudo
+    antigen bundle colored-man-pages
+    antigen bundle colorize
+    antigen bundle history
+    antigen bundle fzf
+    antigen bundle ripgrep
+    antigen bundle web-search
+    antigen bundle zsh_reload
+    antigen bundle zsh-users/zsh-completions
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle zsh-users/zsh-syntax-highlighting
+
+    #load theme
+    antigen theme romkatv/powerlevel10k
+
+    #always remember to apply at the end
+    antigen apply
+
+To get a list of what you are loading run: `antigen list --long`
 
 <br>
 
@@ -1862,6 +1907,8 @@ Run `pacman -Syyu` to update all packages to the latest versions.
 
     `Arch.exe or su -l USERNAME`
 
+<br>
+
 ### Install YAY
 
 Yay is an AUR Helper
@@ -1899,11 +1946,11 @@ For additional convenience you could map `\\wsl$\Arch` to a 1-Leter Windows disk
 
 <br>
 
-## WSL CentOS 8
+# WSL CentOS 8
 
 You need to have [docker](https://docs.docker.com/docker-for-windows/install/) installed and run all the commands on `cmd`.
 
-### CentOS 8 Installation
+## CentOS 8 Installation
 
 We need to pull the later CentOS image from [Docker hub](https://hub.docker.com/)
 
@@ -1927,29 +1974,43 @@ To set CentOS 8 as the default distribution wsl.exe will use: `wslconfig /s Cent
 
 <br>
 
-### dnf
+## dnf
 
     dnf list installed |less
+
     dnf repolist
 
+
     dnf info <package>
+
     dnf provides <package>
+
     dnf search <package>
 
+
     dnf install -y <package>
+
     dnf remove <package>
 
+
     dnf update <package>
+
     dnf --exclude=<package>* update
 
+
     dnf update -y
+
     dnf install -y git wget curl
+
 
     dnf groupinstall "Development Tools"
 
+
     dnf install -y epel-release
 
+
     dnf repolist -v
+
     dnf repository-packages epel list
 
 <br>
