@@ -46,6 +46,7 @@ enjoy 🤿
             -   [SSH](#ssh)
             -   [Shell](#shell)
                 -   [Aliases](#Aliases)
+                -   [Starship Prompt](#starship-prompt)
                 -   [Oh-My-Zsh](#oh-my-zsh)
                 -   [Plugins](#plugins)
                     -   [Antigen Plugin Manager](#antigen-plugin-manager)
@@ -62,7 +63,9 @@ enjoy 🤿
                     -   [Installation](#docker-installation)
                     -   [Docker Compose](#docker-compose)
                     -   [Basic Commands](#docker-commands)
-                -   [Rust](#rust) - [Nginx](#nginx)
+                -   [Ruby on Rails](#ruby-on-rails)
+                -   [Rust](#rust)
+                -   [Nginx](#nginx)
                 -   [\*Apache2](#apache2)
                 -   [MongoDB](#mongodb)
                 -   [\*MySQL](#mysql)
@@ -74,8 +77,8 @@ enjoy 🤿
                 -   [\*Prestashop](#prestashop)
                     -   [\*phppsinfo](#pphpsinfo)
                     -   [\*Install LAMP](#install-lamp)
-        -   [WSL Archlinux](#wsl-archlinux)
-            -   [Archlinux Installation](#archlinux-installation)
+        -   [WSL Arch Linux](#wsl-arch-linux)
+            -   [Arch Linux Installation](#arch-linux-installation)
             -   [Initialize package manager](#initialize-package-manager)
             -   [Refresh Pacman GPG keys](#refresh-pacman-gpg-keys)
             -   [Add User](#add-user)
@@ -773,6 +776,8 @@ _Worth Mentioning **cli tools**_:
 
 [exa](https://github.com/ogham/exa) is a colorful replacement for `ls` command `cargo install exa`
 
+[colorls](https://github.com/athityakumar/colorls#installation) is similar to `exa`
+
 [bat](https://github.com/sharkdp/bat/) is a colorful replacement for `cat` its called `batcat` on Ubuntu `sudo apt install -y bat`
 
 [ripgrep](https://github.com/BurntSushi/ripgrep/) is a colorful replacement for `grep` command `sudo apt install -y ripgrep`
@@ -812,9 +817,10 @@ To create a alias in bash the syntax is `alias Name='command -v --d'` and you ad
 | wget       | `aria2`                                                                         | `aria2` replaces `wget`command    |
 | lrt        | `broot`                                                                         | To backup a distribution          |
 | l          | `exa -l --icons --color=always --group-directories-first`                       | `exa` listing options             |
-| ll         | `exa -a --icons --color=always --group-directories-first`                       |                                   |
-| la         | `exa -alF --icons --color=always --group-directories-first`                     |                                   |
+| ll         | `env COLUMNS=80 exa -a --icons --color=always --group-directories-first`        | Horizonal                         |
+| la         | `exa -alF --icons --color=always --group-directories-first`                     | With hidden files                 |
 | le         | `exa -lGFh --icons --color=always --group-directories-first`                    |                                   |
+| cl         | `colorls -t`                                                                    | `colorls` horizonal list          |
 | nvmupgrade | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh bash` | `nvm` update                      |
 | repos      | `sudo nano /etc/apt/sources.list`                                               | Ubuntu repositories               |
 | d4         | `pydf`                                                                          | Colorful list of disks            |
@@ -835,6 +841,10 @@ Setup your **Username**:
 Setup your **Password**:
 
     git config --global user.email "youremail@domain.com"
+
+Setup color ui
+
+    git config --global color.ui true
 
 Git Credential Manager to enable you authenticate remote Git servers
 
@@ -1078,6 +1088,29 @@ We can even play [tetris](https://github.com/zsh-users/zsh/blob/master/Functions
     #zsh tetris
     autoload -Uz tetriscurses
     tetriscurses
+
+<br>
+
+## Starship Prompt
+
+[Starship](https://starship.rs/guide/) is the minimal, fast, and customizable prompt for any shell.
+
+To install the binary latest version run:
+
+    curl -fsSL https://starship.rs/install.sh | bash
+
+Or if you have installed rust you can get it from cargo by running:
+
+    cargo install starship
+
+Then add this at the end of your `~/.bashrc` file:
+
+    # starship prompt
+    eval "$(starship init bash)"
+
+And cargo to your `$PATH` in the `~/.bashrc`:
+
+    export PATH=$PATH:/$HOME/.cargo/bin
 
 <br>
 
@@ -1495,6 +1528,49 @@ For more details see [Official Documentation](https://docs.docker.com/engine/ref
 
 <br>
 
+## Ruby on Rails
+
+The first step is to install some dependencies for Ruby and Rails.
+
+To make sure we have everything necessary for Webpacker support in Rails, we're going to need `Node.js` and `Yarn` repositories to our system before installing ruby
+
+    sudo apt update
+
+    sudo apt install -y git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
+
+
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+
+    echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+
+    exec $SHELL
+
+Now that `rbenv` is running we can list the version choose one and install it globally:
+
+    rbenv install --list
+
+    rbenv install 3.0.0
+
+    rbenv global 3.0.0
+
+    ruby -v
+
+Source your `~/.zshrc` file and run:
+
+    gem install bundler
+
+Choose the version of Rails you want to install:
+
+    gem install rails -v 6.1.0
+
+    rbenv rehash
+
+    rails -v
+
+<br>
+
 ## Rust
 
 [Documentation](https://doc.rust-lang.org/stable/)
@@ -1561,6 +1637,9 @@ Installation:
 
     sudo apt install -y apache2
 
+
+    sudo apache2ctl configtest
+
 Adjust the Firewall to **Allow** Web Traffic
 
     sudo ufw app list
@@ -1573,7 +1652,7 @@ How To Find your Server’s Public **IP** Address
 
     ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 
-or you can `curl` the `URL`.
+or you can `curl` the `URL`. Configuration file: `sudo nano /etc/apache2/apache2.conf`
 
 <br>
 
@@ -1584,6 +1663,12 @@ _Installation:_
 _Start:_
 
     sudo service apache2 start
+
+_Restart:_
+
+    sudo service apache2 restart
+
+You can get in via a browser on `localhost`
 
 <br>
 
@@ -1673,6 +1758,8 @@ To create a new database, enter: `CREATE DATABASE database_name;`
 
 To delete a database, enter: `DROP DATABASE database_name;`
 
+To start MySQL Server run: `sudo /etc/init.d/mysql start`
+
 `mysql --version`
 
 <br>
@@ -1750,7 +1837,7 @@ Install PHP:
 
     sudo apt install -y apt-transport-https php7.4-fpm php7.4-mbstring php7.4-curl php7.4-json php7.4-bz2 php7.4-zip php7.4-xml php7.4-gd php7.4-mysql php7.4-intl php7.4-sqlite3 php7.4-soap php7.4-bcmath php7.4-memcached php7.4-redis
 
-    sudo apt install libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+    sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
 
 Optional dependencies:
 
@@ -1769,6 +1856,8 @@ sudo service apache2 restart -->
 <br>
 
 #### Composer
+
+    sudo apt install -y composer
 
 To install [Composer](https://getcomposer.org/download/) run:
 
@@ -1836,7 +1925,20 @@ Include /etc/phpmyadmin/apache.conf -->
 
 -   **Configure database**
 
-            sudo mysql -u root          # and choose 1
+            sudo mysql -u root
+
+    In MySQL shell run:
+
+        CREATE DATABASE wordpress;
+
+        GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+        -> ON wordpress.*
+        -> TO wordpress@localhost
+        -> IDENTIFIED BY '<your-password>';
+
+        FLUSH PRIVILEGES;
+
+        quit
 
     Now, let’s **configure** WordPress to use this database. Open `/etc/wordpress/config-localhost.php` and write:
 
@@ -1866,7 +1968,7 @@ http://localhost/**nova-pasta** -->
 
 ## Prestashop
 
-[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/) [php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
+[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/)
 
 [Development Installation](https://devdocs.prestashop.com/1.7/basics/installation/localhost/)
 
@@ -1874,46 +1976,149 @@ http://localhost/**nova-pasta** -->
 
 ### phppsinfo
 
+[php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
+
 <br>
 
 ### Install LAMP
 
+<br>
+
 To install **LAMP** on your computer follow these steps:
+
+<br>
 
 -   **Update your system**
 
-          sudo apt update
+        sudo apt update
+
+<br>
 
 -   **Install MySQL**
 
-          sudo apt install -y default-mysql-server default-mysql-client
+        sudo apt install -y default-mysql-server default-mysql-client
+
+<br>
 
 -   **Install Apache2 server**
 
-          sudo apt install -y apache2
+        sudo apt install -y apache2
+
+<br>
 
 -   **Install PHP 7.3**
 
-          sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+        sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+
+    if you cant get the packages you need to add PHP repository:
+
+        sudo add-apt-repository ppa:ondrej/php
+
+<br>
+
+-   **Install PHP-FPM**
+
+        sudo apt install -y libapache2-mod-fcgid php7.1-fpm
+
+    Enable modules:
+
+        sudo a2enmod alias proxy proxy_fcgi
+
+    Include this in the configuration:
+
+        <VirtualHost *:80> # or 443 for SSL support
+
+            ServerName example.com
+            DocumentRoot /path/to/prestashop
+
+            # SSLEngine on
+            # SSLCertificateFile /etc/apache2/ssl/example.crt
+            # SSLCertificateKeyFile /etc/apache2/ssl/example.key
+
+            # Uncomment the following line to force Apache to pass the Authorization
+            # header to PHP: required for "basic_auth" under PHP-FPM and FastCGI
+            #
+            # SetEnvIfNoCase ^Authorization$ "(.+)" HTTP_AUTHORIZATION=$1
+
+            # For Apache 2.4 or higher
+            # Using SetHandler avoids issues with using ProxyPassMatch in combination
+            # with mod_rewrite or mod_autoindex
+            <FilesMatch \.php$>
+                # SetHandler proxy:fcgi://127.0.0.1:9000
+                SetHandler proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://dummy
+            </FilesMatch>
+
+            DocumentRoot /path/to/prestashop
+            <Directory /path/to/prestashop>
+                # enable the .htaccess rewrites
+                AllowOverride All
+                Options +Indexes
+                Require all granted
+
+                # Disable back office token
+                # SetEnv _TOKEN_ disabled
+            </Directory>
+
+            ErrorLog /var/log/apache2/prestashop.error.log
+            CustomLog /var/log/apache2/prestashop.access.log combined
+        </VirtualHost>
+
+<br>
+
+-   **Webpack**
+
+    [Documentation](https://github.com/webpack/webpack#install)
+
+    [Getting Started](https://webpack.js.org/guides/getting-started/)
+
+        npm install --save-dev webpack
+
+        sudo npm install -g webpack-cli
+
+        webpack -v
 
 -   **Creating a database for your shop**
 
     If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
 
+<br>
+
 -   **Using phpMyAdmin**
 
-    We assume you have root access to phpMyAdmin, and you’re using version 4.x.
+    We assume you have root access to `phpMyAdmin`, and you’re using version 4.x.
 
-    Sign in to phpMyAdmin as the root user
+    Sign in to `phpMyAdmin` as the root user
 
     Click User accounts, and then click on Add user account
     Fill the User name and the Password
-    In the Database for user account, select Create database and Grant all privileges
-    Create user and database and make sure the COLLATION of your database is `utf8mb4_general_ci`.
+    In the Database for user account, select `Create database` and Grant all privileges
+    Create user and database and make sure the collation of your database is `utf8mb4_general_ci`.
 
 <br>
 
-# WSL Archlinux
+-   **Theme**
+
+    Clone PrestaShop:
+
+            git clone https://github.com/PrestaShop/PrestaShop.git
+
+    or for a certain version:
+
+            git checkout 1.7.2.0
+
+    Install dependencies
+
+            composer install
+
+    Get into `_dev` folder under `themes` / `classic` or your theme of choice and run npm to install all the dependencies: `npm i`
+
+    To start the compiler run:
+
+        npm run watch
+
+    <br>
+
+# WSL Arch Linux
 
 <br>
 
@@ -1934,15 +2139,23 @@ To set ArchLinux as default WSL just run: `wsl --set-default Arch`
 
 <br>
 
-## Archlinux Installation
+## Arch Linux Installation
 
 Download [ArchWSL](https://github.com/yuk7/ArchWSL) installer zip, pick a folder (for example, `C:\Archlinux`) and run installer .exe in that folder as **admin**.
 
-<br>
-
 ## Initialize package manager
 
-To get into pacman's configuration run: `nano /etc/pacman.conf` You can enable the `multilib` repository from there also you can include ILoveCandy.
+To get into pacman's configuration run: `nano /etc/pacman.conf` You can enable the `multilib` repository from there also you can tweak tour `misc options`:
+
+    # Misc options
+    #UseSyslog
+    Color
+    TotalDownload
+    CheckSpace
+    ILoveCandy
+    VerbosePkgLists
+
+You can also ignore here packages from getting updated
 
 To get the correct mirrolists run: `/etc/pacman.d/mirrorlist`
 
@@ -1986,13 +2199,13 @@ Run `pacman -Syyu` to update all packages to the latest versions.
 
 <br>
 
-### Install YAY
+### Install yay
 
 Yay is an AUR Helper
 
     sudo pacman -S base-devel
 
-When asked question on fakeroot and fakeroot-tcp choose to leave `fakeroot-tcp` and not install `fakeroot`, just say `N`
+When asked question on fakeroot and fakeroot-tcp choose to leave `fakeroot-tcp` and not install `fakeroot`, just say `N`, we will update it via yay after installing it first.
 
 <br>
 
@@ -2014,7 +2227,11 @@ Run `yay -Syu` to update all AUR packages and reinstall `fakeroot-tcp` (will ins
 
 <br>
 
-## Accessing WSL from Windows
+**_Packages_**
+
+    sudo pacman -S --noconfirm bash-completion reflector bat ripgrep pydf tldr unrar ntfs-3g mc neofetch exa aria2
+
+### Accessing WSL from Windows
 
 All WSL machines are available in Windows Explorer on `\\wsl$\` URL, Arch linux is: `\\wsl$\Arch`.
 For additional convenience you could map `\\wsl$\Arch` to a 1-Letter Windows disk share, for example having `Z:\` pointing to `\\wsl$\Arch`
@@ -2707,6 +2924,10 @@ https://docs.docker.com/docker-for-windows/install/
 https://doc.rust-lang.org/stable/
 
 https://github.com/rust-lang/rust/
+
+https://github.com/webpack/webpack#install/
+
+https://webpack.js.org/guides/getting-started/
 
 <br>
 
