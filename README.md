@@ -37,7 +37,7 @@ enjoy 🤿
             -   [Basic Commands](#wsl-basic-commands)
         -   [WSL Ubuntu](#wsl-ubuntu)
             -   [First Steps](#first-steps)
-            -   [Apt Packages](#apt-packages)
+            -   [apt Packages](#apt-packages)
             -   [git](#git)
                 -   [GitHub CLI](#github-cli)
                 -   [SSH with git](#ssh-with-git)
@@ -64,14 +64,16 @@ enjoy 🤿
                     -   [Basic Commands](#docker-commands)
                 -   [Rust](#rust) - [Nginx](#nginx)
                 -   [\*Apache2](#apache2)
-                -   [\*MongoDB](#mongodb)
+                -   [MongoDB](#mongodb)
                 -   [\*MySQL](#mysql)
                     -   [Password Reset](#password-reset)
                 -   [PHP](#php)
                     -   [Composer](#composer)
                     -   [\*phpMyAdmin](#phpmyadmin)
-                -   [\*Prestashop](#prestashop)
                 -   [Wordpress](#wordpress)
+                -   [\*Prestashop](#prestashop)
+                    -   [\*phppsinfo](#pphpsinfo)
+                    -   [\*Install LAMP](#install-lamp)
         -   [WSL Archlinux](#wsl-archlinux)
             -   [Archlinux Installation](#archlinux-installation)
             -   [Initialize package manager](#initialize-package-manager)
@@ -87,13 +89,13 @@ enjoy 🤿
         -   [Bell](#bell)
         -   [Time](#time)
     -   [Interesting tweaks and locations](#interesting-tweaks-and-locations)
-        -   [Local Shared Folders](#local-shared-folders)
-        -   [Hibernation](#hibernation)
-        -   [HYPER-V](#hyper-v)
         -   [Scoop Package Manager](#scoop-package-manager)
         -   [Winget Package Manager](#winget-package-manager)
-        -   [HYPER-V](#hyper-v)
+        -   [Local Shared Folders](#local-shared-folders)
         -   [God Mode](#god-mode)
+        -   [Hibernation](#hibernation)
+        -   [HYPER-V](#hyper-v)
+        -   [System Restore Points](#system-restore-points)
         -   [Disable content indexing on SSDs](#disable-content-indexing-on-ssds)
         -   [Remap default folder locations to a separate HDD](#remap-default-folder-locations-to-a-separate-HDD)
         -   [Image Backup & Recovery](#image-backup-&-recovery)
@@ -741,7 +743,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 
 <br>
 
-### Apt Packages
+### apt Packages
 
 Needed packages:
 
@@ -1399,7 +1401,7 @@ Then we can choose Python version and make it **global**:
 
 <br>
 
-**miniconda**
+[miniconda](https://docs.conda.io/en/latest/miniconda.html) is a small, bootstrap version of `Anaconda` that includes only conda.
 
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
@@ -1589,10 +1591,6 @@ _Start:_
 
 ##### **This doesnt apply on wsl-ubuntu** `2010` **and** `2004` , **Mongodb works only in wsl-ubuntu** `1804` **under the package name** `mongodb`, [installation guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
 
-<br>
-
-<br>
-
 [Installation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/):
 
 Once the packages have updated, install MongoDB with:
@@ -1615,11 +1613,11 @@ Create the `/etc/apt/sources.list.d/mongodb-org-4.4.list` file for `Ubuntu` `20.
 
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
-Reload local package database.
+**Reload** local package database.
 
     sudo apt update
 
-Install the lastest version:
+Install the **lastest** version:
 
     sudo apt install -y mongodb-org
 
@@ -1641,15 +1639,15 @@ Configuration file: `/etc/mongod.conf`
 
 <br>
 
-Checking the status of your database.
+Checking the **status** of your database.
 
     sudo service mongodb status for
 
-To start running your database.
+To **start** running your database.
 
     sudo service mongodb start
 
-To stop running your database.
+To **stop** running your database.
 
     sudo service mongodb stop
 
@@ -1733,8 +1731,6 @@ Type the new password.
 
 ...
 
-...
-
 <br>
 
 <!-- NA BALW KAI AUTA MESA -->
@@ -1772,9 +1768,9 @@ sudo service apache2 restart -->
 
 <br>
 
-### Composer
+#### Composer
 
-Install [Composer](https://getcomposer.org/download/)
+To install [Composer](https://getcomposer.org/download/) run:
 
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
@@ -1790,9 +1786,9 @@ Configuration files are, for **local** `composer.json`, for **global** `config.j
 
 <br>
 
-### phpMyAdmin
+#### phpMyAdmin
 
-[phpmyadmin](https://www.phpmyadmin.net/)
+[Documentation](https://www.phpmyadmin.net/)
 
     sudo apt install -y phpmyadmin
 
@@ -1803,51 +1799,6 @@ sudo phpenmod mbstring
 sudo vim /etc/apache2/apache2.conf
 
 Include /etc/phpmyadmin/apache.conf -->
-
-<br>
-
-## Prestashop
-
-[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/) [php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
-
-[Development Installation](https://devdocs.prestashop.com/1.7/basics/installation/localhost/)
-
-<br>
-
-To install **LAMP** on your computer follow these steps:
-
-<br>
-
--   **Update your system**
-
-          sudo apt update
-
--   **Install MySQL**
-
-          sudo apt install -y default-mysql-server default-mysql-client
-
--   **Install Apache2 server**
-
-          sudo apt install -y apache2
-
--   **Install PHP 7.3**
-
-          sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
-
--   **Creating a database for your shop**
-
-    If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
-
--   **Using phpMyAdmin**
-
-    We assume you have root access to phpMyAdmin, and you’re using version 4.x.
-
-    Sign in to phpMyAdmin as the root user
-
-    Click User accounts, and then click on Add user account
-    Fill the User name and the Password
-    In the Database for user account, select Create database and Grant all privileges
-    Create user and database and make sure the COLLATION of your database is utf8mb4_general_ci
 
 <br>
 
@@ -1879,7 +1830,7 @@ To install **LAMP** on your computer follow these steps:
               Allow from all
           </Directory>
 
-    Then, enable this site with `sudo a2ensite wordpress`, enable URL rewriting with `sudo a2enmod rewrite` and reload apache2 with `sudo service apache2 reload`
+    Then, **enable** this site with `sudo a2ensite wordpress`, enable URL rewriting with `sudo a2enmod rewrite` and **reload** apache2 with `sudo service apache2 reload`
 
     <br>
 
@@ -1887,7 +1838,7 @@ To install **LAMP** on your computer follow these steps:
 
             sudo mysql -u root          # and choose 1
 
-    Now, let’s configure WordPress to use this database. Open /etc/wordpress/config-localhost.php and write:
+    Now, let’s **configure** WordPress to use this database. Open `/etc/wordpress/config-localhost.php` and write:
 
             <?php
             define('DB_NAME', 'wordpress');
@@ -1898,7 +1849,7 @@ To install **LAMP** on your computer follow these steps:
             define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
             ?>
 
-    Enable `MySQL` with: `sudo service mysql start`
+    **Enable** MySQL with: `sudo service mysql start`
 
     <br>
 
@@ -1906,11 +1857,60 @@ To install **LAMP** on your computer follow these steps:
 
     Open `localhost/blog` in your browser. You will be asked for title of your new site, username, password and address e-mail.
 
-    You can now login under `localhost/blog/wp-login.php` to dashboard.
+    You can now **login** under `localhost/blog/wp-login.php` to dashboard.
 
 <!-- wget [https://wordpress.org/latest.tar.gz](https://wordpress.org/latest.tar.gz); tar -vzxf latest.tar.gz; mv wordpress **nova-pasta**;
 
 http://localhost/**nova-pasta** -->
+<br>
+
+## Prestashop
+
+[Prestashop DevDocs](https://devdocs.prestashop.com/1.7/basics/introduction/) [php-ps-info](https://github.com/PrestaShop/php-ps-info/releases)
+
+[Development Installation](https://devdocs.prestashop.com/1.7/basics/installation/localhost/)
+
+<br>
+
+### phppsinfo
+
+<br>
+
+### Install LAMP
+
+To install **LAMP** on your computer follow these steps:
+
+-   **Update your system**
+
+          sudo apt update
+
+-   **Install MySQL**
+
+          sudo apt install -y default-mysql-server default-mysql-client
+
+-   **Install Apache2 server**
+
+          sudo apt install -y apache2
+
+-   **Install PHP 7.3**
+
+          sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+
+-   **Creating a database for your shop**
+
+    If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
+
+-   **Using phpMyAdmin**
+
+    We assume you have root access to phpMyAdmin, and you’re using version 4.x.
+
+    Sign in to phpMyAdmin as the root user
+
+    Click User accounts, and then click on Add user account
+    Fill the User name and the Password
+    In the Database for user account, select Create database and Grant all privileges
+    Create user and database and make sure the COLLATION of your database is `utf8mb4_general_ci`.
+
 <br>
 
 # WSL Archlinux
@@ -2613,6 +2613,8 @@ https://github.com/ChrisPenner/copy-pasta/
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history-substring-search/
 
 https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v/
+
+https://docs.conda.io/en/latest/miniconda.html/
 
 https://github.com/microsoft/terminal/
 
