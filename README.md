@@ -2210,6 +2210,7 @@ also you can run `powercfg /batteryreport` if you are on a laptop.
 
 in **cmd** run: `cipher /e C:\Folder\File.txt` to encrypt or `cipher /e C:\Folder\File.txt` to decrypt.
 To encrypt a folder with its content `cipher /e /s:C:\Folder\`
+
 <br>
 
 **Disable Cortana**
@@ -2259,15 +2260,11 @@ To check for problems on a disk
 
 <br>
 
-Hidden administrator account
+**Hidden administrator account**
 
-**Enable**:
+_Enable_: `net user administrator /active:yes`
 
-    net user administrator /active:yes
-
-**Disable**:
-
-    net user administrator /active:no
+_Disable_: `net user administrator /active:no`
 
 <br>
 
@@ -2490,6 +2487,14 @@ From `Troubleshoot` also you can **reset** your OS.
 
 <br>
 
+<br>
+
+<br>
+
+<br>
+
+<br>
+
 ## References
 
 <br>
@@ -2509,6 +2514,8 @@ https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewta
 https://docs.microsoft.com/en-us/powershell/
 
 https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1
+
+https://github.com/zsh-users/antigen/
 
 https://github.com/JanDeDobbeleer/oh-my-posh/
 
