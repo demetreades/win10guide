@@ -49,12 +49,12 @@ enjoy 🤿
                 -   [Oh-My-Zsh](#oh-my-zsh)
                 -   [Plugins](#plugins)
                     -   [Antigen Plugin Manager](#antigen-plugin-manager)
-                -   [Powerlevel10k](#powerlevel10k-theme)
+                -   [Powerlevel10k Theme](#powerlevel10k-theme)
             -   [Development](#development)
                 -   [Javascript](#javascript)
                     -   [node.js](#nodejs)
                     -   [nvm](#nvm)
-                    -   [\*npm](#npm)
+                    -   [npm](#npm)
                     -   [yarn](#yarn)
                     -   [deno](#deno)
                 -   [Python](#python)
@@ -71,7 +71,7 @@ enjoy 🤿
                     -   [Composer](#composer)
                     -   [\*phpMyAdmin](#phpmyadmin)
                 -   [\*Prestashop](#prestashop)
-                -   [\*Wordpress](#wordpress)
+                -   [Wordpress](#wordpress)
         -   [WSL Archlinux](#wsl-archlinux)
             -   [Archlinux Installation](#archlinux-installation)
             -   [Initialize package manager](#initialize-package-manager)
@@ -108,7 +108,7 @@ The guide's state is **work in progress**, you will might find inside old deprec
 
 <br>
 
-## Automatic Updates & Telemetry
+# Automatic Updates & Telemetry
 
 **1.** Disable Windows 10 automatic updates by let it getting you notified before downloading or installing any updates.
 
@@ -134,7 +134,7 @@ From here we can also **disable** Cortana and Cloud Searching
 
 <br>
 
-## Chocolatey Package Manager
+# Chocolatey Package Manager
 
 [Chocolatey](https://chocolatey.org/) is a package manager for windows it can make our life a **lot easier** by automating updates and package installations.
 
@@ -260,7 +260,7 @@ if that fails, check under `%TEMP%\Chocolatey` for the installer and, if found, 
 
 <br>
 
-## PowerShell
+# PowerShell
 
 [Official Documentation](https://docs.microsoft.com/en-us/powershell/)
 
@@ -306,21 +306,16 @@ To get the **status** of Internet Explorer 11 run:
 
 ### Basic Commands
 
-View directory content `Get-ChildItem` - `gci`
-
-Reveals path `Get-Location` - `gl`
-
-Move to location path `Set-Location -Path C:\Windows` - `sl -path C:\Windows`
-
-Delete `Remove-Item` - `rm`
-
-Create file `New-Item` - `ni`
-
-Copy file `Copy-Item` - `cp`
-
-Move file `Move-Item` - `mv`
-
-Cat file `Get-Content` - `gc`
+| Command                       | Short               | Description            |
+| ----------------------------- | ------------------- | ---------------------- |
+| Set-Location -Path C:\Windows | sl -path C:\Windows | Move to location path  |
+| Get-ChildItem                 | gci                 | View directory content |
+| Get-Location                  | gl                  | Reveals path           |
+| Remove-Item                   | rm                  | Delete                 |
+| New-Item                      | ni                  | Create file            |
+| Copy-Item                     | cp                  | Copy file              |
+| Move-Item                     | mv                  | Move file              |
+| Get-Content                   | gc                  | Cat file               |
 
 <br>
 
@@ -464,7 +459,7 @@ Install some fonts and change them via PowerShell's `Properties` by right clicki
 
 <br>
 
-## Windows Terminal
+# Windows Terminal
 
 You can get the latest version from their [Github](https://github.com/microsoft/terminal).
 
@@ -534,13 +529,11 @@ For color schemes and other visual pleasing stuff better **check** [this](https:
 
 <br>
 
-## Windows Subsystem for Linux
+# Windows Subsystem for Linux
 
 You **should** refer first to the official documentation [WSL Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-<br>
-
-### WSL Installation
+## WSL Installation
 
 **1.** You must **enable** Virtualization in BIOS first, and ensure that you updated Windows 10 to the latest version.
 
@@ -616,7 +609,7 @@ WSL Ubuntu [Wiki](https://wiki.ubuntu.com/WSL)
 
 <br>
 
-### Accessibility
+## Accessibility
 
 If you run from shell **`explorer.exe . `** Then windows filemanager will start on this location, same apples with VSCode if you give **`code . `** you will start code in that folder.
 
@@ -628,7 +621,7 @@ You can also access Windows drivers from WSL which are mounted at `/mnt/c/` `/mn
 
 <br>
 
-### Global Configuration
+## Global Configuration
 
 Configure global options are in `.wslconfig`
 
@@ -656,7 +649,7 @@ Ensure volume mounts work
 
 <br>
 
-#### Import / Export
+### Import / Export
 
 I totally advise after creating and setting up a distribution to export a backup for safe keeping.
 
@@ -804,21 +797,26 @@ _Worth Mentioning **cli tools**_:
 
 To create a alias in bash the syntax is `alias Name='command -v --d'` and you add them in your `~/.zshrc`
 
-| Alias      | Command                                                                         | Description                              |
-| ---------- | ------------------------------------------------------------------------------- | ---------------------------------------- |
-| ..         | `cd ..`                                                                         | Similar to DOS                           |
-| upgrade    | `sudo apt update && sudo apt upgrade -y`                                        | Update & Upgrade                         |
-| cat        | `batcat`                                                                        | `batcat` replaces `cat` command          |
-| grep       | `rg`                                                                            | `ripgrep` replaces `grep` command        |
-| zshrc      | `code ~/.zshrc`                                                                 | Open `.zshrc` with VSCode                |
-| sourcezsh  | `source ~/.zshrc`                                                               | Source `.zshrc` changes                  |
-| wget       | `aria2`                                                                         | `aria2` replaces `wget`command           |
-| lrt        | `broot`                                                                         | To backup a distribution                 |
-| ls         | `exa -alF --icons --color=always --group-directories-first`                     | List with colors icons and folders first |
-| lrt        | `broot`                                                                         | Starts `broot`                           |
-| nvmupgrade | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh bash` | NVM update                               |
-| d4         | `pydf`                                                                          | Colorful list of disks                   |
-| free       | `free -m`                                                                       | Shows available memory                   |
+| Alias      | Command                                                                         | Description                       |
+| ---------- | ------------------------------------------------------------------------------- | --------------------------------- |
+| ..         | `cd ..`                                                                         | Folder navigation                 |
+| ...        | `cd ../..`                                                                      |                                   |
+| ....       | `cd ../../..`                                                                   |                                   |
+| upgrade    | `sudo apt update && sudo apt upgrade -y`                                        | Update & Upgrade                  |
+| cat        | `batcat`                                                                        | `batcat` replaces `cat` command   |
+| grep       | `rg`                                                                            | `ripgrep` replaces `grep` command |
+| zshrc      | `code ~/.zshrc`                                                                 | Open `.zshrc` with VSCode         |
+| sourcezsh  | `source ~/.zshrc`                                                               | Source `.zshrc` changes           |
+| wget       | `aria2`                                                                         | `aria2` replaces `wget`command    |
+| lrt        | `broot`                                                                         | To backup a distribution          |
+| l          | `exa -l --icons --color=always --group-directories-first`                       | `exa` listing options             |
+| ll         | `exa -a --icons --color=always --group-directories-first`                       |                                   |
+| la         | `exa -alF --icons --color=always --group-directories-first`                     |                                   |
+| le         | `exa -lGFh --icons --color=always --group-directories-first`                    |                                   |
+| nvmupgrade | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh bash` | `nvm` update                      |
+| repos      | `sudo nano /etc/apt/sources.list`                                               | Ubuntu repositories               |
+| d4         | `pydf`                                                                          | Colorful list of disks            |
+| free       | `free -m`                                                                       | Shows available memory            |
 
 <br>
 
@@ -943,23 +941,16 @@ Now you have to login for the first time so run:
 
 **gh commands**:
 
-    ..tba
-
-    gh issue list
-
-    gh pr status
-
-    gh pr checkout
-
-    gh pr create
-
-    gh pr check
-
-    gh release create
-
-    gh repo view
-
-    gh alias set
+| Command           | Description |
+| ----------------- | ----------- |
+| gh issue list     |             |
+| gh pr status      |             |
+| gh pr checkout    |             |
+| gh pr create      |             |
+| gh pr check       |             |
+| gh release create |             |
+| gh repo view      |             |
+| gh alias set      |             |
 
 <br>
 
@@ -977,7 +968,7 @@ To deal with cross platform problems, where sometimes git recognize changes in f
 
 **SSH repository**
 
-        git remote add origin git@github.com:<username>/<repo>.git
+    git remote add origin git@github.com:<username>/<repo>.git
 
 <br>
 
@@ -995,14 +986,14 @@ Using your terminal/command line, get inside the folder where your project is ke
 
 **Remove repository link**
 
-        git remote -v
-        git remove rm origin
+    git remote -v
+    git remove rm origin
 
 <br>
 
 #### .gitignore
 
-[.gitignore](https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files) ...tba
+[.gitignore](https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files) ..... ... . ..
 
 <!-- Profiles can be defined to launch %windir%\system32\bash.exe ~. -->
 
@@ -1039,7 +1030,9 @@ Check the **status** of the service to confirm that is running
 Fix Host keys
 
     sudo apt-get remove --purge openssh-server
+
     sudo apt-get install openssh-server
+
     sudo service ssh --full-restart
 
 <br>
@@ -1188,6 +1181,9 @@ To use it:
     #load plugins
     antigen bundle pyenv
     antigen bundle pip
+    antigen bundle npm
+    antigen bundle nvm
+    antigen bundle yarn
     antigen bundle sudo
     antigen bundle colored-man-pages
     antigen bundle colorize
@@ -1196,6 +1192,7 @@ To use it:
     antigen bundle ripgrep
     antigen bundle web-search
     antigen bundle zsh_reload
+    antigen bundle zsh-interactive-cd
     antigen bundle zsh-users/zsh-completions
     antigen bundle zsh-users/zsh-autosuggestions
     antigen bundle zsh-users/zsh-syntax-highlighting
@@ -1210,7 +1207,7 @@ To get a list of what you are loading run: `antigen list --long`
 
 <br>
 
-### Powerlevel10k Theme
+## Powerlevel10k Theme
 
 [Powerlevel10k](https://github.com/romkatv/powerlevel10k) is a theme for zsh to **install** it run:
 
@@ -1452,7 +1449,7 @@ Allow your user to access the Docker CLI without needing root access.
 
  <br>
 
-**Docker Compose**
+### Docker Compose
 
     pip3 install --user docker-compose
 
@@ -1629,9 +1626,13 @@ Install the lastest version:
 Optional. Although you can specify any available version of MongoDB, apt will upgrade the packages when a newer version becomes available. To **prevent** unintended upgrades, you can pin the package at the currently installed version:
 
     echo "mongodb-org hold" | sudo dpkg --set-selections
+
     echo "mongodb-org-server hold" | sudo dpkg --set-selections
+
     echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+
     echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+
     echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
 <br>
@@ -1730,7 +1731,9 @@ Type the new password.
 
 <br>
 
-...tba
+...
+
+...
 
 <br>
 
@@ -1767,6 +1770,8 @@ Confirm version:
 <!-- sudo apt install php libapache2-mod-php php-mysql
 sudo service apache2 restart -->
 
+<br>
+
 ### Composer
 
 Install [Composer](https://getcomposer.org/download/)
@@ -1785,15 +1790,11 @@ Configuration files are, for **local** `composer.json`, for **global** `config.j
 
 <br>
 
-## phpMyAdmin
+### phpMyAdmin
 
 [phpmyadmin](https://www.phpmyadmin.net/)
 
     sudo apt install -y phpmyadmin
-
-<br>
-
-...tba
 
 <!-- sudo apt update
 sudo apt install phpmyadmin php-mbstring
@@ -1817,49 +1818,95 @@ To install **LAMP** on your computer follow these steps:
 
 <br>
 
-**Update your system**
+-   **Update your system**
 
-    sudo apt update
+          sudo apt update
 
-**Install MySQL**
+-   **Install MySQL**
 
-    sudo apt install -y default-mysql-server default-mysql-client
+          sudo apt install -y default-mysql-server default-mysql-client
 
-**Install Apache2 server**
+-   **Install Apache2 server**
 
-    sudo apt install -y apache2
+          sudo apt install -y apache2
 
-**Install PHP 7.3**
+-   **Install PHP 7.3**
 
-    sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
+          sudo apt install -y libapache2-mod-php7.3 php7.3 php7.3-common php7.3-curl php7.3-gd php7.3-imagick php7.3-mbstring php7.3-mysql php7.3-json php7.3-xsl php7.3-intl php7.3-zip
 
-**Creating a database for your shop**
+-   **Creating a database for your shop**
 
-If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
+    If you are installing PrestaShop on a web server, then you must create the database and give access to a privileged user. You will need this user’s credentials to configure PrestaShop during the installation process.
 
-**Using phpMyAdmin**
+-   **Using phpMyAdmin**
 
-We assume you have root access to phpMyAdmin, and you’re using version 4.x.
+    We assume you have root access to phpMyAdmin, and you’re using version 4.x.
 
-Sign in to phpMyAdmin as the root user
-Click User accounts, and then click on Add user account
-Fill the User name and the Password
-In the Database for user account, select Create database and Grant all privileges
-Create user and database and make sure the COLLATION of your database is utf8mb4_general_ci
+    Sign in to phpMyAdmin as the root user
 
-<br>
-
-...tba
+    Click User accounts, and then click on Add user account
+    Fill the User name and the Password
+    In the Database for user account, select Create database and Grant all privileges
+    Create user and database and make sure the COLLATION of your database is utf8mb4_general_ci
 
 <br>
 
 ## Wordpress
 
-<br>
+-   **Installation**
 
-...tba
+    To install [WordPress](https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview) run:
 
-<br>
+        sudo apt install -y wordpress php libapache2-mod-php mysql-server php-mysql
+
+    <br>
+
+-   **Configure Apache for WordPress**
+
+    Create Apache site for WordPress. Create `/etc/apache2/sites-available/wordpress.conf` with following lines:
+
+          Alias /blog /usr/share/wordpress
+          <Directory /usr/share/wordpress>
+              Options FollowSymLinks
+              AllowOverride Limit Options FileInfo
+              DirectoryIndex index.php
+              Order allow,deny
+              Allow from all
+          </Directory>
+          <Directory /usr/share/wordpress/wp-content>
+              Options FollowSymLinks
+              Order allow,deny
+              Allow from all
+          </Directory>
+
+    Then, enable this site with `sudo a2ensite wordpress`, enable URL rewriting with `sudo a2enmod rewrite` and reload apache2 with `sudo service apache2 reload`
+
+    <br>
+
+-   **Configure database**
+
+            sudo mysql -u root          # and choose 1
+
+    Now, let’s configure WordPress to use this database. Open /etc/wordpress/config-localhost.php and write:
+
+            <?php
+            define('DB_NAME', 'wordpress');
+            define('DB_USER', 'wordpress');
+            define('DB_PASSWORD', '<your-password>');
+            define('DB_HOST', 'localhost');
+            define('DB_COLLATE', 'utf8_general_ci');
+            define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
+            ?>
+
+    Enable `MySQL` with: `sudo service mysql start`
+
+    <br>
+
+-   **Configure WordPress**
+
+    Open `localhost/blog` in your browser. You will be asked for title of your new site, username, password and address e-mail.
+
+    You can now login under `localhost/blog/wp-login.php` to dashboard.
 
 <!-- wget [https://wordpress.org/latest.tar.gz](https://wordpress.org/latest.tar.gz); tar -vzxf latest.tar.gz; mv wordpress **nova-pasta**;
 
@@ -1970,7 +2017,7 @@ Run `yay -Syu` to update all AUR packages and reinstall `fakeroot-tcp` (will ins
 ## Accessing WSL from Windows
 
 All WSL machines are available in Windows Explorer on `\\wsl$\` URL, Arch linux is: `\\wsl$\Arch`.
-For additional convenience you could map `\\wsl$\Arch` to a 1-Leter Windows disk share, for example having `Z:\` pointing to `\\wsl$\Arch`
+For additional convenience you could map `\\wsl$\Arch` to a 1-Letter Windows disk share, for example having `Z:\` pointing to `\\wsl$\Arch`
 
 <br>
 
@@ -1988,11 +2035,12 @@ We need to pull the later CentOS image from [Docker hub](https://hub.docker.com/
 
     docker create -i centos bash
 
-Then we need the 4 first digits from the above `create` command.
+Then we need the 4 first digits from the above `create` command output.
 
     docker export [4 digits]  > centos.tar
 
-    *for example $ docker export 74c3 > centos.tar
+    ** for example
+    docker export 74c3 > centos.tar
 
 <br>
 
@@ -2053,7 +2101,11 @@ To install Development Tools on RHEL 8 / CentOS 8 run:
 
 <br>
 
-## WSL Tips
+<br>
+
+<br>
+
+# WSL Tips
 
 You can call any Linux command directly from `cmd` or `PowerShell` by just putting it after `wsl.exe`
 
@@ -2165,10 +2217,15 @@ To view your applications similar to Application's folder of macOSX
 **Folder Options**
 
     Open file explorer to [This PC]
+
     Display full path in the title bar
+
     Show hidden files
+
     Hide Extentions for known file types
+
     Launch folder windows in a seperate process
+
     Reveal undo and redo buttons
 
 <br>
@@ -2221,9 +2278,9 @@ To encrypt a folder with its content `cipher /e /s:C:\Folder\`
 
 **Start Menu** items are in two locations:
 
-`%APPDATA%\Microsoft\Windows\Start Menu\Programs`
+    %APPDATA%\Microsoft\Windows\Start Menu\Programs\
 
-`%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\`
+    %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 
 or you can give that in `run`: `shell:Start Menu`
 
@@ -2600,6 +2657,8 @@ https://github.com/npm/npm/
 https://github.com/nvm-sh/nvm#install--update-script/
 
 https://github.com/yarnpkg/yarn/
+
+https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview/
 
 https://deno.land/
 
