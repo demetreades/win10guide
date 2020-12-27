@@ -1081,16 +1081,6 @@ Check the **status** of the service to confirm that is running:
 
     service ssh status
 
-Add SSH Key to a server in one command:
-
-    cat ~/.ssh/id_rsa.pub | ssh Username@IP "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys
-
-Create & copy a file to the server using SCP:
-
-    touch test.txt
-
-    scp ~/test.txt brad@192.168.1.29:~
-
 Fix Host keys
 
     sudo apt remove --purge openssh-server
