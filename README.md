@@ -57,6 +57,7 @@ enjoy 🤿
                     -   [node.js](#nodejs)
                     -   [nvm](#nvm)
                     -   [npm](#npm)
+                        -   [Static site generators](#static-site-generators)
                     -   [yarn](#yarn)
                     -   [deno](#deno)
                 -   [Python](#python)
@@ -211,7 +212,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Media**:
 
-    choco install -y vlc soulseek mp3tag stremio kodi spotify youtube-dl retroarch
+    choco install -y vlc soulseek mp3tag vcvrack stremio kodi spotify youtube-dl retroarch
 
 <br>
 
@@ -1081,21 +1082,13 @@ Check the **status** of the service to confirm that is running:
 
     service ssh status
 
-Fix Host keys
-
-    sudo apt remove --purge openssh-server
-
-    sudo apt install openssh-server
-
-    sudo service ssh --full-restart
-
-**SSH with git**
+### SSH with git
 
 Go to Github Settings and link SSH key `/$HOME/.ssh/id_rsa`
 
-    eval `ssh-agent`
+    eval `ssh-agent`        # you should output an error here
 
-    ssh-add /$HOME/.ssh/id_rsa
+    ssh-add /$HOME/.ssh/id_rsa      # to add the key to know hosts
 
     git clone git@github.com:Username/repo.git
 
@@ -1169,6 +1162,8 @@ Then add this at the end of your `~/.bashrc` file:
 And cargo to your `$PATH` in the `~/.bashrc`:
 
     export PATH=$PATH:/$HOME/.cargo/bin
+
+Source your `~/.bashrc` to apply the changes and prompt into Starship.
 
 <br>
 
@@ -1254,7 +1249,7 @@ some **recommendations**:
 
 ### Antigen Plugin Manager
 
-To install Antigen clone the stable or the nightly version:
+To install [Antigen](https://github.com/zsh-users/antigen) clone the stable or the nightly version:
 
     git clone https://github.com/zsh-users/antigen.git ~/antigen
 
@@ -1268,7 +1263,7 @@ And then source it into your `~/.zshrc`
 
 To use it:
 
-    #load the oh-my-zsh library
+    #Starting with loading oh-my-zsh library
     antigen use oh-my-zsh
 
     #load plugins
@@ -1294,7 +1289,7 @@ To use it:
     #load theme
     antigen theme romkatv/powerlevel10k
 
-    #always remember to apply at the end
+    #always ending with apply
     antigen apply
 
 To get a list of what you are loading run: `antigen list --long`
@@ -1387,14 +1382,24 @@ You can install also [node.js](https://github.com/nodejs/node) via nvm by runnin
 
 ### npm
 
+For updating npm run:
+
+    sudo npm install -g npm
+
 To install a global package run:
 
-    npm install -g typescript
-    npm install -g eslint
+    sudo npm install -g typescript
+
+    sudo npm install -g eslint
+
+    sudo npm install -g @angular/cli
+    sudo npm install -g @angular/cli@next
+
+    sudo npm install -g prettier
 
 To list the outdated global packages run:
 
-    npm outdated -g
+    npm outdated -g --depth=0
 
 To update global packages:
 
@@ -1402,6 +1407,36 @@ To update global packages:
     npm update -g <PackageName>     # for individual packages
 
 For local run it in your project folder and just remove the `-g` flag.
+
+<br>
+
+### Static site generators
+
+    sudo npm install -g gatsby-cli
+
+    npx create-nuxt-app <project-name>
+
+    sudo npm install -g gitbook-cli
+
+    yarn create vuepress-site [optionalDirectoryName]
+
+    npm install @11ty/eleventy --save-dev
+
+    npm install metalsmith
+
+    sudo npm install -g @gridsome/cli
+
+    sudo npm install -g hexo-cli
+
+    npx degit "sveltejs/sapper-template#rollup" my-app
+
+    sudo npm install -g docsify-cli -g
+
+    sudo npm install -g @astronomersiva/lego
+
+    sudo npm install -g brunch
+
+    sudo npm install -g lingon-cli
 
 <br>
 
@@ -1657,6 +1692,8 @@ You can **verify** the installation by running:
     cargo --version
 
 The Rust build system uses a file named `config.toml` in the root of the source tree to determine various configuration settings for the build.
+
+To update all cargo installed packages run: `cargo install-update -a`
 
 <br>
 
