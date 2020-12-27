@@ -39,11 +39,12 @@ enjoy 🤿
             -   [First Steps](#first-steps)
             -   [apt Packages](#apt-packages)
             -   [git](#git)
-                -   [GitHub CLI](#github-cli)
-                -   [SSH with git](#ssh-with-git)
-                -   [First Commit](#first-commit)
+                -   [git open](#git-open)
+                -   [gh cli](#gh-cli)
+                -   [First commit](#first-commit)
                 -   [.gitignore](#.gitignore)
             -   [SSH](#ssh)
+                -   [SSH with git](#ssh-with-git)
             -   [Shell](#shell)
                 -   [Aliases](#Aliases)
                 -   [Starship Prompt](#starship-prompt)
@@ -170,13 +171,17 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Essential Packages**:
 
-    choco install -y 7zip microsoft-windows-terminal powertoys docker-desktop virtualbox wsl-ubuntu-2004 coretemp sharex quicklook qbittorrent adobereader etcher thunderbird libreoffice-fresh laragon linux-reader tomcat javaruntime processhacker
+    choco install -y winrar microsoft-windows-terminal powertoys docker-desktop virtualbox wsl-ubuntu-2004 wsl-ubuntu-1804 choco install vcredist140 coretemp sharex quicklook qbittorrent cutepdf adobereader etcher thunderbird libreoffice-fresh laragon linux-reader firacode
+
+**Packages for development on Windows10**:
+
+    choco install -y git gitkraken github-desktop vcxsrv nodejs.install yarn python python3 python2 openssh nginx mongodb flashplayerplugin javaruntime jr8 jdk8 silverlight postman dontnetfx dotnet4.5 ruby cygwin tomcat hugo awscli winscp strawberryperl arduino jenkins-x
 
 <br>
 
 **Text Editors**:
 
-    choco install -y vscode vscode-insiders sublimetext3 atom kate
+    choco install -y vscode vscode-insiders sublimetext3 choco install sublimetext2 atom kate
 
 <br>
 
@@ -188,19 +193,19 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Communication**:
 
-    choco install -y viber hexchat zoom discord skype teamviewer
+    choco install -y viber signal hexchat zoom discord skype teamviewer microsoft-teams.install
 
 <br>
 
 **Utilities**:
 
-    choco install -y winrar rufus curl wget git grep intel-xtu bleachbit vcxsrv autohotkey gitkraken putty filezilla directx winscreenfetch gimp github-desktop kdenlive obs-studio
+    choco install -y 7zip dropbox rufus curl wget vim grep keepass intel-xtu bleachbit vcxsrv autohotkey youtube-dl putty kitty filezilla directx winscreenfetch inkscape openvpn gimp speccy hwinfo veracrypt calibre kdenlive obs-studio processhacker sysinternals winlogbeat wireshark procexp cdburnerxp audacity
 
 <br>
 
 **Chocolatey's packages**:
 
-    choco install -y chocolateygui choco-cleaner chocolatey-core.extension
+    choco install -y chocolateygui choco-cleaner chocolatey-core.extension choco install chocolatey-windowsupdate.extension
 
 <br>
 
@@ -828,7 +833,7 @@ To create a alias in bash the syntax is `alias Name='command -v --d'` and you ad
 
 <br>
 
-## git
+# git
 
 Check the [Official Documentation](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git) first.
 
@@ -920,7 +925,39 @@ Now you can run: `git config --global -e` and use VS Code as **editor** for conf
 
 <br>
 
-### GitHub CLI
+## git open
+
+[Documentation](https://github.com/paulirish/git-open)
+
+Type `git open` to open the repo website (GitHub, GitLab, Bitbucket) in your browser.
+
+_Usage_:
+
+Open the page for this branch on the repo website
+
+    git open [remote-name] [branch-name]
+
+Open the current commit in the repo website
+
+    git open --commit
+    git open -c
+
+If this branch is named like issue/#123, this
+will open the corresponding issue in the repo website
+
+    git open --issue
+    git open -i
+
+Only print the url at the terminal, but don't open it
+
+    git open --print
+    git open -p
+
+<br>
+
+## gh cli
+
+[Documentation](https://hub.github.com/)
 
 [gh](https://github.com/cli/cli#debianubuntu-linux) is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with git and your code.
 
@@ -953,6 +990,8 @@ Now you have to login for the first time so run:
 
 **gh commands**:
 
+    gh repo create <name> [flags]
+
 | Command           | Description |
 | ----------------- | ----------- |
 | gh issue list     |             |
@@ -962,21 +1001,10 @@ Now you have to login for the first time so run:
 | gh pr check       |             |
 | gh release create |             |
 | gh repo view      |             |
+| gh repo create    |             |
 | gh alias set      |             |
 
 <br>
-
-#### SSH with git
-
-Go to Github Settings and link SSH key `/$HOME/.ssh/id_rsa`
-
-    eval `ssh-agent`
-
-    ssh-add /$HOME/id_rsa
-
-To deal with cross platform problems, where sometimes git recognize changes in files, when there are none. This is due to windows using `CRLF` and Linux `LF` to signify an end of line. To fix that, the following line can be run:
-
-    git config --global core.autocrlf input
 
 **SSH repository**
 
@@ -994,6 +1022,20 @@ Using your terminal/command line, get inside the folder where your project is ke
 1.  `git commit`
 1.  `git push origin master`
 
+To create a locally github repo via `gh` cli:
+
+    gh repo create
+
+You can get the SSH remote from github page so we dont need to give password all the time:
+
+    git remote set-url origin git@github.com:Username/repo.git
+
+    git remote -v
+
+Now we can push with SSH:
+
+    git push --set-upstream origin master
+
 <br>
 
 **Remove repository link**
@@ -1005,7 +1047,7 @@ Using your terminal/command line, get inside the folder where your project is ke
 
 #### .gitignore
 
-[.gitignore](https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files) ..... ... . ..
+[.gitignore](https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files) ...
 
 <!-- Profiles can be defined to launch %windir%\system32\bash.exe ~. -->
 
@@ -1025,9 +1067,9 @@ Add your login user to the bottom of the file to check which is your username yo
 
     AllowUsers yourusername
 
-Generate **new** Host Keys
+Generate **new** Host Keys (Local Machine:
 
-    cd /etc/ssh && sudo ssh-keygen -A
+    sudo ssh-keygen -t rsa
 
 Know that we have the **keys** we can start our service.
 
@@ -1035,17 +1077,43 @@ Know that we have the **keys** we can start our service.
 
     sudo service ssh status
 
-Check the **status** of the service to confirm that is running
+Check the **status** of the service to confirm that is running:
 
     service ssh status
 
+Add SSH Key to a server in one command:
+
+    cat ~/.ssh/id_rsa.pub | ssh Username@IP "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys
+
+Create & copy a file to the server using SCP:
+
+    touch test.txt
+
+    scp ~/test.txt brad@192.168.1.29:~
+
 Fix Host keys
 
-    sudo apt-get remove --purge openssh-server
+    sudo apt remove --purge openssh-server
 
-    sudo apt-get install openssh-server
+    sudo apt install openssh-server
 
     sudo service ssh --full-restart
+
+**SSH with git**
+
+Go to Github Settings and link SSH key `/$HOME/.ssh/id_rsa`
+
+    eval `ssh-agent`
+
+    ssh-add /$HOME/.ssh/id_rsa
+
+    git clone git@github.com:Username/repo.git
+
+<br>
+
+To deal with cross platform problems, where sometimes git recognize changes in files, when there are none. This is due to windows using `CRLF` and Linux `LF` to signify an end of line. To fix that, the following line can be run:
+
+    git config --global core.autocrlf input
 
 <br>
 
@@ -1221,6 +1289,7 @@ To use it:
     antigen bundle yarn
     antigen bundle sudo
     antigen bundle colored-man-pages
+    antigen bundle paulirish/git-open
     antigen bundle colorize
     antigen bundle history
     antigen bundle fzf
@@ -1525,12 +1594,18 @@ For more details see [Official Documentation](https://docs.docker.com/engine/ref
 | `docker rm <container id>`                           | To delete a stopped container.                                    |
 | `docker rmi <image-id>`                              | To delete an image from local storage.                            |
 | `docker build <path to docker file>`                 | To build an image from a specified docker file.                   |
+| `docker container list --last=n`                     | To display n last created containers.                             |
+| `docker container list`                              | To list all Running docker containers.                            |
+| `docker ps -f "status=exited"`                       | To list all stopped docker containers.                            |
+| `docker container list -f "status=exited"`           | Same as the above.                                                |
+| `docker container list --latest`                     | To list out all latest created containers.                        |
+| `docker container ls -all`                           | To list all Containers.                                           |
 
 <br>
 
 ## Ruby on Rails
 
-The first step is to install some dependencies for Ruby and Rails.
+The first step is to [install](https://guides.rubyonrails.org/getting_started.html) some dependencies for Ruby and Rails.
 
 To make sure we have everything necessary for Webpacker support in Rails, we're going to need `Node.js` and `Yarn` repositories to our system before installing ruby
 
@@ -1551,18 +1626,20 @@ Now that `rbenv` is running we can list the version choose one and install it gl
 
     rbenv install --list
 
+    rbenv install 2.7.2
     rbenv install 3.0.0
 
-    rbenv global 3.0.0
+    rbenv global 2.7.2
 
     ruby -v
 
-Source your `~/.zshrc` file and run:
+Source your `~/.zshrc` file and now you have the `gem` package manager:
 
     gem install bundler
 
 Choose the version of Rails you want to install:
 
+    gem install rails -v 6.0.3.2
     gem install rails -v 6.1.0
 
     rbenv rehash
@@ -2110,7 +2187,7 @@ To install **LAMP** on your computer follow these steps:
 
             composer install
 
-    Get into `_dev` folder under `themes` / `classic` or your theme of choice and run npm to install all the dependencies: `npm i`
+    Get into `_dev` folder under `themes`/`classic` or your theme of choice and run `npm` to install all the dependencies: `npm i`
 
     To start the compiler run:
 
@@ -2817,6 +2894,8 @@ https://github.com/mbadolato/iTerm2-Color-Schemes/
 
 https://github.com/ohmyzsh/ohmyzsh/
 
+https://github.com/paulirish/git-open/
+
 https://github.com/romkatv/powerlevel10k/
 
 https://github.com/zsh-users/zsh-syntax-highlighting/
@@ -2858,6 +2937,8 @@ https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-can-be-instal
 https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database/
 
 https://docs.github.com/en/free-pro-team@latest/github/using-git/ignoring-files/
+
+https://hub.github.com/
 
 https://github.com/zsh-users/zsh/blob/master/Functions/Misc/tetriscurses/
 
@@ -2924,6 +3005,8 @@ https://docs.docker.com/docker-for-windows/install/
 https://doc.rust-lang.org/stable/
 
 https://github.com/rust-lang/rust/
+
+https://guides.rubyonrails.org/getting_started.html/
 
 https://github.com/webpack/webpack#install/
 
