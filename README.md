@@ -1121,7 +1121,7 @@ To change the default shell from bash to zsh
 run `type -a zsh` to find the path and then:
 `chsh -s /bin/bash/`
 
-The configuration file is **`~/.zshrc`** you will **often** do changes on this file, better make an alias to open it quickly
+The configuration file is **`~/.zshrc`** you will **often** do changes on this file, better make an alias to open it faster.
 
 <br>
 
