@@ -94,6 +94,7 @@ enjoy 🤿
         -   [Bell](#bell)
         -   [Time](#time)
     -   [Interesting tweaks and locations](#interesting-tweaks-and-locations)
+        -   [Laragon](#laragon)
         -   [Scoop Package Manager](#scoop-package-manager)
         -   [Winget Package Manager](#winget-package-manager)
         -   [Local Shared Folders](#local-shared-folders)
@@ -2591,6 +2592,28 @@ To encrypt a folder with its content `cipher /e /s:C:\Folder\`
 
 <br>
 
+**Thunderbird profile backup**
+
+Just move the content of the folders in the new location.
+
+    %APPDATA%\Roaming\Thunderbird\
+
+    %APPDATA%\Roaming\Thunderbird\Profiles
+
+<br>
+
+**Firefox profile backup**
+
+    %USERPROFILE%\AppData\Local\Mozilla\Firefox\Profiles
+
+<br>
+
+**Chrome profile backup**
+
+    %USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default
+
+<br>
+
 **Disable Cortana**
 
      Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
@@ -2679,6 +2702,27 @@ Install Microsoft Edge Enterprise
 Reduce size of `WinSxS` folder
 
     dism.exe /online /cleanup-image /spsuperseded /hidesp
+
+<br>
+
+### Laragon
+
+[Documentation](https://laragon.org/docs/)
+
+You can get it with `choco install -y laragon` or from [here](https://laragon.org/download/index.html).
+
+There laragon keeps its installation you can remove or add items there
+
+    C:\laragon\bin
+
+The configuration is at:
+
+    C:\laragon\usr\laragon.ini
+
+To change default text editor to VScode include it in the configuration file, also you have to remove `notepad++`from `/bin` folder.
+
+    [preferences]
+    Editor=C:\Program Files\Microsoft VS Code\Code.exe
 
 <br>
 
