@@ -84,17 +84,18 @@ enjoy 🤿
             -   [Initialize package manager](#initialize-package-manager)
             -   [Refresh Pacman GPG keys](#refresh-pacman-gpg-keys)
             -   [Add User](#add-user)
-            -   [Install YAY](#install-yay)
+            -   [Install yay](#install-yay)
             -   [Accessing WSL from Windows](#accessing-wsl-from-windows)
         -   [WSL CentOS 8](#wsl-centos-8)
             -   [Installation](#centos-8-installation)
-            -   [\*dnf](#dnf)
+            -   [dnf](#dnf)
     -   [WSL Tips](#wsl-tips)
         -   [Swappiness](#swappiness)
         -   [Bell](#bell)
-        -   [Time](#time)
+        -   [UTC in Windows and Dual Boot](#utc-in-windows-and-dual-boot)
     -   [Interesting tweaks and locations](#interesting-tweaks-and-locations)
         -   [Laragon](#laragon)
+        -   [Visual Studio Code](#visual-studio-code)
         -   [Scoop Package Manager](#scoop-package-manager)
         -   [Winget Package Manager](#winget-package-manager)
         -   [Local Shared Folders](#local-shared-folders)
@@ -189,13 +190,13 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Browsers**:
 
-    choco install -y firefox tor-browser firefox-dev googlechrome chromium googlechrome.dev brave vivaldi
+    choco install -y firefox tor-browser 'firefox-dev --pre' googlechrome chromium googlechrome.dev brave vivaldi
 
 <br>
 
 **Communication**:
 
-    choco install -y viber signal hexchat zoom discord skype teamviewer microsoft-teams.install
+    choco install -y viber signal hexchat zoom discord skype teamviewer slack microsoft-teams.install
 
 <br>
 
@@ -483,6 +484,8 @@ For fonts you can also get this patched [Cascadia Code](https://github.com/adam7
 
 For color schemes and other visual pleasing stuff better **check** [this](https://github.com/mbadolato/iTerm2-Color-Schemes) and [this](https://github.com/willmcgugan/rich).
 
+You can also get most color schemers from [here](https://windowsterminalthemes.dev/)
+
 <br>
 
 **_Global settings_**
@@ -642,22 +645,33 @@ You can configure global WSL options by placing a .wslconfig file into the root 
 Here is a sample of a `.wslconfig` file:
 
     [wsl2]
-    kernel=C:\\temp\\myCustomKernel
+    # kernel=C:\\temp\\myCustomKernel  # if you plan to use a custom kernel
     memory=4GB
     processors=2
     swap=6GB
     swapFile=D:\\Temp\\WslSwap.vhdx
-    # localhostForwarding=true
+    # localhostForwarding=true  # Boolean specifying if ports bound to wildcard or localhost in the WSL2 VM should be connectable from the host via localhost:port (default true).
 
-All WSL files are stored: `%LocalAppData%\Packages`
+    [automount]
+    # root = /folder/
+    enabled = true
+    options = "metadata,umask=22,fmask=11"
+    mountFsTab = false
 
-Ensure volume mounts work
+    [network]
+    # Enable DNS
+    generateHosts = true
+    exgenerateResolvConf = true
+
+All WSL files are stored: `%LOCALAPPDATA%\Packages`
+
+<!-- Ensure volume mounts work
 
 `sudo nano /etc/wsl.conf` edit your `wsl.conf`:
 
-    [automount]
-    root = /
-    options = "metadata"
+    # [automount]
+    # root = /
+    # options = "metadata" -->
 
 <br>
 
@@ -758,7 +772,7 @@ You might want to add Canonical partners repository if you planning to add a [de
 Needed packages:
 
     sudo apt install -y mc zsh fzf ripgrep catbat pydf ssh ca-certificates gnupg-agent apt-transport-https
-    software-properties-common exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl
+    software-properties-common exa rar unrar unzip build-essential rsync gpg cifs-utils youtube-dl dfc
     tldr httpie memcached libsecret-1-0 libsecret-1-dev  aria2 cmake net-tools neofetch libssl-dev irssi
 
 <br>
@@ -821,7 +835,7 @@ To create a alias in bash the syntax is `alias Name='command -v --d'` and you ad
 | grep       | `rg`                                                                            | `ripgrep` replaces `grep` command |
 | zshrc      | `code ~/.zshrc`                                                                 | Open `.zshrc` with VSCode         |
 | sourcezsh  | `source ~/.zshrc`                                                               | Source `.zshrc` changes           |
-| wget       | `aria2`                                                                         | `aria2` replaces `wget`command    |
+| wget       | `aria2c`                                                                        | `aria2c` replaces `wget`command   |
 | lrt        | `broot`                                                                         | To backup a distribution          |
 | l          | `exa -l --icons --color=always --group-directories-first`                       | `exa` listing options             |
 | ll         | `env COLUMNS=80 exa -a --icons --color=always --group-directories-first`        | Horizonal                         |
@@ -830,6 +844,7 @@ To create a alias in bash the syntax is `alias Name='command -v --d'` and you ad
 | cl         | `colorls -t`                                                                    | `colorls` horizonal list          |
 | nvmupgrade | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh bash` | `nvm` update                      |
 | repos      | `sudo nano /etc/apt/sources.list`                                               | Ubuntu repositories               |
+| d3         | `dfc`                                                                           | Colorful list of disks            |
 | d4         | `pydf`                                                                          | Colorful list of disks            |
 | free       | `free -m`                                                                       | Shows available memory            |
 
@@ -1018,15 +1033,52 @@ Now you have to login for the first time so run:
 
 Using your terminal/command line, get inside the folder where your project is kept and run:
 
-1.  `git init`
-1.  `git add .`
-1.  `git remote add https://www.github.com/<username>/<repo>.gr`
-1.  `git commit`
+1.  `git init` or `gh repo create` to create a locally github repo via `gh` cli
+1.  `git add .` for all files `git add <file>` for a particular file
+1.  `git remote add https://www.github.com/<username>/<repo>.git/`
+1.  `git remove -v` to check if local repo linked with remote repo
+1.  `git commit` or `-m 'commit message` to also add the message
 1.  `git push origin master`
 
-To create a locally github repo via `gh` cli:
+Remove remote repository
 
-    gh repo create
+    git remove rm <Repository>
+
+To list git local branch files run:
+
+    git ls-files
+
+To get a list of all commits with their ID run:
+
+    git log
+
+    gιt log --oneline
+
+    gιt log --oneline <Branch>
+
+To open in detail a commit from the log run:
+
+    git show <part of start of commit ID>
+
+To rebase
+
+    git rebase <Branch>
+
+To list available braches
+
+    git branch
+
+To create a branch
+
+    git branch <BranchName>
+
+To change from current branch to another
+
+    git checkout <BranchName>
+
+To merge a branch with master
+
+    git merge <BranchName>
 
 You can get the SSH remote from github page so we dont need to give password all the time:
 
@@ -1037,13 +1089,6 @@ You can get the SSH remote from github page so we dont need to give password all
 Now we can push with SSH:
 
     git push --set-upstream origin master
-
-<br>
-
-**Remove repository link**
-
-    git remote -v
-    git remove rm origin
 
 <br>
 
@@ -1872,7 +1917,9 @@ To start MySQL Server run: `sudo /etc/init.d/mysql start`
 **Configuration files**:
 
     /etc/my.cnf
+
     /etc/mysql/my.cnf
+
     /var/lib/mysql/my.cnf
 
 To see if database is running:
@@ -2207,7 +2254,7 @@ To install **LAMP** on your computer follow these steps:
 
             git clone https://github.com/PrestaShop/PrestaShop.git
 
-    or for a certain version:
+    Use to a certain version change branch:
 
             git checkout 1.7.2.0
 
@@ -2421,6 +2468,10 @@ To install Development Tools on RHEL 8 / CentOS 8 run:
 
     dnf repository-packages epel list
 
+Some needed packages:
+
+    dnf install -y nano git curl wget neofetch
+
 <br>
 
 <br>
@@ -2461,7 +2512,7 @@ You can also **disable** the annoying bell sound that is triggering with tab whe
 
 <br>
 
-### Time
+### UTC in Windows and Dual Boot
 
 Fix WSL time sync
 
@@ -2470,6 +2521,17 @@ Fix WSL time sync
 For fixing also UTC dual boot problem with Linux or macOSX run in a `cmd` with **administrator previleges**:
 
     reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f
+
+Or you can create a file named `WindowsTimeFixUTC.reg` with the following contents and then double click on it to merge the contents with the registry:
+
+    Windows Registry Editor Version 5.00
+    [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]
+        "RealTimeIsUniversal"=dword:00000001
+
+Windows Time service will still write local time to the RTC regardless of the registry setting above on shutdown, so it is handy to disable Windows Time service with this command on `cmd` with **admin rights** (if time sync is still required while in Windows use any third-party time sync solution): `sc config w32time start= disabled`
+
+In your linux distribution you have to run: `timedatectl set-local-rtc 1`
+reset your timezone also: ` timedatectl set-timezone Greece/Athens`
 
 <br>
 
@@ -2536,6 +2598,12 @@ To view your applications similar to Application's folder of macOSX
 
 <br>
 
+**Winsock catalog reset**
+
+To reset winsock catalog run: `netsh winsock reset` and after that reboot, so the changes can take effect.
+
+<br>
+
 **Folder Options**
 
     Open file explorer to [This PC]
@@ -2560,8 +2628,11 @@ To remove items from the right click **context menu** open `regedit.exe` and nav
     HKEY_CLASSES_ROOT\*\shellex
     HKEY_CLASSES_ROOT\Directory\shell\
     HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\
+    HKEY_CLASSES_ROOT\LibraryFolder\background\
     HKEY_CLASSES_ROOT\Directory\Background\shell
     HKEY_CLASSES_ROOT\Directory\Background\shellex\ContextMenuHandlers
+
+WinRAR's context menu items can be turned off from WinRAR's menu bar `Options` , `Integration` tab and in `Context menu items`
 
 <br>
 
@@ -2602,21 +2673,29 @@ Just move the content of the folders in the new location.
 
 <br>
 
-**Firefox profile backup**
-
-    %USERPROFILE%\AppData\Local\Mozilla\Firefox\Profiles
-
-<br>
-
 **Chrome profile backup**
 
     %USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default
 
 <br>
 
+**Firefox profile backup**
+
+    %USERPROFILE%\AppData\Local\Mozilla\Firefox\Profiles
+
+<br>
+
+**Firefox profile desktop shortcut**
+
+Create a shortcut via right click context menu of Firefox and at the end of the path add: `-P "Firefox Profile"`
+
+For example: `"C:\Program Files\Mozilla Firefox\firefox.exe" -P "Workprofile"`
+
+<br>
+
 **Disable Cortana**
 
-     Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
+    Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
 
 <br>
 
@@ -2638,9 +2717,9 @@ You can delete the content of previous updates folder.
 
 Other locations might be:
 
-    %appdata%\microsoft\windows\recent\automaticdestinations
+    %APPDATA%\Microsoft\Windows\Recent\AutomaticDestinations\
 
-    %appdata%\microsoft\windows\recent\customdestinations
+    %APPDATA%\Microsoft\Windows\Recent\CustomDestinations\
 
 <br>
 
@@ -2691,7 +2770,7 @@ IPv4: `9.9.9.9, 149.112.112.112`
 With: `tracert <url of the domain>` its kinda like ping but you can trace every hop till the reaching the final destination of tha domain.
 <br>
 
-To **debloat** at a certain level Windows 10, the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app i tend to keep only Groove music player from the native apps.
+To **Debloat** to a certain level Windows 10, the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app from its uninstaller. I tend to keep only Groove music player from the native apps and some time the Calender.
 
 <br>
 
@@ -2723,6 +2802,36 @@ To change default text editor to VScode include it in the configuration file, al
 
     [preferences]
     Editor=C:\Program Files\Microsoft VS Code\Code.exe
+
+You can add items on context menu's `Quick Apps`, you can enable more CMS there, `prestashop` is already there commented out, or you change the links for diffrent versions of the release.
+
+To install `phpMyAdmin` download it from [here](https://www.phpmyadmin.net/downloads/) and extract it in: `C:\laragon\etc\apps\phpMyAdmin`
+
+<br>
+
+## Visual Studio Code
+
+You can backup VSCode settings to move them around machines with [Settings Sync Extention](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) but if you want to do it manually you will find local settings location here:
+
+    %APPDATA%\Code\User\
+    %APPDATA%\Code\User\settings.json
+    %APPDATA%\Code\User\keybindings.json
+
+for extentions: `%USERPROFILE%\.vscode\extensions`
+
+for a list of installed extentions you can run: `code --list-extensions`
+
+To move the extentions via a list from one machine to another make a file :
+
+    code --list-extensions >> vs_code_extensions_list.txt
+
+Then run this to install the extentions from the list:
+
+    cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
+
+If you want a clean install you can run this before you install the new extentions:
+
+    code --list-extensions | xargs -n 1 code --uninstall-extension
 
 <br>
 
@@ -2945,6 +3054,8 @@ https://github.com/dahlbyk/posh-git/
 
 https://www.nerdfonts.com/
 
+https://windowsterminalthemes.dev/
+
 https://github.com/ryanoasis/nerd-fonts/
 
 https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/
@@ -3076,6 +3187,8 @@ https://docs.docker.com/docker-for-windows/install/
 https://doc.rust-lang.org/stable/
 
 https://github.com/rust-lang/rust/
+
+https://www.phpmyadmin.net/downloads/
 
 https://guides.rubyonrails.org/getting_started.html/
 
