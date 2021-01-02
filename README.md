@@ -178,7 +178,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Packages for development on Windows10**:
 
-    choco install -y git gitkraken github-desktop vcxsrv nodejs.install yarn python python3 python2 openssh nginx mongodb flashplayerplugin javaruntime jr8 jdk8 silverlight postman dontnetfx dotnet4.5 ruby cygwin tomcat hugo awscli winscp strawberryperl arduino jenkins-x
+    choco install -y git gitkraken github-desktop vcxsrv nodejs.install yarn python python3 python2 openssh nginx mongodb flashplayerplugin javaruntime jr8 jdk8 silverlight postman dontnetfx dotnet4.5 ruby cygwin tomcat hugo awscli winscp strawberryperl imagemagick.app arduino jenkins-x
 
 <br>
 
@@ -650,18 +650,22 @@ Here is a sample of a `.wslconfig` file:
     processors=2
     swap=6GB
     swapFile=D:\\Temp\\WslSwap.vhdx
-    # localhostForwarding=true  # Boolean specifying if ports bound to wildcard or localhost in the WSL2 VM should be connectable from the host via localhost:port (default true).
 
+To use different configurations per distribution you have to edit: `/etc/wsl.conf` of each distribution.
+
+    # Enable extra metadata options by default
     [automount]
-    # root = /folder/
     enabled = true
+    root = /windir/
     options = "metadata,umask=22,fmask=11"
     mountFsTab = false
 
+    # Enable DNS – even though these are turned on by default, we'll specify here just to be explicit.
     [network]
-    # Enable DNS
     generateHosts = true
-    exgenerateResolvConf = true
+    generateResolvConf = true
+
+You can find [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config) more about WSL configuration.
 
 All WSL files are stored: `%LOCALAPPDATA%\Packages`
 
@@ -1443,6 +1447,8 @@ To install a global package run:
 
     sudo npm install -g prettier
 
+    sudo npm install -g parcel-bundler
+
 To list the outdated global packages run:
 
     npm outdated -g --depth=0
@@ -1456,7 +1462,7 @@ For local run it in your project folder and just remove the `-g` flag.
 
 <br>
 
-### Static site generators
+#### Static site generators
 
     sudo npm install -g gatsby-cli
 
@@ -1502,13 +1508,23 @@ You have to also include this in your `~/.zshrc`
 
 <!-- export PATH="$PATH:$(yarn global bin)" -->
 
-    export PATH="$PATH:$(yarn global bin)"
-
-or
-
-    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+    export PATH="$(yarn global bin):$PATH"
 
 Also you can simple install it through [npm](https://github.com/npm/npm) `sudo npm i -g yarn`
+
+To upgrade all global pagckages run:
+
+    yarn upgrade
+
+To install a global package run:
+
+    yarn global add bit-bin
+
+    yarn install
+
+To upgrade you current version of `yarn` to latest run:
+
+    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
 <!-- ### create-react-app
 
@@ -3179,6 +3195,8 @@ https://github.com/jonas/tig/
 https://github.com/github/hub/
 
 https://github.com/httpie/httpie/
+
+https://docs.microsoft.com/en-us/windows/wsl/wsl-config/
 
 https://docs.docker.com/engine/reference/commandline/docker/
 
