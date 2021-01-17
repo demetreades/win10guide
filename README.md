@@ -1785,7 +1785,7 @@ Adjust the Firewall to **Allow** Web Traffic
 
     sudo ufw app info "Apache Full"
 
-    sudo ufw allow 'Nginx Full'
+    sudo ufw allow "Nginx Full"
 
 <br>
 
