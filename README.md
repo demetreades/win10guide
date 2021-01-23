@@ -58,6 +58,7 @@ enjoy 🤿
                     -   [nvm](#nvm)
                     -   [npm](#npm)
                         -   [Static site generators](#static-site-generators)
+                        -   [Angular](#Angular)
                     -   [yarn](#yarn)
                     -   [deno](#deno)
                 -   [Python](#python)
@@ -1442,16 +1443,9 @@ To install a global package run:
 
     sudo npm install -g eslint
 
-    sudo npm install -g @angular/cli
-    sudo npm install -g @angular/cli@next
-
     sudo npm install -g prettier
 
     sudo npm install -g parcel-bundler
-
-To list the outdated global packages run:
-
-    npm outdated -g --depth=0
 
 To update global packages:
 
@@ -1489,6 +1483,19 @@ For local run it in your project folder and just remove the `-g` flag.
     sudo npm install -g brunch
 
     sudo npm install -g lingon-cli
+
+<br>
+
+#### Angular
+
+    sudo npm install -g @angular/cli
+    sudo npm install -g @angular/cli@next
+
+In order to make `ng serve` recompile correctly after every change, in WSL you need to run it with poll flag: `ng serve --poll=2000`
+
+To list the outdated global packages run:
+
+    npm outdated -g --depth=0
 
 <br>
 
