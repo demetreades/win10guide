@@ -185,7 +185,7 @@ You can find packages by running `search` command, from Chocolatey's [page](http
 
 **Text Editors**:
 
-    choco install -y vscode vscode-insiders sublimetext3 choco install sublimetext2 atom kate
+    choco install -y vscode vscode-insiders sublimetext3 choco install sublimetext2 atom brackets typora kate
 
 <br>
 
@@ -1671,29 +1671,29 @@ Verify it works, if you get error just restart your terminal session and try aga
 
 For more details see [Official Documentation](https://docs.docker.com/engine/reference/commandline/docker/)
 
-| Command                                              | Description                                                       |
-| ---------------------------------------------------- | ----------------------------------------------------------------- |
-| `docker –version`                                    | To get the currently installed version of docker                  |
-| `docker pull <image name>`                           | To pull images from the docker repository                         |
-| `docker run -it -d <image name>`                     | To create a container from an image                               |
-| `docker ps`                                          | To list the running containers                                    |
-| `docker ps -a`                                       | To show all the running and exited containers                     |
-| `docker exec -it <container id> bash`                | To access the running container                                   |
-| `docker stop <container id>`                         | To stop a running container                                       |
-| `docker kill <container id>`                         | To Kills the container by stopping its execution immediately      |
-| `docker commit <conatainer id> <username/imagename>` | To creates a new image of an edited container on the local system |
-| `docker login`                                       | To login to the docker hub repository                             |
-| `docker push <username/image name>`                  | To push an image to the docker hub repository                     |
-| `docker images`                                      | To lists all the locally stored docker images.                    |
-| `docker rm <container id>`                           | To delete a stopped container.                                    |
-| `docker rmi <image-id>`                              | To delete an image from local storage.                            |
-| `docker build <path to docker file>`                 | To build an image from a specified docker file.                   |
-| `docker container list --last=n`                     | To display n last created containers.                             |
-| `docker container list`                              | To list all Running docker containers.                            |
-| `docker ps -f "status=exited"`                       | To list all stopped docker containers.                            |
-| `docker container list -f "status=exited"`           | Same as the above.                                                |
-| `docker container list --latest`                     | To list out all latest created containers.                        |
-| `docker container ls -all`                           | To list all Containers.                                           |
+| Command                                             | Description                                                       |
+| --------------------------------------------------- | ----------------------------------------------------------------- |
+| `docker –version`                                   | To get the currently installed version of docker                  |
+| `docker pull <image name>`                          | To pull images from the docker repository                         |
+| `docker run -it -d <image name>`                    | To create a container from an image                               |
+| `docker ps`                                         | To list the running containers                                    |
+| `docker ps -a`                                      | To show all the running and exited containers                     |
+| `docker exec -it <container id> bash`               | To access the running container                                   |
+| `docker stop <container id>`                        | To stop a running container                                       |
+| `docker kill <container id>`                        | To Kills the container by stopping its execution immediately      |
+| `docker commit <container id> <username/imagename>` | To creates a new image of an edited container on the local system |
+| `docker login`                                      | To login to the docker hub repository                             |
+| `docker push <username/image name>`                 | To push an image to the docker hub repository                     |
+| `docker images`                                     | To lists all the locally stored docker images.                    |
+| `docker rm <container id>`                          | To delete a stopped container.                                    |
+| `docker rmi <image-id>`                             | To delete an image from local storage.                            |
+| `docker build <path to docker file>`                | To build an image from a specified docker file.                   |
+| `docker container list --last=n`                    | To display n last created containers.                             |
+| `docker container list`                             | To list all Running docker containers.                            |
+| `docker ps -f "status=exited"`                      | To list all stopped docker containers.                            |
+| `docker container list -f "status=exited"`          | Same as the above.                                                |
+| `docker container list --latest`                    | To list out all latest created containers.                        |
+| `docker container ls -all`                          | To list all Containers.                                           |
 
 <br>
 
