@@ -495,7 +495,7 @@ You can also get most color schemers from [here](https://windowsterminalthemes.d
         // Put settings here that you want to apply to all profiles.
         "startingDirectory": "%USERPROFILE%/Desktop/",
         "fontFace": "MesloLGS NF",
-        "fontSize": 9,
+        "fontSize": 9
         },
 
 **_arch_**
@@ -2499,8 +2499,6 @@ Some needed packages:
 
 <br>
 
-<br>
-
 # WSL Tips
 
 You can call any Linux command directly from `cmd` or `PowerShell` by just putting it after `wsl.exe`
@@ -2787,13 +2785,12 @@ To repair the image of Windows, on `PowerShell` with **administrator privileges*
 <br>
 
 You can get your MAC address and other info with: `ipcofig /all`, you can clear the DNS cache by running: `ipconfig/flushdns`, also better change your DNS provider, [here is a list](https://www.privacytools.io/providers/dns/) of
-private focused DNS services, i use mostly **Quad9**
-IPv4: `9.9.9.9, 149.112.112.112`
+private focused DNS services.
 
-With: `tracert <url of the domain>` its kinda like ping but you can trace every hop till the reaching the final destination of tha domain.
+With: `tracert <url of the domain>` its kinda like ping but you can trace every hop till the reaching the final destination of the domain.
 <br>
 
-To **Debloat** to a certain level Windows 10, the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system app from its uninstaller. I tend to keep only Groove music player from the native apps and some time the Calender.
+To **Debloat** Windows10 to a certain level , the easiest way i found without running weird scripts, is by installing **CCleaner** and remove any unwanted system apps from its uninstaller option. I tend to keep only groove music player from the native apps and some times the calender.
 
 <br>
 
@@ -2936,7 +2933,7 @@ We have first to `enable` Developer Mode so the computer is discoverable and can
 
 **enable** `Developer Mode` and `Device Discovery` to reveal your local networks devices, you will **not want** to have always `Device Discovery` enabled, especially if you are on a laptop and you changing local networks all the time.
 
-    Windows Settings > Network & Internet > Ethernet Properties > Change advnanced sharing options
+    Windows Settings > Network & Internet > Ethernet Properties > Change Advanced Sharing Options
 
 On `Public Profile` tab turn **off** `Network Discovery`
 On `Private` tab turn **on** `File and printer sharing`
