@@ -1439,6 +1439,10 @@ For updating npm run:
 
 To install a global package run:
 
+    sudo npm install -g <PackageName>
+
+<br>
+
     sudo npm install -g typescript
 
     sudo npm install -g eslint
@@ -1449,8 +1453,8 @@ To install a global package run:
 
 To update global packages:
 
-    npm update -g                   # for all the packages
-    npm update -g <PackageName>     # for individual packages
+    sudo npm update -g                   # for all the packages
+    sudo npm update -g <PackageName>     # for individual packages
 
 For local run it in your project folder and just remove the `-g` flag.
 
