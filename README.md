@@ -12,7 +12,7 @@ enjoy 🤿
 
 -   [Getting Started](#getting-started)
 
-    -   [Automatic Updates & Telemetry](#Automatic-Updates-&-Telemetry)
+    -   [Automatic Updates & Telemetry](#Automatic-Updates-Telemetry)
     -   [Chocolatey Package Manager](#chocolatey-package-manager)
         -   [Chocolatey Installation](#chocolatey-installation)
         -   [Choco Packages](#choco-packages)
@@ -118,7 +118,7 @@ The guide's state is **work in progress**, you will might find inside old deprec
 
 <br>
 
-# Automatic Updates & Telemetry
+# Automatic Updates Telemetry
 
 **1.** Disable Windows 10 automatic updates by let it getting you notified before downloading or installing any updates.
 
@@ -865,7 +865,7 @@ Setup your **Username**:
 
     git config --global user.name "Your Name"
 
-Setup your **Password**:
+Setup your **Email**:
 
     git config --global user.email "youremail@domain.com"
 
